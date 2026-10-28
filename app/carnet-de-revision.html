@@ -1,0 +1,475 @@
+<title>Carnet de révision MSc1</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Concept : un cahier de révision par cours. Accueil = étagère de cours ; cours = tableau de maîtrise + tests notés /20. */
+:root{
+  --bg:#F1F4F6; --surface:#FFFFFF; --ink:#12212B; --muted:#5A6B76; --line:#D5DDE2;
+  --accent:#0B6E5B; --accent-ink:#FFFFFF; --tint:#E1EFEB;
+  --good:#1E7F48; --bad:#B8362A; --warn:#9A6A12; --badbg:#FBE9E6; --goodbg:#E3F3EA;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1A20; --surface:#15252D; --ink:#E6EEF1; --muted:#93A5AE; --line:#27393F;
+  --accent:#4CC3A6; --accent-ink:#06241D; --tint:#17332E;
+  --good:#4CC38A; --bad:#F08272; --warn:#E3B04B; --badbg:#3A1F1B; --goodbg:#143325; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1A20; --surface:#15252D; --ink:#E6EEF1; --muted:#93A5AE; --line:#27393F;
+  --accent:#4CC3A6; --accent-ink:#06241D; --tint:#17332E;
+  --good:#4CC38A; --bad:#F08272; --warn:#E3B04B; --badbg:#3A1F1B; --goodbg:#143325; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--body);padding-block:20px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+#app{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;line-height:1.15}
+h1{font-size:2rem;font-weight:700}h2{font-size:1.35rem;font-weight:700}h3{font-size:1.05rem;font-weight:600}
+p{margin:0}.muted{color:var(--muted)}.small{font-size:.85rem}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.label{font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:600}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn{border:1px solid var(--line);background:var(--surface);padding:9px 15px;border-radius:8px;font-weight:500}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.btn.link{border:0;background:none;padding:4px 0;color:var(--accent);text-decoration:underline}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.shelf{display:block;text-align:left;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.shelf:hover{border-color:var(--accent)}
+.shelf .meta{display:flex;gap:14px;flex-wrap:wrap}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tab{border:0;background:none;padding:10px 14px;border-bottom:3px solid transparent;font-weight:500;color:var(--muted);white-space:nowrap}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
+.stat{display:flex;flex-direction:column;gap:2px}
+.stat b{font:600 1.7rem var(--mono)}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent)}
+.chap{display:grid;grid-template-columns:minmax(0,1fr) 90px;gap:6px 12px;align-items:center}
+.chap .name{min-width:0;overflow-wrap:anywhere}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:11px 13px}
+.opt:hover{border-color:var(--accent)}
+.opt .k{font:600 .85rem var(--mono);border:1px solid var(--line);border-radius:6px;min-width:26px;height:26px;display:grid;place-items:center;flex:none}
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--tint)}
+.opt[aria-pressed="true"] .k{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.opts{display:flex;flex-direction:column;gap:8px}
+.qtext{font-size:1.1rem;font-weight:500;line-height:1.45}
+.pill{display:inline-block;font-size:.72rem;font-weight:600;padding:2px 9px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
+.pill.good{color:var(--good);border-color:var(--good)}.pill.bad{color:var(--bad);border-color:var(--bad)}
+.note{font:700 3.4rem/1 var(--mono)}
+.note small{font-size:1.2rem;color:var(--muted)}
+.fix{border-left:4px solid var(--bad);background:var(--badbg);border-radius:6px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.fix.ok{border-left-color:var(--good);background:var(--goodbg)}
+.ans-line{display:flex;gap:8px;flex-wrap:wrap}
+textarea,input[type=text]{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+textarea{min-height:150px;resize:vertical}
+details{border-top:1px solid var(--line);padding:10px 0}
+summary{cursor:pointer;font-weight:500}
+.banner{border:1px solid var(--accent);background:var(--tint);border-radius:10px;padding:12px 14px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.warnbox{border:1px solid var(--warn);border-radius:10px;padding:12px 14px;color:var(--ink)}
+ul.clean{margin:6px 0 0;padding-left:20px}
+.top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.hist{display:grid;grid-template-columns:auto 1fr auto;gap:6px 14px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+@media (prefers-reduced-motion:no-preference){.bar i{transition:width .4s}}
+</style>
+
+<div id="app"><p class="muted">Chargement…</p></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+const PDFWORKER="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const L="ABCDEFGH";
+const S={db:null,sample:null,courses:[],cid:null,qs:[],atts:[],tab:"reviser",run:null,busy:null,notice:null,draft:{},files:[],unsubs:[],ready:false};
+const cur=()=>S.courses.find(c=>c.id===S.cid);
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const fmt=x=>(Math.round(x*2)/2).toString().replace(".",",");
+const ERR={not_granted:"Tu as refusé l'accès à Claude pour cette page. Recharge la page et accepte pour générer ou corriger.",sampling_disabled:"Claude n'est pas disponible sur ce compte.",rate_limited:"Trop d'appels ou limite d'usage atteinte. Réessaie dans quelques minutes.",invalid_json:"La réponse de Claude n'était pas exploitable. Relance une fois.",upstream_error:"Connexion interrompue. Relance.",prompt_too_large:"Le cours est trop long pour un seul appel.",cancelled:"Arrêté."};
+const errMsg=e=>ERR[e?.code]||("Erreur : "+(e?.message||e?.code||"inconnue"));
+
+/* ---------- données ---------- */
+function unsubAll(){S.unsubs.forEach(f=>f());S.unsubs=[]}
+function openCourse(cid){
+  unsubAll();S.cid=cid;S.qs=[];S.atts=[];S.tab="reviser";S.run=null;S.notice=null;render();
+  const base="courses/"+cid;
+  S.unsubs.push(S.db.collection(base+"/questions").onSnapshot(s=>{S.qs=s.docs.map(d=>({id:d.id,...d.data()}));syncCount();render()},e=>console.error(e)));
+  S.unsubs.push(S.db.collection(base+"/attempts").orderBy("at","desc").limit(200).onSnapshot(s=>{S.atts=s.docs.map(d=>({id:d.id,...d.data()}));render()},e=>console.error(e)));
+}
+function closeCourse(){unsubAll();S.cid=null;S.run=null;S.notice=null;render()}
+let lastCount=-1;
+function syncCount(){const c=cur();if(!c)return;const n=S.qs.length;if(c.qCount!==n&&lastCount!==n){lastCount=n;S.db.doc("courses/"+c.id).update({qCount:n}).catch(()=>{})}}
+function chapters(){const m={};S.qs.filter(q=>!q.flagged).forEach(q=>{(m[q.chapter||"Général"]??=[]).push(q)});return m}
+function lastByQ(){const m={};for(const a of S.atts)for(const it of a.items||[])if(!(it.qid in m))m[it.qid]=it.f;return m}
+const mastered=(q,m)=>q.id in m&&m[q.id]>=(q.type==="open"?.75:.99);
+
+/* ---------- import ---------- */
+async function extract(file){
+  const ext=file.name.split(".").pop().toLowerCase();
+  if(["txt","md","csv"].includes(ext))return await file.text();
+  if(ext==="docx"){if(!window.mammoth)throw new Error("Lecteur Word indisponible");return (await mammoth.extractRawText({arrayBuffer:await file.arrayBuffer()})).value}
+  if(ext==="pdf"){
+    if(!window.pdfjsLib)throw new Error("Lecteur PDF indisponible");
+    pdfjsLib.GlobalWorkerOptions.workerSrc=PDFWORKER;
+    const pdf=await pdfjsLib.getDocument({data:new Uint8Array(await file.arrayBuffer())}).promise;
+    let out="";for(let p=1;p<=pdf.numPages;p++){const t=await (await pdf.getPage(p)).getTextContent();out+=`\n[Page ${p}]\n`+t.items.map(i=>i.str).join(" ")}
+    if(out.replace(/\[Page \d+\]|\s/g,"").length<pdf.numPages*40)throw new Error("Ce PDF semble être un scan sans texte. Colle le texte ou exporte-le en Word.");
+    return out;
+  }
+  throw new Error("Format non pris en charge : "+ext);
+}
+async function saveDoc(name,text){
+  const c=cur(),id="d"+Date.now().toString(36),parts=[];
+  for(let i=0;i<text.length;i+=80000)parts.push(text.slice(i,i+80000));
+  for(let k=0;k<parts.length;k++)await S.db.doc(`courses/${c.id}/chunks/${id}_${k}`).set({docId:id,docName:name,n:k,text:parts[k]});
+  await S.db.doc("courses/"+c.id).update({docs:[...(c.docs||[]),{id,name,chars:text.length,chunks:parts.length,at:Date.now()}]});
+}
+async function doImport(){
+  const pasted=(S.draft.pasteText||"").trim(),pname=(S.draft.pasteName||"").trim()||"Texte collé";
+  if(!S.files.length&&!pasted){S.notice={t:"warn",m:"Choisis un fichier ou colle du texte."};return render()}
+  S.busy={label:"Lecture des documents…"};render();
+  try{
+    let n=0;
+    for(const f of S.files){S.busy={label:"Lecture de "+f.name+"…"};render();await saveDoc(f.name,await extract(f));n++}
+    if(pasted){await saveDoc(pname,pasted);n++}
+    S.files=[];S.draft.pasteText="";S.draft.pasteName="";
+    S.notice={t:"gen",m:n+" document"+(n>1?"s":"")+" ajouté"+(n>1?"s":"")+" au cours."};
+  }catch(e){S.notice={t:"warn",m:e.message||String(e)}}
+  S.busy=null;render();
+}
+
+/* ---------- génération de questions par Claude ---------- */
+let ctl=null;
+async function courseText(){
+  const s=await S.db.collection(`courses/${S.cid}/chunks`).get();
+  const ch=s.docs.map(d=>d.data()).sort((a,b)=>a.docId<b.docId?-1:a.docId>b.docId?1:a.n-b.n);
+  let out="",last="";for(const c of ch){if(c.docName!==last){out+=`\n\n### Document : ${c.docName}\n`;last=c.docName}out+=c.text}
+  const CAP=160000;if(out.length>CAP){const st=Math.floor(Math.random()*(out.length-CAP));out=out.slice(st,st+CAP)}
+  return out;
+}
+function normQ(x){
+  if(!x||typeof x.q!=="string"||!x.q.trim())return null;
+  const type=["qcm","multi","open"].includes(x.type)?x.type:"qcm";
+  const o={type,chapter:String(x.chapter||"Général").slice(0,80),level:x.level==="appliquer"?"appliquer":"comprendre",q:x.q.trim(),why:String(x.why||"").trim(),source:"ia",at:Date.now()};
+  if(type==="open"){
+    if(!Array.isArray(x.points)||x.points.length<2)return null;
+    o.points=x.points.map(String);o.model=String(x.model||"");return o;
+  }
+  if(!Array.isArray(x.options)||x.options.length<3||x.options.length>6)return null;
+  o.options=x.options.map(String);
+  const a=(Array.isArray(x.answer)?x.answer:[x.answer]).map(Number).filter(i=>Number.isInteger(i)&&i>=0&&i<o.options.length);
+  if(!a.length)return null;if(type==="qcm"&&a.length!==1)return null;if(type==="multi"&&a.length<2)return null;
+  o.answer=[...new Set(a)];return o;
+}
+async function generate(n=10){
+  if(!S.sample){S.notice={t:"warn",m:"Claude n'est pas joignable depuis cette page."};return render()}
+  if(!(cur().docs||[]).length){S.notice={t:"warn",m:"Ajoute d'abord un document dans l'onglet Cours."};return render()}
+  ctl=new AbortController();S.busy={label:"Claude lit le cours et prépare "+n+" questions…",stop:true,prog:0};render();
+  try{
+    const text=await courseText();
+    const have=S.qs.map(q=>"- "+q.q.slice(0,90)).slice(-120).join("\n");
+    const prompt=`Tu es examinateur en MSc Marketing, Communication et Stratégie de Marque (INSEEC). Cours : « ${cur().name} ».
+À partir UNIQUEMENT du contenu du cours ci-dessous, écris ${n} nouvelles questions d'examen en français.
+
+Règles :
+- Répartition : environ 60 % de QCM à une seule bonne réponse ("qcm"), 20 % de QCM à plusieurs bonnes réponses ("multi", 2 à 3 bonnes réponses sur 5 options), 20 % de questions ouvertes ("open").
+- Au moins la moitié en mise en situation (cas concret, marque, scénario) qui demande d'appliquer le cours ("level":"appliquer"), le reste teste la compréhension ("comprendre"). Pas de simple récitation.
+- Mauvaises réponses plausibles, construites sur de vraies confusions du cours. Options "qcm" : 4. Pas de "toutes les réponses ci-dessus".
+- "why" : explique en 2 à 3 phrases pourquoi c'est la bonne réponse et pourquoi le piège principal est faux, en citant la notion du cours.
+- "chapter" : nom court de la partie du cours concernée (réutilise les noms de chapitres existants si possible).
+- Question ouverte : "points" = 3 à 5 éléments attendus, "model" = réponse modèle de 3 à 5 phrases.
+- Ne répète pas ces questions déjà posées :
+${have||"(aucune)"}
+
+Réponds UNIQUEMENT par un tableau JSON, sans texte autour. Formes :
+{"type":"qcm","chapter":"…","level":"appliquer","q":"…","options":["…","…","…","…"],"answer":[2],"why":"…"}
+{"type":"multi","chapter":"…","level":"comprendre","q":"…","options":["…","…","…","…","…"],"answer":[0,3],"why":"…"}
+{"type":"open","chapter":"…","level":"appliquer","q":"…","points":["…","…","…"],"model":"…","why":"…"}
+
+CONTENU DU COURS :
+${text}`;
+    const arr=await S.sample.json(prompt,{signal:ctl.signal,cache:false,modelTier:"default",onText:({text})=>{const el=document.getElementById("prog");if(el)el.textContent=Math.round(text.length/100)/10+" k caractères reçus"}});
+    const list=(Array.isArray(arr)?arr:[]).map(normQ).filter(Boolean);
+    if(!list.length)throw {code:"invalid_json",message:"Aucune question valide"};
+    for(const q of list)await S.db.collection(`courses/${S.cid}/questions`).add(q);
+    S.notice={t:"ok",m:list.length+" nouvelles questions ajoutées."+(list.length<n?" ("+(n-list.length)+" écartées car mal formées.)":"")};
+  }catch(e){S.notice={t:"warn",m:errMsg(e)}}
+  S.busy=null;ctl=null;render();
+}
+
+/* ---------- tests ---------- */
+function pick(n){
+  const m=lastByQ(),seen={};S.atts.forEach(a=>(a.items||[]).forEach(i=>seen[i.qid]=1));
+  const pool=S.qs.filter(q=>!q.flagged&&q.type!=="open");
+  const pr=q=>(!(q.id in seen)?0:m[q.id]<.99?1:2)+Math.random()*.9;
+  return pool.map(q=>[pr(q),q]).sort((a,b)=>a[0]-b[0]).slice(0,n).map(x=>x[1]);
+}
+const mk=q=>({q,order:shuffle(q.options.map((_,i)=>i)),picks:[]});
+function startTest(n){
+  const qs=shuffle(pick(n));
+  if(!qs.length){S.notice={t:"warn",m:"Aucune question QCM disponible. Génère-en dans l'onglet Questions."};return render()}
+  S.run={kind:"test",items:qs.map(mk),i:0,phase:"answer"};S.notice=null;render();
+}
+function startExam(){
+  const qs=shuffle(S.qs.filter(q=>!q.flagged&&q.type!=="open"));
+  if(!qs.length){S.notice={t:"warn",m:"Aucune question QCM disponible."};return render()}
+  S.run={kind:"test",exam:true,items:qs.map(mk),i:0,phase:"answer"};S.notice=null;render();
+}
+function score(q,picks){
+  const a=q.answer;if(q.type==="qcm")return picks[0]===a[0]?1:0;
+  const good=picks.filter(p=>a.includes(p)).length,bad=picks.length-good;
+  return bad===0&&good===a.length?1:Math.max(0,(good-bad)/a.length)*.99;
+}
+async function finish(){
+  const r=S.run;
+  r.res=r.items.map(it=>({qid:it.q.id,f:score(it.q,it.picks),picks:it.picks}));
+  r.phase="result";
+  if(r.kind==="test"){
+    const sum=r.res.reduce((s,x)=>s+x.f,0);r.note=Math.round(sum/r.res.length*20*2)/2;
+    const ch={};r.items.forEach((it,i)=>{const k=it.q.chapter||"Général";(ch[k]??=[0,0]);ch[k][0]+=r.res[i].f;ch[k][1]++});
+    r.chap=ch;render();
+    try{const ref=await S.db.collection(`courses/${S.cid}/attempts`).add({at:Date.now(),mode:"qcm",exam:!!r.exam,n:r.res.length,score20:r.note,items:r.res.map(x=>({qid:x.qid,f:x.f})),chap:ch});r.attId=ref.id;
+      await S.db.doc("courses/"+S.cid).update({lastScore:r.note,lastAt:Date.now()})}catch(e){console.error(e)}
+  }else{
+    const fixed=r.res.filter(x=>x.f>=.99).length;r.fixed=fixed;render();
+    const p=r.parent;p.retryUsed=true;
+    try{if(p.attId)await S.db.doc(`courses/${S.cid}/attempts/${p.attId}`).update({retry:{fixed,total:r.res.length}})}catch(e){console.error(e)}
+  }
+}
+function startRetry(){
+  const p=S.run,wrong=p.items.filter((_,i)=>p.res[i].f<.99);
+  S.run={kind:"retry",parent:p,items:wrong.map(it=>mk(it.q)),i:0,phase:"answer"};render();
+}
+
+/* ---------- question ouverte ---------- */
+function startOpen(){
+  const m=lastByQ(),pool=S.qs.filter(q=>q.type==="open"&&!q.flagged);
+  if(!pool.length){S.notice={t:"warn",m:"Pas encore de question ouverte. Génère-en dans l'onglet Questions."};return render()}
+  const q=pool.map(q=>[(q.id in m?(m[q.id]<.75?1:2):0)+Math.random()*.9,q]).sort((a,b)=>a[0]-b[0])[0][1];
+  S.draft.openAns="";S.run={kind:"open",q,phase:"answer",tries:0,fb:null};S.notice=null;render();
+}
+async function gradeOpen(){
+  const r=S.run,ans=(S.draft.openAns||"").trim();
+  if(ans.length<15){S.notice={t:"warn",m:"Écris une vraie réponse avant de la faire corriger."};return render()}
+  if(!S.sample){S.notice={t:"warn",m:"Claude n'est pas joignable depuis cette page."};return render()}
+  ctl=new AbortController();S.busy={label:"Claude corrige ta réponse…",stop:true};render();
+  const q=r.q;
+  const prompt=`Tu corriges une réponse d'étudiant à une question d'examen de MSc Marketing. Sois exigeant mais juste, et ne note que ce qui est dans la réponse.
+
+QUESTION : ${q.q}
+ÉLÉMENTS ATTENDUS :
+${q.points.map(p=>"- "+p).join("\n")}
+RÉPONSE MODÈLE : ${q.model}
+
+RÉPONSE DE L'ÉTUDIANT :
+${ans}
+
+Réponds UNIQUEMENT en JSON : {"score":nombre entre 0 et 1,"bien":["éléments attendus correctement traités"],"manque":["éléments attendus absents ou trop vagues"],"faux":["affirmations erronées, avec la correction"],"conseil":"une phrase pour améliorer la réponse"}`;
+  try{
+    const fb=await S.sample.json(prompt,{signal:ctl.signal,cache:false,modelTier:"default"});
+    r.fb={score:Math.max(0,Math.min(1,Number(fb.score)||0)),bien:[].concat(fb.bien||[]),manque:[].concat(fb.manque||[]),faux:[].concat(fb.faux||[]),conseil:String(fb.conseil||"")};
+    r.tries++;r.phase="fb";
+    S.db.collection(`courses/${S.cid}/attempts`).add({at:Date.now(),mode:"open",n:1,score20:Math.round(r.fb.score*20*2)/2,items:[{qid:q.id,f:r.fb.score}],retry:r.tries>1?{second:true}:null}).catch(()=>{});
+  }catch(e){S.notice={t:"warn",m:errMsg(e)}}
+  S.busy=null;ctl=null;render();
+}
+
+/* ---------- vues ---------- */
+function banner(){
+  const n=S.notice;if(!n)return "";
+  if(n.t==="gen")return `<div class="banner"><span>${esc(n.m)} Prépare les questions maintenant ?</span><span class="row"><button class="btn primary" data-act="gen" data-n="12">Générer 12 questions</button><button class="btn" data-act="dismiss">Plus tard</button></span></div>`;
+  if(n.t==="ok")return `<div class="banner"><span>${esc(n.m)}</span><button class="btn" data-act="dismiss">OK</button></div>`;
+  return `<div class="warnbox">${esc(n.m)} <button class="btn link" data-act="dismiss">Fermer</button></div>`;
+}
+function busyBox(){
+  if(!S.busy)return "";
+  return `<div class="banner" role="status"><span><b>${esc(S.busy.label)}</b><br><span class="muted small" id="prog">Cela peut prendre une à deux minutes.</span></span>${S.busy.stop?'<button class="btn" data-act="stop">Arrêter</button>':""}</div>`;
+}
+function home(){
+  const cs=S.courses;
+  return `<header><p class="label">MSc1 · Marketing, Communication et Stratégie de Marque</p><h1>Carnet de révision</h1>
+  <p class="muted" style="max-width:60ch;margin-top:8px">Un cahier par cours. Tu y ajoutes tes supports (PDF, Word, texte), l'app prépare des questions d'examen, te note sur 20, te montre où tu t'es trompé, puis te repose d'autres questions.</p></header>
+  ${cs.length?`<div class="grid">${cs.map(c=>`<button class="shelf" data-act="open" data-id="${esc(c.id)}">
+    <h3>${esc(c.name)}</h3>
+    <div class="meta small muted"><span>${(c.docs||[]).length} document${(c.docs||[]).length>1?"s":""}</span><span>${c.qCount??0} questions</span></div>
+    ${c.lastScore!=null?`<div><span class="label">Dernière note</span> <span class="mono" style="font-weight:600">${fmt(c.lastScore)}/20</span></div>`:'<div class="small muted">Pas encore de test</div>'}</button>`).join("")}</div>`
+  :`<div class="card"><h3>Aucun cours pour l'instant</h3><p class="muted">Crée le premier cours ci-dessous, puis ajoute ses documents.</p></div>`}
+  <div class="card"><h3>Nouveau cours</h3>
+  <div class="row" style="margin-top:10px"><input type="text" id="newName" placeholder="Ex. : Shopper Experience & IA" value="${esc(S.draft.newName||"")}" style="flex:1;min-width:200px"><button class="btn primary" data-act="newcourse">Créer</button></div></div>
+  ${banner()}`;
+}
+function course(){
+  const c=cur();if(!c)return "";
+  const m=lastByQ(),qs=S.qs.filter(q=>!q.flagged),ms=qs.filter(q=>mastered(q,m)).length;
+  const tests=S.atts.filter(a=>a.mode==="qcm").slice(0,5),avg=tests.length?tests.reduce((s,a)=>s+a.score20,0)/tests.length:null;
+  const tabs=[["reviser","Réviser"],["questions","Questions"],["cours","Cours"],["histo","Historique"]];
+  return `<div class="top"><button class="btn link" data-act="home">← Tous les cours</button></div>
+  <header><p class="label">Cours</p><h1>${esc(c.name)}</h1></header>
+  <div class="card stats">
+    <div class="stat"><span class="label">Questions</span><b>${qs.length}</b></div>
+    <div class="stat"><span class="label">Maîtrisées</span><b>${ms}<span class="muted" style="font-size:1rem">/${qs.length}</span></b></div>
+    <div class="stat"><span class="label">Moyenne (5 derniers)</span><b>${avg==null?"–":fmt(avg)}</b></div>
+    <div class="stat"><span class="label">Dernière note</span><b>${c.lastScore==null?"–":fmt(c.lastScore)}</b></div></div>
+  ${banner()}${busyBox()}
+  <div class="tabs" role="tablist">${tabs.map(([k,t])=>`<button class="tab" role="tab" aria-selected="${S.tab===k}" data-act="tab" data-k="${k}">${t}</button>`).join("")}</div>
+  ${S.tab==="reviser"?reviser(m):S.tab==="questions"?questionsTab():S.tab==="cours"?coursTab():histo()}`;
+}
+function reviser(m){
+  const ch=chapters(),names=Object.keys(ch);
+  return `<div class="card" style="display:flex;flex-direction:column;gap:12px"><h2>Lancer une série</h2>
+  <p class="muted">Les questions jamais vues passent en premier, puis celles que tu as ratées, puis celles que tu maîtrises.</p>
+  <div class="row"><button class="btn primary" data-act="test" data-n="10" ${S.busy?"disabled":""}>Test de 10 QCM</button><button class="btn" data-act="test" data-n="20" ${S.busy?"disabled":""}>Test de 20 QCM</button><button class="btn" data-act="open-q" ${S.busy?"disabled":""}>Question ouverte</button></div>
+  <div class="banner"><span><b>Examen blanc</b><br><span class="small muted">Toutes les questions QCM du cours, chapitres mélangés, notées sur 20. Comme le vrai QCM final.</span></span><button class="btn primary" data-act="exam" ${S.busy?"disabled":""}>Lancer l'examen (${S.qs.filter(q=>!q.flagged&&q.type!=="open").length} questions)</button></div></div>
+  <div class="card" style="display:flex;flex-direction:column;gap:12px"><h2>Maîtrise par chapitre</h2>
+  ${names.length?names.map(n=>{const a=ch[n],k=a.filter(q=>mastered(q,m)).length,p=Math.round(k/a.length*100);
+    return `<div class="chap"><span class="name">${esc(n)}</span><span class="mono small" style="text-align:right">${k}/${a.length}</span><div class="bar" style="grid-column:1/-1"><i style="width:${p}%"></i></div></div>`}).join("")
+    :'<p class="muted">Pas encore de question. Va dans l\'onglet Questions pour en générer.</p>'}
+  <p class="small muted">Une question est maîtrisée quand ta dernière réponse était entièrement juste. L'objectif : tout au vert, puis relire les erreurs.</p></div>`;
+}
+function questionsTab(){
+  const ch=chapters(),all=S.qs;
+  return `<div class="card" style="display:flex;flex-direction:column;gap:10px"><h2>Préparer des questions</h2>
+  <p class="muted">Claude relit tout le contenu du cours et écrit de nouvelles questions : QCM, QCM à plusieurs réponses, mises en situation et questions ouvertes. Chaque lot évite de répéter les précédentes.</p>
+  <div class="row"><button class="btn primary" data-act="gen" data-n="10" ${S.busy?"disabled":""}>Générer 10 questions</button><button class="btn" data-act="gen" data-n="20" ${S.busy?"disabled":""}>Générer 20</button></div>
+  <p class="small muted">Chaque appel utilise ton compte Claude. Si une question te paraît fausse, signale-la : elle sort des tests.</p></div>
+  <div class="card"><h2>Banque (${all.length})</h2>
+  ${all.length?Object.keys(ch).concat(all.some(q=>q.flagged)?["__flag"]:[]).map(n=>{
+    const list=n==="__flag"?all.filter(q=>q.flagged):ch[n];
+    return `<details><summary>${n==="__flag"?"Signalées (exclues)":esc(n)} · ${list.length}</summary>${list.map(qLine).join("")}</details>`}).join(""):'<p class="muted">Vide pour l\'instant.</p>'}</div>`;
+}
+function qLine(q){
+  return `<div style="padding:10px 0;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:6px">
+  <div class="row"><span class="pill">${q.type==="open"?"ouverte":q.type==="multi"?"plusieurs réponses":"QCM"}</span><span class="pill">${q.level==="appliquer"?"application":"compréhension"}</span></div>
+  <div>${esc(q.q)}</div>
+  ${q.type==="open"?`<div class="small muted">Attendu : ${q.points.map(esc).join(" · ")}</div>`:`<div class="small muted">Bonne réponse : ${q.answer.map(i=>esc(q.options[i])).join(" / ")}</div>`}
+  <div class="row"><button class="btn link small" data-act="flag" data-id="${esc(q.id)}">${q.flagged?"Remettre":"Signaler une erreur"}</button><button class="btn link small" data-act="delq" data-id="${esc(q.id)}">Supprimer</button></div></div>`;
+}
+function coursTab(){
+  const c=cur(),docs=c.docs||[];
+  return `<div class="card"><h2>Documents du cours</h2>
+  ${docs.length?docs.map(d=>`<div class="hist" style="grid-template-columns:1fr auto"><span style="overflow-wrap:anywhere">${esc(d.name)}</span><span class="mono small muted">${Math.round(d.chars/1000)} k car.</span></div>`).join(""):'<p class="muted">Aucun document.</p>'}</div>
+  <div class="card" style="display:flex;flex-direction:column;gap:12px"><h2>Ajouter du contenu</h2>
+  <p class="muted">Slides, transcriptions, notes : PDF, Word (.docx), .txt ou .md. Un PDF scanné sans texte ne peut pas être lu : exporte-le en Word ou colle le texte.</p>
+  <input type="file" id="fileIn" multiple accept=".pdf,.docx,.txt,.md">
+  <div class="small muted">${S.files.length?S.files.map(f=>esc(f.name)).join(", "):""}</div>
+  <label class="label" for="pasteName">Ou colle du texte</label>
+  <input type="text" id="pasteName" placeholder="Nom du document" value="${esc(S.draft.pasteName||"")}">
+  <textarea id="pasteText" placeholder="Colle ici une transcription ou tes notes…">${esc(S.draft.pasteText||"")}</textarea>
+  <div class="row"><button class="btn primary" data-act="import" ${S.busy?"disabled":""}>Ajouter au cours</button></div></div>`;
+}
+function histo(){
+  if(!S.atts.length)return `<div class="card"><p class="muted">Aucun test pour l'instant.</p></div>`;
+  return `<div class="card"><h2>Historique</h2>${S.atts.map(a=>`<div class="hist"><span class="mono small muted">${new Date(a.at).toLocaleDateString("fr-FR",{day:"2-digit",month:"short"})}</span><span>${a.mode==="open"?"Question ouverte":(a.exam?"Examen blanc · ":"")+a.n+" QCM"}${a.retry&&a.retry.total!=null?` · ${a.retry.fixed}/${a.retry.total} erreurs corrigées`:""}</span><span class="mono" style="font-weight:600">${fmt(a.score20)}/20</span></div>`).join("")}</div>`;
+}
+function optButtons(it,locked){
+  const q=it.q;
+  return `<div class="opts">${it.order.map((oi,p)=>`<button class="opt" data-act="pick" data-oi="${oi}" aria-pressed="${it.picks.includes(oi)}"><span class="k">${L[p]}</span><span>${esc(q.options[oi])}</span></button>`).join("")}</div>`;
+}
+function quiz(){
+  const r=S.run,it=r.items[r.i],q=it.q,last=r.i===r.items.length-1;
+  return `<div class="top"><button class="btn link" data-act="quit">← Quitter</button><span class="mono small muted">${r.kind==="retry"?"Correction · ":""}${r.i+1} / ${r.items.length}</span></div>
+  <div class="bar"><i style="width:${(r.i+1)/r.items.length*100}%"></i></div>
+  <div class="card" style="display:flex;flex-direction:column;gap:14px">
+    <div class="row"><span class="pill">${esc(q.chapter||"Général")}</span>${q.type==="multi"?'<span class="pill">Plusieurs réponses possibles</span>':""}</div>
+    <p class="qtext">${esc(q.q)}</p>${optButtons(it)}
+    <div class="row" style="justify-content:space-between"><button class="btn" data-act="prev" ${r.i===0?"disabled":""}>Précédente</button>
+    <button class="btn primary" data-act="${last?"finish":"next"}" ${it.picks.length?"":"disabled"}>${last?"Terminer et voir ma note":"Suivante"}</button></div></div>`;
+}
+function result(){
+  const r=S.run,wrong=r.items.map((it,i)=>[it,r.res[i]]).filter(([,x])=>x.f<.99);
+  const head=r.kind==="test"?
+    `<div class="card" style="display:flex;flex-direction:column;gap:14px"><span class="label">Ta note</span><div class="note">${fmt(r.note)}<small> /20</small></div>
+     <p class="muted">${wrong.length?`${wrong.length} question${wrong.length>1?"s":""} à reprendre sur ${r.res.length}.`:"Sans faute."}</p>
+     ${Object.keys(r.chap||{}).map(k=>{const [s,t]=r.chap[k];return `<div class="chap"><span class="name">${esc(k)}</span><span class="mono small" style="text-align:right">${Math.round(s*10)/10}/${t}</span><div class="bar" style="grid-column:1/-1"><i style="width:${s/t*100}%"></i></div></div>`}).join("")}
+     <div class="row">${wrong.length&&!r.retryUsed?'<button class="btn primary" data-act="retry">Corriger mes erreurs (1 essai)</button>':""}<button class="btn ${wrong.length&&!r.retryUsed?"":"primary"}" data-act="test" data-n="${r.items.length}">Nouveau test, autres questions</button><button class="btn" data-act="quit">Retour au cours</button></div></div>`:
+    `<div class="card" style="display:flex;flex-direction:column;gap:12px"><span class="label">Après correction</span><div class="note">${r.fixed}<small> / ${r.res.length} corrigées</small></div>
+     <p class="muted">${wrong.length?"Il reste des points à revoir ci-dessous. Relis le cours puis refais un test : d'autres questions te seront posées.":"Tout est corrigé. Un nouveau test confirmera que c'est acquis."}</p>
+     <div class="row"><button class="btn primary" data-act="test" data-n="${r.parent.items.length}">Nouveau test, autres questions</button><button class="btn" data-act="quit">Retour au cours</button></div></div>`;
+  return `${head}${wrong.length?`<h2>Où tu t'es trompé</h2>`:""}
+  ${wrong.map(([it,x])=>{const q=it.q;
+    return `<div class="fix"><div class="row"><span class="pill bad">${x.f>0?"Incomplet":"Faux"}</span><span class="pill">${esc(q.chapter||"Général")}</span></div>
+    <p><b>${esc(q.q)}</b></p>
+    <div class="ans-line"><span class="small muted">Ta réponse :</span><span>${x.picks.length?x.picks.map(i=>esc(q.options[i])).join(" / "):"aucune"}</span></div>
+    ${r.kind==="retry"&&x.f<.99||r.kind==="test"?`<div class="ans-line"><span class="small muted">Réponse attendue :</span><b>${q.answer.map(i=>esc(q.options[i])).join(" / ")}</b></div>`:""}
+    <p class="small">${esc(q.why||"")}</p>
+    <button class="btn link small" data-act="flagq" data-id="${esc(q.id)}">Cette question est fausse ou ambiguë</button></div>`}).join("")}`;
+}
+function openView(){
+  const r=S.run,q=r.q;
+  const top=`<div class="top"><button class="btn link" data-act="quit">← Quitter</button><span class="pill">${esc(q.chapter||"Général")}</span></div>`;
+  if(r.phase==="answer")return `${top}${banner()}${busyBox()}<div class="card" style="display:flex;flex-direction:column;gap:12px"><span class="label">Question ouverte${r.tries?" · deuxième essai":""}</span><p class="qtext">${esc(q.q)}</p>
+    <textarea id="openAns" placeholder="Rédige comme à l'examen : définis, applique, justifie…">${esc(S.draft.openAns||"")}</textarea>
+    <div class="row"><button class="btn primary" data-act="grade" ${S.busy?"disabled":""}>Faire corriger par Claude</button></div>
+    <p class="small muted">La correction par Claude peut se tromper. Compare toujours avec la réponse modèle.</p></div>`;
+  const f=r.fb,again=r.tries<2;
+  return `${top}${banner()}${busyBox()}<div class="card" style="display:flex;flex-direction:column;gap:12px"><span class="label">Ta note</span><div class="note">${fmt(f.score*20)}<small> /20</small></div>
+    ${f.bien.length?`<div class="fix ok"><b>Bien traité</b><ul class="clean">${f.bien.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`:""}
+    ${f.manque.length?`<div class="fix"><b>Il manque</b><ul class="clean">${f.manque.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`:""}
+    ${f.faux.length?`<div class="fix"><b>À corriger</b><ul class="clean">${f.faux.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`:""}
+    ${f.conseil?`<p>${esc(f.conseil)}</p>`:""}
+    ${again?`<div class="row"><button class="btn primary" data-act="reopen">Réécrire ma réponse (1 essai)</button></div>`:`<details open><summary>Réponse modèle</summary><p style="margin-top:8px">${esc(q.model)}</p></details>`}
+    <div class="row"><button class="btn" data-act="open-q">Autre question ouverte</button><button class="btn" data-act="quit">Retour au cours</button></div></div>`;
+}
+function render(){
+  const app=document.getElementById("app");
+  if(!S.ready){return}
+  if(!S.db){app.innerHTML=`<h1>Carnet de révision</h1><div class="warnbox">Cette page a besoin de sa base de données pour enregistrer tes cours. Ouvre-la depuis ton compte Claude connecté.</div>`;return}
+  let html;
+  if(!S.cid)html=home();
+  else if(S.run&&S.run.kind==="open")html=openView();
+  else if(S.run&&S.run.phase==="answer")html=quiz();
+  else if(S.run&&S.run.phase==="result")html=result();
+  else html=course();
+  app.innerHTML=html;
+}
+
+/* ---------- actions ---------- */
+document.addEventListener("input",e=>{if(e.target.id)S.draft[e.target.id]=e.target.value});
+document.addEventListener("change",e=>{if(e.target.id==="fileIn"){S.files=Array.from(e.target.files);render()}});
+document.addEventListener("click",async e=>{
+  const b=e.target.closest("[data-act]");if(!b)return;
+  const a=b.dataset.act,d=b.dataset;
+  try{
+  if(a==="open")openCourse(d.id);
+  else if(a==="home")closeCourse();
+  else if(a==="tab"){S.tab=d.k;S.notice=null;render()}
+  else if(a==="dismiss"){S.notice=null;render()}
+  else if(a==="newcourse"){const n=(S.draft.newName||"").trim();if(!n)return;S.draft.newName="";const ref=await S.db.collection("courses").add({name:n,createdAt:Date.now(),docs:[],qCount:0});openCourse(ref.id);S.tab="cours";render()}
+  else if(a==="import")doImport();
+  else if(a==="gen")generate(Number(d.n)||10);
+  else if(a==="stop"){ctl&&ctl.abort()}
+  else if(a==="test")startTest(Number(d.n)||10);
+  else if(a==="exam")startExam();
+  else if(a==="open-q")startOpen();
+  else if(a==="pick"){const it=S.run.items[S.run.i],oi=Number(d.oi);
+    if(it.q.type==="multi")it.picks=it.picks.includes(oi)?it.picks.filter(x=>x!==oi):[...it.picks,oi];else it.picks=[oi];render()}
+  else if(a==="next"){S.run.i++;render()}
+  else if(a==="prev"){S.run.i--;render()}
+  else if(a==="finish")finish();
+  else if(a==="retry")startRetry();
+  else if(a==="quit"){S.run=null;S.notice=null;render()}
+  else if(a==="grade")gradeOpen();
+  else if(a==="reopen"){S.run.phase="answer";S.notice=null;render()}
+  else if(a==="flag"||a==="flagq"){const q=S.qs.find(x=>x.id===d.id);if(q){await S.db.doc(`courses/${S.cid}/questions/${q.id}`).update({flagged:a==="flagq"?true:!q.flagged});if(a==="flagq"){b.textContent="Signalée, elle sort des prochains tests.";b.disabled=true}}}
+  else if(a==="delq"){await S.db.doc(`courses/${S.cid}/questions/${d.id}`).delete()}
+  }catch(err){console.error(err);S.notice={t:"warn",m:"Action impossible : "+(err.message||err.code||"erreur")};S.busy=null;render()}
+});
+
+/* ---------- démarrage ---------- */
+(async()=>{
+  try{
+    S.db=await claude.use("db");
+    S.sample=await claude.use("sample");
+  }catch(e){console.error(e)}
+  S.ready=true;
+  if(!S.db){render();return}
+  S.db.collection("courses").orderBy("createdAt","asc").onSnapshot(s=>{S.courses=s.docs.map(d=>({id:d.id,...d.data()}));render()},e=>{console.error(e);render()});
+  render();
+})();
+</script>

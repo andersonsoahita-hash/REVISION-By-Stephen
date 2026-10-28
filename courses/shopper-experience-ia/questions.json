@@ -1,0 +1,613 @@
+[
+ {
+  "type": "qcm",
+  "chapter": "Shopper vs consommateur",
+  "level": "comprendre",
+  "q": "Un parent achète des céréales au supermarché, mais ce sont ses enfants qui les mangent et qui ont réclamé cette marque. Qui est le shopper ?",
+  "options": [
+   "L'enfant",
+   "Le parent",
+   "L'enfant et le parent, indistinctement",
+   "Le fabricant de céréales"
+  ],
+  "answer": [
+   1
+  ],
+  "why": "Le shopper est celui qui choisit et achète au point de vente. L'enfant est consommateur et prescripteur, le parent est shopper.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Shopper vs consommateur",
+  "level": "comprendre",
+  "q": "Dans la situation précédente, quel est le rôle de l'enfant qui a demandé la marque ?",
+  "options": [
+   "Shopper",
+   "Consommateur uniquement",
+   "Prescripteur (et consommateur)",
+   "Décideur de l'entreprise"
+  ],
+  "answer": [
+   2
+  ],
+  "why": "Il influence l'achat sans payer : c'est un prescripteur, et il est aussi consommateur.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Shopper vs consommateur",
+  "level": "appliquer",
+  "q": "Une marque de croquettes pour chiens voit ses ventes baisser alors que les chiens les apprécient. Quelle piste est la plus cohérente avec la distinction shopper / consommateur ?",
+  "options": [
+   "Rendre les croquettes plus savoureuses pour le chien",
+   "Travailler la saillance et le message en rayon, pour la personne qui choisit et achète",
+   "Baisser le prix de 30 % partout",
+   "Ne rien changer : le consommateur est satisfait"
+  ],
+  "answer": [
+   1
+  ],
+  "why": "Le consommateur (le chien) ne choisit pas. Il faut convaincre le shopper, au moment et à l'endroit où il décide.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "multi",
+  "chapter": "Shopper vs consommateur",
+  "level": "comprendre",
+  "q": "Parmi ces rôles, lesquels peuvent être tenus par une même personne ?",
+  "options": [
+   "Shopper",
+   "Consommateur",
+   "Prescripteur",
+   "Aucun : un rôle = une personne"
+  ],
+  "answer": [
+   0,
+   1,
+   2
+  ],
+  "why": "Les rôles sont des fonctions. Une même personne peut acheter, consommer et prescrire.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Shopper experience",
+  "level": "comprendre",
+  "q": "Selon Lemon & Verhoef (2016), l'expérience client est :",
+  "options": [
+   "Uniquement émotionnelle",
+   "Multidimensionnelle (cognitive, émotionnelle, comportementale, sensorielle, sociale)",
+   "Uniquement liée au prix",
+   "Limitée au moment de l'achat"
+  ],
+  "answer": [
+   1
+  ],
+  "why": "Les cinq dimensions sont cognitive, émotionnelle, comportementale, sensorielle et sociale. L'expérience s'étend aussi avant et après l'achat.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Shopper experience",
+  "level": "comprendre",
+  "q": "Quelle différence entre wanting et liking (Berridge & Robinson) ?",
+  "options": [
+   "Aucune, ce sont deux synonymes",
+   "Wanting = désir qui pousse à agir ; liking = plaisir ressenti. Ils peuvent se dissocier",
+   "Wanting = plaisir ressenti ; liking = désir d'acheter",
+   "Wanting concerne le B2B, liking le B2C"
+  ],
+  "answer": [
+   1
+  ],
+  "why": "On peut désirer quelque chose sans en tirer de plaisir (et inversement). Le wanting déclenche le passage à l'acte.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Shopper experience",
+  "level": "appliquer",
+  "q": "Un client achète sans cesse des promotions sur des snacks qu'il ne trouve pas bons. Quel concept l'explique le mieux ?",
+  "options": [
+   "Un fort liking sans wanting",
+   "Un fort wanting sans liking",
+   "Un biais de survivant",
+   "Une prescription B2B"
+  ],
+  "answer": [
+   1
+  ],
+  "why": "Le désir d'acheter (déclenché par la promo, l'habitude) est dissocié du plaisir réel.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Shopper experience",
+  "level": "comprendre",
+  "q": "Une enseigne décide d’améliorer l'odeur et la musique d'un magasin. Quelle dimension de l'expérience travaille-t-il en premier ?",
+  "options": [
+   "Sensorielle",
+   "Sociale",
+   "Cognitive",
+   "Comportementale"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Odeur, musique et lumière relèvent de la dimension sensorielle.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Parcours et touchpoints",
+  "level": "comprendre",
+  "q": "Le parcours du shopper se découpe en trois grandes étapes :",
+  "options": [
+   "Notoriété, considération, achat",
+   "Avant-achat, achat, après-achat",
+   "Besoin, prix, livraison",
+   "Attirer, convaincre, fidéliser, parrainer"
+  ],
+  "answer": [
+   1
+  ],
+  "why": "Le parcours Lemon & Verhoef : avant-achat, achat, après-achat. Le funnel est un autre outil.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Parcours et touchpoints",
+  "level": "comprendre",
+  "q": "Quelles sont les quatre familles de touchpoints ?",
+  "options": [
+   "Marque, partenaire, client, social/externe",
+   "Produit, prix, place, promotion",
+   "Print, digital, TV, radio",
+   "Acquisition, activation, rétention, revenu"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Touchpoints de marque, de partenaire, du client et sociaux/externes.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Parcours et touchpoints",
+  "level": "appliquer",
+  "q": "Un avis laissé par un inconnu sur un site de comparaison influence un achat. Il s'agit d'un touchpoint :",
+  "options": [
+   "De marque",
+   "De partenaire",
+   "Du client",
+   "Social / externe"
+  ],
+  "answer": [
+   3
+  ],
+  "why": "L'avis d'un tiers que la marque ne contrôle pas relève du social/externe.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Parcours et touchpoints",
+  "level": "comprendre",
+  "q": "Quel est l'ordre du funnel présenté dans le cours ?",
+  "options": [
+   "Notoriété, considération, achat, usage, réachat",
+   "Achat, notoriété, usage, considération, réachat",
+   "Considération, notoriété, usage, achat, réachat",
+   "Notoriété, achat, considération, réachat, usage"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Notoriété → considération → achat → usage → réachat.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Parcours et touchpoints",
+  "level": "comprendre",
+  "q": "La saillance d'une marque (illustrée par le cas KitKat) signifie :",
+  "options": [
+   "Qu'elle est la moins chère",
+   "Qu'elle vient facilement à l'esprit dans une situation d'achat",
+   "Qu'elle a le meilleur goût",
+   "Qu'elle est distribuée partout"
+  ],
+  "answer": [
+   1
+  ],
+  "why": "Une marque saillante est celle à laquelle on pense dans le moment d'achat : elle est ainsi plus souvent considérée.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Parcours et touchpoints",
+  "level": "appliquer",
+  "q": "Une marque veut augmenter sa saillance. Quelle action est la plus cohérente ?",
+  "options": [
+   "Associer la marque à des moments d'usage clairs et rendre ses repères visibles en rayon",
+   "Doubler le prix pour paraître premium",
+   "Supprimer sa publicité",
+   "Lister uniquement les ingrédients"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "La saillance se construit en liant la marque à des situations (moments de consommation) et à des repères visuels reconnaissables.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "B2B et centre d'achat",
+  "level": "comprendre",
+  "q": "Dans un centre d'achat B2B (Webster & Wind), quel rôle contrôle l'information qui arrive jusqu'au décideur ?",
+  "options": [
+   "Initiateur",
+   "Filtre",
+   "Utilisateur",
+   "Acheteur"
+  ],
+  "answer": [
+   1
+  ],
+  "why": "Le filtre (gatekeeper) trie et contrôle ce qui remonte au décideur.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "B2B et centre d'achat",
+  "level": "appliquer",
+  "q": "Vous vendez un logiciel à une entreprise. L'équipe qui l'utilisera chaque jour a donné son avis, la direction financière valide le budget, un assistant décide quels commerciaux sont reçus. Qui est le filtre ?",
+  "options": [
+   "L'équipe utilisatrice",
+   "La direction financière",
+   "L'assistant qui sélectionne les commerciaux",
+   "Le prescripteur externe"
+  ],
+  "answer": [
+   2
+  ],
+  "why": "L'assistant contrôle l'accès à l'information : c'est le filtre. L'équipe est utilisatrice, la direction est décideuse.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "B2B et centre d'achat",
+  "level": "comprendre",
+  "q": "Quelle différence principale entre B2C et B2B pour la décision d'achat ?",
+  "options": [
+   "En B2B, la décision implique plusieurs acteurs aux rôles différents",
+   "En B2B, il n'y a jamais d'émotion",
+   "En B2C, la décision est toujours collective",
+   "Il n'y a aucune différence"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Le B2B repose sur un centre d'achat à plusieurs rôles. Les émotions y existent aussi.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Biais et Systèmes 1/2",
+  "level": "comprendre",
+  "q": "Selon Kahneman, le Système 1 est :",
+  "options": [
+   "Lent, analytique, demande de l'effort",
+   "Rapide, automatique, intuitif",
+   "Réservé aux experts",
+   "Toujours rationnel"
+  ],
+  "answer": [
+   1
+  ],
+  "why": "Système 1 : rapide et intuitif. Système 2 : lent, analytique, coûteux en effort.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Biais et Systèmes 1/2",
+  "level": "appliquer",
+  "q": "Un site affiche « 90 % de clients satisfaits » plutôt que « 10 % d'insatisfaits ». Quel biais est mobilisé ?",
+  "options": [
+   "Ancrage",
+   "Cadrage",
+   "Statu quo",
+   "Autorité"
+  ],
+  "answer": [
+   1
+  ],
+  "why": "Même information, présentation différente : c'est l'effet de cadrage (framing).",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Biais et Systèmes 1/2",
+  "level": "appliquer",
+  "q": "Un prix barré à 100 € à côté du prix de 70 € rend l'offre plus attractive. Quel biais ?",
+  "options": [
+   "Ancrage",
+   "Preuve sociale",
+   "Aversion à la perte",
+   "Statu quo"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Le prix de référence sert d'ancre dans le jugement.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Biais et Systèmes 1/2",
+  "level": "appliquer",
+  "q": "« Essai gratuit : vous perdrez l'accès à vos données si vous résiliez. » Quel biais est exploité ?",
+  "options": [
+   "Aversion à la perte",
+   "Autorité",
+   "Ancrage",
+   "Cadrage positif"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Perdre pèse plus que gagner : on évite de perdre ce qu'on possède déjà.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Biais et Systèmes 1/2",
+  "level": "appliquer",
+  "q": "Un client reste chez son opérateur par défaut alors que des offres meilleures existent. Quel biais ?",
+  "options": [
+   "Statu quo",
+   "Preuve sociale",
+   "Autorité",
+   "Ancrage"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Le statu quo : on garde l'option par défaut pour éviter l'effort de changer.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "multi",
+  "chapter": "Biais et Systèmes 1/2",
+  "level": "appliquer",
+  "q": "« 9 dentistes sur 10 le recommandent » : quels biais sont sollicités ?",
+  "options": [
+   "Preuve sociale",
+   "Autorité",
+   "Aversion à la perte",
+   "Statu quo"
+  ],
+  "answer": [
+   0,
+   1
+  ],
+  "why": "Le chiffre joue la preuve sociale (les autres le font) et la blouse/expert joue l'autorité.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Biais et Systèmes 1/2",
+  "level": "comprendre",
+  "q": "Le biais du survivant (Wald, avions de la guerre) consiste à :",
+  "options": [
+   "Ne regarder que ce qui a survécu, en oubliant ce qui a disparu",
+   "Rechercher les infos qui confirment son idée",
+   "Projeter ses goûts sur les clients",
+   "Faire confiance à l'IA"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "On blinde l'endroit où reviennent les avions touchés, alors qu'il faut protéger là où ceux qui ne reviennent pas ont été touchés.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Biais et Systèmes 1/2",
+  "level": "appliquer",
+  "q": "Un marketeur n'interroge que les clients fidèles et en conclut que tout le monde aime son produit. Quel biais ?",
+  "options": [
+   "Biais du survivant",
+   "Biais de projection",
+   "Hallucination",
+   "Sycophancy"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Il ignore ceux qui sont partis ou n'ont jamais acheté.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Biais et Systèmes 1/2",
+  "level": "appliquer",
+  "q": "Un chef de produit lance une étude uniquement pour valider son idée et écarte les résultats contraires. Quel biais ?",
+  "options": [
+   "Confirmation",
+   "Survivant",
+   "Projection",
+   "Cadrage"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Le biais de confirmation cherche ce qui valide la croyance existante.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "multi",
+  "chapter": "IA et insights",
+  "level": "comprendre",
+  "q": "Quels sont des biais ou risques propres à l'IA générative évoqués dans le cours ?",
+  "options": [
+   "Stéréotypes",
+   "Hallucinations",
+   "Sycophancy (dire ce que l'utilisateur veut entendre)",
+   "Fatigue visuelle"
+  ],
+  "answer": [
+   0,
+   1,
+   2
+  ],
+  "why": "Trois risques : stéréotypes, hallucinations, complaisance.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "IA et insights",
+  "level": "appliquer",
+  "q": "Vous demandez à une IA un persona et elle invente une étude chiffrée inexistante. Il s'agit :",
+  "options": [
+   "D'un stéréotype",
+   "D'une hallucination",
+   "De sycophancy",
+   "D'un biais de cadrage"
+  ],
+  "answer": [
+   1
+  ],
+  "why": "Information inventée présentée comme vraie : hallucination.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "IA et insights",
+  "level": "comprendre",
+  "q": "Quels critères composent la grille de critique d'une production IA ?",
+  "options": [
+   "Exactitude, stéréotypes, profondeur, actionnabilité",
+   "Rapidité, coût, style, longueur",
+   "Créativité, humour, ton, mise en page",
+   "Source, date, auteur, éditeur"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Exactitude, Stéréotypes, Profondeur, Actionnabilité.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "IA et insights",
+  "level": "comprendre",
+  "q": "Un bon persona structuré en Vérité / Pourquoi / Tension (exemple Dove) sert à :",
+  "options": [
+   "Décrire l'âge et le revenu uniquement",
+   "Relier ce que la personne vit à la raison profonde et à la tension à résoudre",
+   "Remplacer l'étude consommateur",
+   "Choisir un nom de marque"
+  ],
+  "answer": [
+   1
+  ],
+  "why": "On passe du portrait à une tension actionnable pour la marque.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "qcm",
+  "chapter": "Examen et méthode",
+  "level": "comprendre",
+  "q": "Comment sera évalué ce cours ?",
+  "options": [
+   "100 % QCM final",
+   "30 % contrôle continu (pairagogie, travail avec IA) et 70 % QCM final",
+   "50 % oral, 50 % dossier",
+   "100 % contrôle continu"
+  ],
+  "answer": [
+   1
+  ],
+  "why": "30 % contrôle continu, 70 % QCM final.",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "open",
+  "chapter": "Shopper vs consommateur",
+  "level": "appliquer",
+  "q": "Une marque de yaourts pour enfants constate que les enfants l'adorent mais que les parents achètent peu. Expliquez la situation avec shopper, consommateur et prescripteur, puis proposez deux actions.",
+  "points": [
+   "Enfant = consommateur et prescripteur, parent = shopper",
+   "Le blocage se situe côté shopper (santé, prix, confiance)",
+   "Action sur le message / preuve pour le parent",
+   "Action en rayon (saillance, repères) ou sur le prix"
+  ],
+  "model": "Les enfants sont consommateurs et prescripteurs, mais le parent est le shopper qui décide et paie. Le frein est probablement chez lui : doutes sur le sucre, prix ou confiance. Il faut donc lui adresser des preuves (composition, labels) et travailler la visibilité en rayon plutôt que d'augmenter l'appétence côté enfant.",
+  "why": "",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "open",
+  "chapter": "Biais et Systèmes 1/2",
+  "level": "appliquer",
+  "q": "Choisissez deux biais cognitifs et montrez comment une marque peut les utiliser de façon éthique sur un site e-commerce.",
+  "points": [
+   "Nommer correctement deux biais",
+   "Définir chaque biais",
+   "Donner un exemple concret par biais",
+   "Mentionner une limite éthique"
+  ],
+  "model": "Preuve sociale : afficher des avis vérifiés plutôt que des chiffres inventés. Ancrage : montrer un prix de référence réel avant remise. Dans les deux cas, l'éthique impose de ne pas fabriquer la preuve ni gonfler la référence.",
+  "why": "",
+  "source": "cours",
+  "at": 1
+ },
+ {
+  "type": "open",
+  "chapter": "IA et insights",
+  "level": "appliquer",
+  "q": "Vous avez utilisé une IA pour produire un persona. Expliquez comment vous le critiquez avant de l'utiliser (grille de critique) et pourquoi.",
+  "points": [
+   "Exactitude : vérifier les chiffres et sources",
+   "Stéréotypes : repérer les clichés",
+   "Profondeur : aller au-delà du descriptif",
+   "Actionnabilité : en tirer une décision"
+  ],
+  "model": "Je vérifie l'exactitude (sources, chiffres), je traque les stéréotypes, je m'assure que le persona va jusqu'à une tension (profondeur) et qu'il permet une décision marketing (actionnabilité). Sans cela, hallucinations et complaisance de l'IA passent inaperçues.",
+  "why": "",
+  "source": "cours",
+  "at": 1
+ }
+]
