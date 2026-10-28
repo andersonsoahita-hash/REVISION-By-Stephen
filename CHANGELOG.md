@@ -14,3 +14,6 @@
 
 ## 2026-10-28 (4)
 - Onglet Importer : consigne à copier pour n importe quelle IA, collage du JSON, validation, questions enregistrées dans le navigateur, copie/suppression des questions importées.
+
+## 2026-10-28 (5)
+- App indépendante : créer un cours, importer PDF / Word / texte, section Leçons (blocs supprimables), questions à trous automatiques, création manuelle de questions.

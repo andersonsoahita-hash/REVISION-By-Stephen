@@ -78,16 +78,18 @@ ul.clean{margin:6px 0 0;padding-left:20px}
 .hist{display:grid;grid-template-columns:auto 1fr auto;gap:6px 14px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
 @media (prefers-reduced-motion:no-preference){.bar i{transition:width .4s}}
 
-input[type=checkbox]{margin-top:4px;flex:none}</style></head><body>
+input[type=checkbox]{margin-top:4px;flex:none}</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script></head><body>
 <div id="app"><p class="muted">Chargement…</p></div>
 <script>
 const $=document.getElementById("app");
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const L="ABCDEFGH",mem={};
-const ls={get(k){try{const v=localStorage.getItem(k);return v==null?(mem[k]??null):JSON.parse(v)}catch(e){return mem[k]??null}},set(k,v){mem[k]=v;try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const ls={get(k){try{const v=localStorage.getItem(k);return v==null?(mem[k]??null):JSON.parse(v)}catch(e){return mem[k]??null}},set(k,v){mem[k]=v;try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
 const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 const fmt=x=>(Math.round(x*2)/2).toString().replace(".",",");
-const S={msg:null,courses:[],cid:null,qs:[],atts:[],flag:[],tab:"reviser",run:null,draft:{},err:null};
+const S={msg:null,docs:[],files:[],repoCourses:[],courses:[],cid:null,qs:[],atts:[],flag:[],tab:"reviser",run:null,draft:{},err:null};
 const cur=()=>S.courses.find(c=>c.id===S.cid);
 const attsOf=id=>ls.get("rev:"+id+":atts")||[];
 const saveAtts=()=>ls.set("rev:"+S.cid+":atts",S.atts.slice(0,200));
@@ -95,10 +97,22 @@ const active=()=>S.qs.filter(q=>!S.flag.includes(q.id));
 function lastByQ(){const m={};for(const a of S.atts)for(const it of a.items||[])if(!(it.qid in m))m[it.qid]=it.f;return m}
 const mastered=(q,m)=>q.id in m&&m[q.id]>=(q.type==="open"?.75:.99);
 function chapters(){const m={};active().forEach(q=>{(m[q.chapter||"Général"]??=[]).push(q)});return m}
+function loadCourses(){S.courses=[...S.repoCourses,...(ls.get("rev:courses")||[]).map(c=>({...c,user:true}))]}
+function newCourse(){
+  const n=(S.draft.newName||"").trim();if(!n)return;
+  const id="c"+Date.now().toString(36),list=ls.get("rev:courses")||[];list.push({id,name:n});ls.set("rev:courses",list);
+  S.draft.newName="";loadCourses();openCourse(id).then(()=>{S.tab="cours";render()});
+}
+function delCourse(){
+  const id=S.cid;ls.set("rev:courses",(ls.get("rev:courses")||[]).filter(c=>c.id!==id));
+  ["atts","flag","custom","docs"].forEach(k=>{try{localStorage.removeItem("rev:"+id+":"+k)}catch(e){}delete mem["rev:"+id+":"+k]});
+  S.cid=null;S.run=null;loadCourses();render();
+}
 async function openCourse(id){
   S.cid=id;S.run=null;S.tab="reviser";S.err=null;S.qs=[];
   S.atts=attsOf(id);S.flag=ls.get("rev:"+id+":flag")||[];render();
-  let base=[];try{const r=await fetch("courses/"+id+"/questions.json",{cache:"no-cache"});base=await r.json()}catch(e){S.err="Impossible de charger les questions."}
+  let base=[];S.docs=ls.get("rev:"+id+":docs")||[];S.msg=null;
+  if(!cur().user){try{const r=await fetch("courses/"+id+"/questions.json",{cache:"no-cache"});base=await r.json()}catch(e){S.err="Impossible de charger les questions."}}
   S.qs=[...base,...(ls.get("rev:"+id+":custom")||[])];
   render();
 }
@@ -174,23 +188,111 @@ function home(){
   return `<header><p class="label">MSc1 · Marketing, Communication et Stratégie de Marque</p><h1>Carnet de révision</h1>
   <p class="muted" style="max-width:60ch;margin-top:8px">Un cahier par cours : tests notés sur 20, examen blanc, correction de tes erreurs avec un essai, puis nouvelles questions. Ta progression reste dans ce navigateur.</p></header>
   <div class="grid">${S.courses.map(c=>{const a=attsOf(c.id).filter(x=>x.mode==="qcm")[0];return `<button class="shelf" data-act="open" data-id="${esc(c.id)}"><h3>${esc(c.name)}</h3>${a?`<div><span class="label">Dernière note</span> <span class="mono" style="font-weight:600">${fmt(a.score20)}/20</span></div>`:'<div class="small muted">Pas encore de test</div>'}</button>`}).join("")||'<p class="muted">Chargement…</p>'}</div>
+  <div class="card"><h3>Nouveau cours</h3><div class="row" style="margin-top:10px"><input type="text" id="newName" placeholder="Ex. : Stratégie de marque" value="${esc(S.draft.newName||"")}" style="flex:1;min-width:200px"><button class="btn primary" data-act="newcourse">Créer le cours</button></div><p class="small muted" style="margin-top:8px">Tu ajoutes ensuite tes fichiers (PDF, Word, texte) et tes questions, directement ici.</p></div>
   <p class="small muted">Version avec génération de questions, correction des questions ouvertes par Claude et base partagée : <a href="https://claude.ai/artifact/7DkrDfKHkbQaTiiXtJ8nPW">app dans Claude</a>.</p>`;
+}
+const STOP=new Set("pourquoi comment quelle quelles lequel lesquels cependant également notamment ainsi alors puisque lorsque entre depuis pendant toujours plusieurs différents différentes certains certaines chaque quelque comme tout tous toutes aussi autres avoir faire séance slide exemple exemples".split(" "));
+const words=s=>s.match(/[A-Za-zÀ-ÿ'-]{7,}/g)||[];
+function toBlocks(text){
+  const parts=text.replace(/\r/g,"").split(/\n\s*\n+|\[Page \d+\]/).map(x=>x.replace(/\s+/g," ").trim()).filter(x=>x.length>20);
+  const out=[];let cur="";
+  for(const p of parts){cur=cur?cur+" "+p:p;if(cur.length>=400){out.push(cur);cur=""}}
+  if(cur)out.push(cur);
+  const fin=[];for(const b of out){if(b.length<=1500){fin.push(b);continue}let t=b;while(t.length>1500){let i=t.lastIndexOf(". ",1500);if(i<600)i=1500;fin.push(t.slice(0,i+1).trim());t=t.slice(i+1).trim()}if(t)fin.push(t)}
+  return fin;
+}
+async function extract(file){
+  const ext=file.name.split(".").pop().toLowerCase();
+  if(["txt","md","csv"].includes(ext))return await file.text();
+  if(ext==="docx"){if(!window.mammoth)throw new Error("Lecteur Word indisponible (connexion ?)");return (await mammoth.extractRawText({arrayBuffer:await file.arrayBuffer()})).value}
+  if(ext==="pdf"){
+    if(!window.pdfjsLib)throw new Error("Lecteur PDF indisponible (connexion ?)");
+    pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    const pdf=await pdfjsLib.getDocument({data:new Uint8Array(await file.arrayBuffer())}).promise;
+    let out="";for(let p=1;p<=pdf.numPages;p++){const t=await (await pdf.getPage(p)).getTextContent();out+=`\n[Page ${p}]\n`+t.items.map(i=>i.str).join(" ")}
+    if(out.replace(/\[Page \d+\]|\s/g,"").length<pdf.numPages*40)throw new Error("Ce PDF semble être un scan sans texte. Colle le texte ou exporte-le en Word.");
+    return out;
+  }
+  throw new Error("Format non pris en charge : "+ext);
+}
+async function doImport(){
+  const pasted=(S.draft.pasteText||"").trim(),pn=(S.draft.pasteName||"").trim()||"Texte collé";
+  if(!S.files.length&&!pasted){S.msg={t:"warn",m:"Choisis un fichier ou colle du texte."};return render()}
+  S.msg={t:"ok",m:"Lecture en cours…"};render();
+  try{
+    let n=0;const add=(name,text)=>{const blocks=toBlocks(text);if(!blocks.length)throw new Error(name+" : aucun texte trouvé");S.docs.push({id:"d"+Date.now().toString(36)+(n++),name,blocks})};
+    for(const f of S.files)add(f.name,await extract(f));
+    if(pasted)add(pn,pasted);
+    if(!ls.set("rev:"+S.cid+":docs",S.docs))throw new Error("Le stockage du navigateur est plein : supprime un document.");
+    S.files=[];S.draft.pasteText="";S.draft.pasteName="";S.msg={t:"ok",m:"Ajouté au cours. Va dans « Ajouter des questions » pour créer des questions."};
+  }catch(e){S.msg={t:"warn",m:e.message||String(e)}}
+  render();
+}
+function addCustom(list){
+  const custom=ls.get("rev:"+S.cid+":custom")||[];
+  ls.set("rev:"+S.cid+":custom",[...custom,...list]);S.qs=[...S.qs,...list];
+}
+function genCloze(n){
+  const sents=[];S.docs.forEach(d=>d.blocks.forEach(b=>(b.match(/[^.!?]+[.!?]/g)||[]).forEach(x=>{x=x.trim();if(x.length>=50&&x.length<=230)sents.push({s:x,doc:d.name})})));
+  const vocab=[...new Set(sents.flatMap(x=>words(x.s).map(w=>w.toLowerCase())))].filter(w=>!STOP.has(w));
+  const have=new Set(S.qs.map(q=>q.why));const out=[];
+  if(vocab.length<8)return out;
+  for(const x of shuffle(sents)){
+    if(out.length>=n)break;if(have.has("Extrait du cours : « "+x.s+" »"))continue;
+    const ws=words(x.s).filter(w=>!STOP.has(w.toLowerCase()));if(!ws.length)continue;
+    const t=ws[Math.floor(Math.random()*ws.length)],tl=t.toLowerCase();
+    const dis=shuffle(vocab.filter(w=>w!==tl&&!x.s.toLowerCase().includes(w)&&Math.abs(w.length-tl.length)<=3)).slice(0,3);
+    if(dis.length<3)continue;
+    const opts=shuffle([tl,...dis]);
+    out.push({id:"a"+Date.now().toString(36)+out.length,type:"qcm",chapter:x.doc,level:"comprendre",q:"Complète l'extrait du cours : « "+x.s.replace(t,"_____")+" »",options:opts,answer:[opts.indexOf(tl)],why:"Extrait du cours : « "+x.s+" »",source:"auto"});
+  }
+  return out;
+}
+function addManual(){
+  const g=id=>(document.getElementById(id)||{}).value||"";
+  const opts=[0,1,2,3].map(i=>g("mo"+i).trim()).filter(Boolean);
+  const idx=[...document.querySelectorAll("[data-corr]:checked")].map(c=>Number(c.dataset.corr));
+  const map=[0,1,2,3].filter(i=>g("mo"+i).trim());
+  const ans=idx.filter(i=>map.includes(i)).map(i=>map.indexOf(i));
+  const type=ans.length>1?"multi":"qcm";
+  if(!g("mq").trim()||opts.length<3||!ans.length){S.msg={t:"warn",m:"Il faut une question, au moins 3 options et une bonne réponse cochée."};return render()}
+  const q={id:"m"+Date.now().toString(36),type,chapter:g("mch").trim()||"Mes questions",level:"comprendre",q:g("mq").trim(),options:opts,answer:ans,why:g("mwhy").trim(),source:"manuel"};
+  addCustom([q]);["mq","mo0","mo1","mo2","mo3","mwhy"].forEach(k=>S.draft[k]="");S.msg={t:"ok",m:"Question ajoutée."};render();
+}
+function coursTab(){
+  return `<div class="card" style="display:flex;flex-direction:column;gap:12px"><h2>Ajouter du contenu</h2>
+  <p class="muted">PDF, Word (.docx), .txt ou .md, ou texte collé. Le cours est découpé en blocs que tu peux relire et effacer s'ils sont faux. Un PDF scanné sans texte ne peut pas être lu.</p>
+  ${S.msg?`<div class="${S.msg.t==="ok"?"banner":"warnbox"}">${esc(S.msg.m)}</div>`:""}
+  <input type="file" id="fileIn" multiple accept=".pdf,.docx,.txt,.md"><div class="small muted">${S.files.map(f=>esc(f.name)).join(", ")}</div>
+  <label class="label" for="pasteName">Ou colle du texte</label><input type="text" id="pasteName" placeholder="Nom du document" value="${esc(S.draft.pasteName||"")}">
+  <textarea id="pasteText" placeholder="Colle ici une transcription ou tes notes…">${esc(S.draft.pasteText||"")}</textarea>
+  <div class="row"><button class="btn primary" data-act="import">Ajouter au cours</button></div></div>
+  <div class="card"><h2>Leçons</h2>${S.docs.length?S.docs.map(d=>`<details><summary>${esc(d.name)} · ${d.blocks.length} blocs</summary>${d.blocks.map((b,i)=>`<div style="padding:10px 0;border-top:1px dashed var(--line)"><p style="margin:0 0 6px">${esc(b)}</p><button class="btn link small" data-act="delblk" data-d="${esc(d.id)}" data-b="${i}">Supprimer ce bloc (faux ou inutile)</button></div>`).join("")}<p style="margin-top:8px"><button class="btn link small" data-act="deldoc" data-d="${esc(d.id)}">Supprimer tout le document</button></p></details>`).join(""):'<p class="muted">Aucun document pour l\'instant.</p>'}</div>
+  ${cur().user?'<p class="small muted"><button class="btn link small" data-act="delcourse">Supprimer ce cours</button></p>':""}`;
 }
 function course(){
   const c=cur(),m=lastByQ(),qs=active(),ms=qs.filter(q=>mastered(q,m)).length;
   const tests=S.atts.filter(a=>a.mode==="qcm").slice(0,5),avg=tests.length?tests.reduce((s,a)=>s+a.score20,0)/tests.length:null;
-  const tabs=[["reviser","Réviser"],["questions","Questions"],["import","Importer"],["histo","Historique"]];
+  const tabs=[["reviser","Réviser"],["cours","Cours"],["questions","Questions"],["import","Ajouter des questions"],["histo","Historique"]];
   const nq=qs.filter(q=>q.type!=="open").length;
   let body;
   if(S.tab==="reviser"){const ch=chapters();body=`<div class="card" style="display:flex;flex-direction:column;gap:12px"><h2>Lancer une série</h2>
     <div class="row"><button class="btn primary" data-act="test" data-n="10">Test de 10 QCM</button><button class="btn" data-act="test" data-n="20">Test de 20 QCM</button><button class="btn" data-act="open-q">Question ouverte</button></div>
     <div class="banner"><span><b>Examen blanc</b><br><span class="small muted">Toutes les questions QCM, chapitres mélangés, notées sur 20.</span></span><button class="btn primary" data-act="exam">Lancer l'examen (${nq} questions)</button></div></div>
     <div class="card" style="display:flex;flex-direction:column;gap:12px"><h2>Maîtrise par chapitre</h2>${Object.keys(ch).map(n=>{const a=ch[n],k=a.filter(q=>mastered(q,m)).length;return `<div class="chap"><span class="name">${esc(n)}</span><span class="mono small" style="text-align:right">${k}/${a.length}</span><div class="bar" style="grid-column:1/-1"><i style="width:${Math.round(k/a.length*100)}%"></i></div></div>`}).join("")||'<p class="muted">Chargement…</p>'}</div>`}
-  else if(S.tab==="import"){const mine=(ls.get("rev:"+S.cid+":custom")||[]).length;body=`<div class="card" style="display:flex;flex-direction:column;gap:12px"><h2>Ajouter des questions avec n'importe quelle IA</h2>
+  else if(S.tab==="cours")body=coursTab();
+  else if(S.tab==="import"){const mine=(ls.get("rev:"+S.cid+":custom")||[]).length;body=`<div class="card" style="display:flex;flex-direction:column;gap:12px"><h2>Créer des questions dans l'app</h2>
+    ${S.msg?`<div class="${S.msg.t==="ok"?"banner":"warnbox"}">${esc(S.msg.m)}</div>`:""}
+    <div class="banner"><span><b>Texte à trous automatique</b><br><span class="small muted">À partir de tes documents, sans IA. Questions simples de mémorisation : utile pour retenir le vocabulaire, pas pour les mises en situation.</span></span><button class="btn" data-act="gen">Générer 10 questions</button></div>
+    <details><summary>Écrire une question moi-même</summary><div style="display:flex;flex-direction:column;gap:8px;padding-top:10px">
+    <input type="text" id="mch" placeholder="Chapitre (ex. Biais)" value="${esc(S.draft.mch||"")}"><textarea id="mq" style="min-height:70px" placeholder="Question">${esc(S.draft.mq||"")}</textarea>
+    ${[0,1,2,3].map(i=>`<div class="row" style="flex-wrap:nowrap"><input type="checkbox" data-corr="${i}" title="Bonne réponse" style="width:auto"><input type="text" id="mo${i}" placeholder="Option ${L[i]}${i<2?"":" (facultatif)"}" value="${esc(S.draft["mo"+i]||"")}"></div>`).join("")}
+    <p class="small muted">Coche la ou les bonnes réponses.</p><textarea id="mwhy" style="min-height:60px" placeholder="Explication de la bonne réponse">${esc(S.draft.mwhy||"")}</textarea>
+    <div class="row"><button class="btn primary" data-act="addmanual">Ajouter la question</button></div></div></details>
+    <h2 style="margin-top:8px">Avec n'importe quelle IA</h2>
     <p class="muted">1. Copie la consigne. 2. Colle-la dans ChatGPT, Gemini, Claude ou autre, avec le texte de ton cours. 3. Colle ici le tableau JSON obtenu.</p>
     <textarea id="promptBox" readonly style="min-height:120px">${esc(PROMPT)}</textarea>
     <div class="row"><button class="btn" data-act="copyprompt">Copier la consigne</button></div>
-    ${S.msg?`<div class="${S.msg.t==="ok"?"banner":"warnbox"}">${esc(S.msg.m)}</div>`:""}
     <label class="label" for="impJson">Réponse de l'IA (JSON)</label><textarea id="impJson" placeholder="[ { &quot;type&quot;: &quot;qcm&quot;, … } ]">${esc(S.draft.impJson||"")}</textarea>
     <div class="row"><button class="btn primary" data-act="importq">Ajouter les questions</button></div>
     <p class="small muted">Elles sont enregistrées dans ce navigateur (${mine} importée${mine>1?"s":""}). Vérifie-les : une IA peut se tromper, et le bouton « Signaler » les retire des tests. Pour les garder à vie dans le dépôt, envoie-les-moi.</p>
@@ -232,13 +334,21 @@ function render(){
   $.innerHTML=!S.cid?home():S.run&&S.run.kind==="open"?openView():S.run&&S.run.phase==="answer"?quiz():S.run&&S.run.phase==="result"?result():course();
 }
 document.addEventListener("input",e=>{if(e.target.id)S.draft[e.target.id]=e.target.value});
-document.addEventListener("change",e=>{const i=e.target.dataset&&e.target.dataset.chk;if(i!=null&&S.run){const n=Number(i),c=S.run.checked;S.run.checked=e.target.checked?[...new Set([...c,n])]:c.filter(x=>x!==n)}});
+document.addEventListener("change",e=>{if(e.target.id==="fileIn"){S.files=Array.from(e.target.files);render();return}
+  const i=e.target.dataset&&e.target.dataset.chk;if(i!=null&&S.run){const n=Number(i),c=S.run.checked;S.run.checked=e.target.checked?[...new Set([...c,n])]:c.filter(x=>x!==n)}});
 document.addEventListener("click",e=>{
   const b=e.target.closest("[data-act]");if(!b)return;const a=b.dataset.act,d=b.dataset;
   if(a==="open")openCourse(d.id);
   else if(a==="home"){S.cid=null;S.run=null;render()}
   else if(a==="tab"){S.tab=d.k;S.err=null;S.msg=null;render()}
   else if(a==="importq")importQ();
+  else if(a==="newcourse")newCourse();
+  else if(a==="delcourse"){if(b.dataset.sure)delCourse();else{b.dataset.sure="1";b.textContent="Cliquer encore pour confirmer"}}
+  else if(a==="import")doImport();
+  else if(a==="delblk"){const dd=S.docs.find(x=>x.id===d.d);if(dd){dd.blocks.splice(Number(d.b),1);if(!dd.blocks.length)S.docs=S.docs.filter(x=>x!==dd);ls.set("rev:"+S.cid+":docs",S.docs);render()}}
+  else if(a==="deldoc"){S.docs=S.docs.filter(x=>x.id!==d.d);ls.set("rev:"+S.cid+":docs",S.docs);render()}
+  else if(a==="gen"){const l=genCloze(10);if(!l.length)S.msg={t:"warn",m:"Pas assez de texte dans le cours. Ajoute un document dans l'onglet Cours."};else{addCustom(l);S.msg={t:"ok",m:l.length+" questions à trous ajoutées."}}render()}
+  else if(a==="addmanual")addManual();
   else if(a==="copyprompt"){navigator.clipboard.writeText(PROMPT).then(()=>{b.textContent="Copié"}).catch(()=>{const t=document.getElementById("promptBox");t.select();b.textContent="Sélectionné : copie avec Ctrl/Cmd + C"})}
   else if(a==="copymine"){const t=JSON.stringify(ls.get("rev:"+S.cid+":custom")||[],null,1);navigator.clipboard.writeText(t).then(()=>{b.textContent="Copié"}).catch(()=>{b.textContent="Copie impossible"})}
   else if(a==="delmine"){if(b.dataset.sure){ls.set("rev:"+S.cid+":custom",[]);S.qs=S.qs.filter(q=>q.source!=="import");S.msg=null;render()}else{b.dataset.sure="1";b.textContent="Cliquer encore pour confirmer"}}
@@ -257,5 +367,5 @@ document.addEventListener("click",e=>{
   else if(a==="unflag"){S.flag=[];ls.set("rev:"+S.cid+":flag",[]);render()}
   else if(a==="reset"){if(b.dataset.sure){S.atts=[];saveAtts();render()}else{b.dataset.sure="1";b.textContent="Cliquer encore pour confirmer"}}
 });
-fetch("courses/index.json",{cache:"no-cache"}).then(r=>r.json()).then(c=>{S.courses=c;render()}).catch(()=>{$.innerHTML="<p>Impossible de charger les cours.</p>"});
+fetch("courses/index.json",{cache:"no-cache"}).then(r=>r.json()).then(c=>{S.repoCourses=c;loadCourses();render()}).catch(()=>{S.repoCourses=[];loadCourses();render()});
 </script></body></html>
