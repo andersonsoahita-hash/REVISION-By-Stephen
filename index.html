@@ -1,25 +1,213 @@
 <!doctype html>
-<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>REVISION By Stephen</title>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Carnet de révision MSc1</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <style>
-:root{--bg:#F1F4F6;--s:#fff;--ink:#12212B;--mut:#5A6B76;--line:#D5DDE2;--acc:#0B6E5B}
-@media (prefers-color-scheme:dark){:root{--bg:#0E1A20;--s:#15252D;--ink:#E6EEF1;--mut:#93A5AE;--line:#27393F;--acc:#4CC3A6;color-scheme:dark}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,sans-serif;padding:24px max(16px,env(safe-area-inset-left))}
-main{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
-h1{margin:0;font-size:2rem}.m{color:var(--mut)}.card{background:var(--s);border:1px solid var(--line);border-radius:12px;padding:16px}
-details{border-top:1px solid var(--line);padding:10px 0}summary{cursor:pointer;font-weight:600}
-a{color:var(--acc)}li.ok{font-weight:700;color:var(--acc)}
-</style></head><body><main>
-<header><p class="m" style="margin:0">MSc1 · INSEEC</p><h1>REVISION By Stephen</h1></header>
-<div class="card"><p style="margin:0 0 8px">Pour réviser avec les tests notés sur 20, l'examen blanc et la correction par Claude, ouvre l'app dans Claude (compte connecté) :</p>
-<p style="margin:0"><a href="https://claude.ai/artifact/7DkrDfKHkbQaTiiXtJ8nPW">Ouvrir le Carnet de révision</a></p>
-<p class="m" style="margin:8px 0 0">Cette page GitHub est une version de lecture : elle affiche la banque de questions, sans note ni correction automatique.</p></div>
-<div class="card"><h2 style="margin-top:0">Shopper Experience &amp; IA</h2><div id="q" class="m">Chargement des questions…</div></div>
-</main>
+/* Concept : un cahier de révision par cours. Accueil = étagère de cours ; cours = tableau de maîtrise + tests notés /20. */
+:root{
+  --bg:#F1F4F6; --surface:#FFFFFF; --ink:#12212B; --muted:#5A6B76; --line:#D5DDE2;
+  --accent:#0B6E5B; --accent-ink:#FFFFFF; --tint:#E1EFEB;
+  --good:#1E7F48; --bad:#B8362A; --warn:#9A6A12; --badbg:#FBE9E6; --goodbg:#E3F3EA;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1A20; --surface:#15252D; --ink:#E6EEF1; --muted:#93A5AE; --line:#27393F;
+  --accent:#4CC3A6; --accent-ink:#06241D; --tint:#17332E;
+  --good:#4CC38A; --bad:#F08272; --warn:#E3B04B; --badbg:#3A1F1B; --goodbg:#143325; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1A20; --surface:#15252D; --ink:#E6EEF1; --muted:#93A5AE; --line:#27393F;
+  --accent:#4CC3A6; --accent-ink:#06241D; --tint:#17332E;
+  --good:#4CC38A; --bad:#F08272; --warn:#E3B04B; --badbg:#3A1F1B; --goodbg:#143325; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--body);padding-block:20px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+#app{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;line-height:1.15}
+h1{font-size:2rem;font-weight:700}h2{font-size:1.35rem;font-weight:700}h3{font-size:1.05rem;font-weight:600}
+p{margin:0}.muted{color:var(--muted)}.small{font-size:.85rem}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.label{font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:600}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn{border:1px solid var(--line);background:var(--surface);padding:9px 15px;border-radius:8px;font-weight:500}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.btn.link{border:0;background:none;padding:4px 0;color:var(--accent);text-decoration:underline}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.shelf{display:block;text-align:left;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.shelf:hover{border-color:var(--accent)}
+.shelf .meta{display:flex;gap:14px;flex-wrap:wrap}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tab{border:0;background:none;padding:10px 14px;border-bottom:3px solid transparent;font-weight:500;color:var(--muted);white-space:nowrap}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
+.stat{display:flex;flex-direction:column;gap:2px}
+.stat b{font:600 1.7rem var(--mono)}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent)}
+.chap{display:grid;grid-template-columns:minmax(0,1fr) 90px;gap:6px 12px;align-items:center}
+.chap .name{min-width:0;overflow-wrap:anywhere}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:11px 13px}
+.opt:hover{border-color:var(--accent)}
+.opt .k{font:600 .85rem var(--mono);border:1px solid var(--line);border-radius:6px;min-width:26px;height:26px;display:grid;place-items:center;flex:none}
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--tint)}
+.opt[aria-pressed="true"] .k{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.opts{display:flex;flex-direction:column;gap:8px}
+.qtext{font-size:1.1rem;font-weight:500;line-height:1.45}
+.pill{display:inline-block;font-size:.72rem;font-weight:600;padding:2px 9px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
+.pill.good{color:var(--good);border-color:var(--good)}.pill.bad{color:var(--bad);border-color:var(--bad)}
+.note{font:700 3.4rem/1 var(--mono)}
+.note small{font-size:1.2rem;color:var(--muted)}
+.fix{border-left:4px solid var(--bad);background:var(--badbg);border-radius:6px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.fix.ok{border-left-color:var(--good);background:var(--goodbg)}
+.ans-line{display:flex;gap:8px;flex-wrap:wrap}
+textarea,input[type=text]{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+textarea{min-height:150px;resize:vertical}
+details{border-top:1px solid var(--line);padding:10px 0}
+summary{cursor:pointer;font-weight:500}
+.banner{border:1px solid var(--accent);background:var(--tint);border-radius:10px;padding:12px 14px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.warnbox{border:1px solid var(--warn);border-radius:10px;padding:12px 14px;color:var(--ink)}
+ul.clean{margin:6px 0 0;padding-left:20px}
+.top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.hist{display:grid;grid-template-columns:auto 1fr auto;gap:6px 14px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+@media (prefers-reduced-motion:no-preference){.bar i{transition:width .4s}}
+
+input[type=checkbox]{margin-top:4px;flex:none}</style></head><body>
+<div id="app"><p class="muted">Chargement…</p></div>
 <script>
-fetch("courses/shopper-experience-ia/questions.json").then(r=>r.json()).then(qs=>{
- const e=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
- const by={};qs.forEach(q=>(by[q.chapter]??=[]).push(q));
- document.getElementById("q").innerHTML=Object.keys(by).map(c=>`<details><summary>${e(c)} (${by[c].length})</summary>${by[c].map(q=>`<div style="padding:10px 0"><p style="margin:0 0 6px"><b>${e(q.q)}</b></p>${q.type==="open"?`<p class="m" style="margin:0">Attendu : ${q.points.map(e).join(" · ")}</p>`:`<ul style="margin:0">${q.options.map((o,i)=>`<li class="${q.answer.includes(i)?"ok":""}">${e(o)}${q.answer.includes(i)?" ✓":""}</li>`).join("")}</ul>`}<p class="m" style="margin:6px 0 0">${e(q.why||q.model||"")}</p></div>`).join("")}</details>`).join("");
-}).catch(()=>{document.getElementById("q").textContent="Impossible de charger les questions."});
+const $=document.getElementById("app");
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const L="ABCDEFGH",mem={};
+const ls={get(k){try{const v=localStorage.getItem(k);return v==null?(mem[k]??null):JSON.parse(v)}catch(e){return mem[k]??null}},set(k,v){mem[k]=v;try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const fmt=x=>(Math.round(x*2)/2).toString().replace(".",",");
+const S={courses:[],cid:null,qs:[],atts:[],flag:[],tab:"reviser",run:null,draft:{},err:null};
+const cur=()=>S.courses.find(c=>c.id===S.cid);
+const attsOf=id=>ls.get("rev:"+id+":atts")||[];
+const saveAtts=()=>ls.set("rev:"+S.cid+":atts",S.atts.slice(0,200));
+const active=()=>S.qs.filter(q=>!S.flag.includes(q.id));
+function lastByQ(){const m={};for(const a of S.atts)for(const it of a.items||[])if(!(it.qid in m))m[it.qid]=it.f;return m}
+const mastered=(q,m)=>q.id in m&&m[q.id]>=(q.type==="open"?.75:.99);
+function chapters(){const m={};active().forEach(q=>{(m[q.chapter||"Général"]??=[]).push(q)});return m}
+async function openCourse(id){
+  S.cid=id;S.run=null;S.tab="reviser";S.err=null;S.qs=[];
+  S.atts=attsOf(id);S.flag=ls.get("rev:"+id+":flag")||[];render();
+  try{const r=await fetch("courses/"+id+"/questions.json",{cache:"no-cache"});S.qs=await r.json()}catch(e){S.err="Impossible de charger les questions."}
+  render();
+}
+const mk=q=>({q,order:shuffle(q.options.map((_,i)=>i)),picks:[]});
+function pick(n){
+  const m=lastByQ(),seen={};S.atts.forEach(a=>(a.items||[]).forEach(i=>seen[i.qid]=1));
+  const pr=q=>(!(q.id in seen)?0:m[q.id]<.99?1:2)+Math.random()*.9;
+  return active().filter(q=>q.type!=="open").map(q=>[pr(q),q]).sort((a,b)=>a[0]-b[0]).slice(0,n).map(x=>x[1]);
+}
+function start(qs,exam){
+  if(!qs.length){S.err="Aucune question QCM disponible.";return render()}
+  S.err=null;S.run={kind:"test",exam,items:shuffle(qs).map(mk),i:0,phase:"answer"};render();
+}
+function score(q,picks){
+  const a=q.answer;if(q.type==="qcm")return picks[0]===a[0]?1:0;
+  const g=picks.filter(p=>a.includes(p)).length,b=picks.length-g;
+  return b===0&&g===a.length?1:Math.max(0,(g-b)/a.length)*.99;
+}
+function finish(){
+  const r=S.run;r.res=r.items.map(it=>({qid:it.q.id,f:score(it.q,it.picks),picks:it.picks}));r.phase="result";
+  if(r.kind==="test"){
+    r.note=Math.round(r.res.reduce((s,x)=>s+x.f,0)/r.res.length*20*2)/2;
+    const ch={};r.items.forEach((it,i)=>{const k=it.q.chapter||"Général";(ch[k]??=[0,0]);ch[k][0]+=r.res[i].f;ch[k][1]++});r.chap=ch;
+    r.attAt=Date.now();S.atts.unshift({at:r.attAt,mode:"qcm",exam:!!r.exam,n:r.res.length,score20:r.note,items:r.res.map(x=>({qid:x.qid,f:x.f})),chap:ch});saveAtts();
+  }else{
+    r.fixed=r.res.filter(x=>x.f>=.99).length;const p=r.parent;p.retryUsed=true;
+    const a=S.atts.find(a=>a.at===p.attAt);if(a){a.retry={fixed:r.fixed,total:r.res.length};saveAtts()}
+  }
+  render();
+}
+function retry(){const p=S.run,w=p.items.filter((_,i)=>p.res[i].f<.99);S.run={kind:"retry",parent:p,items:w.map(it=>mk(it.q)),i:0,phase:"answer"};render()}
+function startOpen(){
+  const m=lastByQ(),pool=active().filter(q=>q.type==="open");
+  if(!pool.length){S.err="Pas de question ouverte pour ce cours.";return render()}
+  const q=pool.map(q=>[(q.id in m?(m[q.id]<.75?1:2):0)+Math.random()*.9,q]).sort((a,b)=>a[0]-b[0])[0][1];
+  S.draft.openAns="";S.run={kind:"open",q,phase:"answer",checked:[]};S.err=null;render();
+}
+function home(){
+  return `<header><p class="label">MSc1 · Marketing, Communication et Stratégie de Marque</p><h1>Carnet de révision</h1>
+  <p class="muted" style="max-width:60ch;margin-top:8px">Un cahier par cours : tests notés sur 20, examen blanc, correction de tes erreurs avec un essai, puis nouvelles questions. Ta progression reste dans ce navigateur.</p></header>
+  <div class="grid">${S.courses.map(c=>{const a=attsOf(c.id).filter(x=>x.mode==="qcm")[0];return `<button class="shelf" data-act="open" data-id="${esc(c.id)}"><h3>${esc(c.name)}</h3>${a?`<div><span class="label">Dernière note</span> <span class="mono" style="font-weight:600">${fmt(a.score20)}/20</span></div>`:'<div class="small muted">Pas encore de test</div>'}</button>`}).join("")||'<p class="muted">Chargement…</p>'}</div>
+  <p class="small muted">Version avec génération de questions, correction des questions ouvertes par Claude et base partagée : <a href="https://claude.ai/artifact/7DkrDfKHkbQaTiiXtJ8nPW">app dans Claude</a>.</p>`;
+}
+function course(){
+  const c=cur(),m=lastByQ(),qs=active(),ms=qs.filter(q=>mastered(q,m)).length;
+  const tests=S.atts.filter(a=>a.mode==="qcm").slice(0,5),avg=tests.length?tests.reduce((s,a)=>s+a.score20,0)/tests.length:null;
+  const tabs=[["reviser","Réviser"],["questions","Questions"],["histo","Historique"]];
+  const nq=qs.filter(q=>q.type!=="open").length;
+  let body;
+  if(S.tab==="reviser"){const ch=chapters();body=`<div class="card" style="display:flex;flex-direction:column;gap:12px"><h2>Lancer une série</h2>
+    <div class="row"><button class="btn primary" data-act="test" data-n="10">Test de 10 QCM</button><button class="btn" data-act="test" data-n="20">Test de 20 QCM</button><button class="btn" data-act="open-q">Question ouverte</button></div>
+    <div class="banner"><span><b>Examen blanc</b><br><span class="small muted">Toutes les questions QCM, chapitres mélangés, notées sur 20.</span></span><button class="btn primary" data-act="exam">Lancer l'examen (${nq} questions)</button></div></div>
+    <div class="card" style="display:flex;flex-direction:column;gap:12px"><h2>Maîtrise par chapitre</h2>${Object.keys(ch).map(n=>{const a=ch[n],k=a.filter(q=>mastered(q,m)).length;return `<div class="chap"><span class="name">${esc(n)}</span><span class="mono small" style="text-align:right">${k}/${a.length}</span><div class="bar" style="grid-column:1/-1"><i style="width:${Math.round(k/a.length*100)}%"></i></div></div>`}).join("")||'<p class="muted">Chargement…</p>'}</div>`}
+  else if(S.tab==="questions"){const ch=chapters();body=`<div class="card"><h2>Banque (${S.qs.length})</h2>${Object.keys(ch).map(n=>`<details><summary>${esc(n)} · ${ch[n].length}</summary>${ch[n].map(q=>`<div style="padding:10px 0;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:6px"><div>${esc(q.q)}</div>${q.type==="open"?`<div class="small muted">Attendu : ${q.points.map(esc).join(" · ")}</div>`:`<div class="small muted">Bonne réponse : ${q.answer.map(i=>esc(q.options[i])).join(" / ")}</div>`}<button class="btn link small" data-act="flag" data-id="${esc(q.id)}">Signaler une erreur (sort des tests)</button></div>`).join("")}</details>`).join("")}${S.flag.length?`<p class="small muted" style="margin-top:10px">${S.flag.length} question(s) signalée(s). <button class="btn link small" data-act="unflag">Les remettre</button></p>`:""}</div>`}
+  else body=S.atts.length?`<div class="card"><h2>Historique</h2>${S.atts.map(a=>`<div class="hist"><span class="mono small muted">${new Date(a.at).toLocaleDateString("fr-FR",{day:"2-digit",month:"short"})}</span><span>${a.mode==="open"?"Question ouverte":(a.exam?"Examen blanc · ":"")+a.n+" QCM"}${a.retry?` · ${a.retry.fixed}/${a.retry.total} erreurs corrigées`:""}</span><span class="mono" style="font-weight:600">${fmt(a.score20)}/20</span></div>`).join("")}<p class="small muted" style="margin-top:10px"><button class="btn link small" data-act="reset">Effacer ma progression</button></p></div>`:'<div class="card"><p class="muted">Aucun test pour l\'instant.</p></div>';
+  return `<div class="top"><button class="btn link" data-act="home">← Tous les cours</button></div><header><p class="label">Cours</p><h1>${esc(c.name)}</h1></header>
+  ${S.err?`<div class="warnbox">${esc(S.err)}</div>`:""}
+  <div class="card stats"><div class="stat"><span class="label">Questions</span><b>${qs.length}</b></div><div class="stat"><span class="label">Maîtrisées</span><b>${ms}<span class="muted" style="font-size:1rem">/${qs.length}</span></b></div><div class="stat"><span class="label">Moyenne (5 derniers)</span><b>${avg==null?"–":fmt(avg)}</b></div></div>
+  <div class="tabs" role="tablist">${tabs.map(([k,t])=>`<button class="tab" role="tab" aria-selected="${S.tab===k}" data-act="tab" data-k="${k}">${t}</button>`).join("")}</div>${body}`;
+}
+function quiz(){
+  const r=S.run,it=r.items[r.i],q=it.q,last=r.i===r.items.length-1;
+  return `<div class="top"><button class="btn link" data-act="quit">← Quitter</button><span class="mono small muted">${r.kind==="retry"?"Correction · ":""}${r.i+1} / ${r.items.length}</span></div><div class="bar"><i style="width:${(r.i+1)/r.items.length*100}%"></i></div>
+  <div class="card" style="display:flex;flex-direction:column;gap:14px"><div class="row"><span class="pill">${esc(q.chapter||"Général")}</span>${q.type==="multi"?'<span class="pill">Plusieurs réponses possibles</span>':""}</div><p class="qtext">${esc(q.q)}</p>
+  <div class="opts">${it.order.map((oi,p)=>`<button class="opt" data-act="pick" data-oi="${oi}" aria-pressed="${it.picks.includes(oi)}"><span class="k">${L[p]}</span><span>${esc(q.options[oi])}</span></button>`).join("")}</div>
+  <div class="row" style="justify-content:space-between"><button class="btn" data-act="prev" ${r.i===0?"disabled":""}>Précédente</button><button class="btn primary" data-act="${last?"finish":"next"}" ${it.picks.length?"":"disabled"}>${last?"Terminer et voir ma note":"Suivante"}</button></div></div>`;
+}
+function result(){
+  const r=S.run,wrong=r.items.map((it,i)=>[it,r.res[i]]).filter(([,x])=>x.f<.99);
+  const head=r.kind==="test"?`<div class="card" style="display:flex;flex-direction:column;gap:14px"><span class="label">${r.exam?"Examen blanc · ":""}Ta note</span><div class="note">${fmt(r.note)}<small> /20</small></div>
+   <p class="muted">${wrong.length?`${wrong.length} question${wrong.length>1?"s":""} à reprendre sur ${r.res.length}.`:"Sans faute."}</p>
+   ${Object.keys(r.chap).map(k=>{const [s,t]=r.chap[k];return `<div class="chap"><span class="name">${esc(k)}</span><span class="mono small" style="text-align:right">${Math.round(s*10)/10}/${t}</span><div class="bar" style="grid-column:1/-1"><i style="width:${s/t*100}%"></i></div></div>`}).join("")}
+   <div class="row">${wrong.length&&!r.retryUsed?'<button class="btn primary" data-act="retry">Corriger mes erreurs (1 essai)</button>':""}<button class="btn" data-act="${r.exam?"exam":"test"}" data-n="${r.items.length}">Nouveau test</button><button class="btn" data-act="quit">Retour au cours</button></div></div>`
+  :`<div class="card" style="display:flex;flex-direction:column;gap:12px"><span class="label">Après correction</span><div class="note">${r.fixed}<small> / ${r.res.length} corrigées</small></div><p class="muted">${wrong.length?"Relis les explications puis refais un test : d'autres questions te seront posées.":"Tout est corrigé."}</p><div class="row"><button class="btn primary" data-act="test" data-n="10">Nouveau test</button><button class="btn" data-act="quit">Retour au cours</button></div></div>`;
+  return head+(wrong.length?"<h2>Où tu t'es trompé</h2>":"")+wrong.map(([it,x])=>{const q=it.q;return `<div class="fix"><div class="row"><span class="pill bad">${x.f>0?"Incomplet":"Faux"}</span><span class="pill">${esc(q.chapter||"Général")}</span></div><p><b>${esc(q.q)}</b></p>
+  <div class="ans-line"><span class="small muted">Ta réponse :</span><span>${x.picks.length?x.picks.map(i=>esc(q.options[i])).join(" / "):"aucune"}</span></div>
+  <div class="ans-line"><span class="small muted">Réponse attendue :</span><b>${q.answer.map(i=>esc(q.options[i])).join(" / ")}</b></div><p class="small">${esc(q.why||"")}</p></div>`}).join("");
+}
+function openView(){
+  const r=S.run,q=r.q,top=`<div class="top"><button class="btn link" data-act="quit">← Quitter</button><span class="pill">${esc(q.chapter||"Général")}</span></div>`;
+  if(r.phase==="answer")return `${top}<div class="card" style="display:flex;flex-direction:column;gap:12px"><span class="label">Question ouverte</span><p class="qtext">${esc(q.q)}</p><textarea id="openAns" placeholder="Rédige comme à l'examen…">${esc(S.draft.openAns||"")}</textarea><div class="row"><button class="btn primary" data-act="reveal">Voir la réponse modèle et m'auto-évaluer</button></div></div>`;
+  if(r.phase==="check")return `${top}<div class="card" style="display:flex;flex-direction:column;gap:12px"><span class="label">Auto-évaluation</span><p class="qtext">${esc(q.q)}</p><div class="fix ok"><b>Réponse modèle</b><p>${esc(q.model)}</p></div>
+   <p>Coche les éléments que ta réponse contenait :</p>${q.points.map((p,i)=>`<label class="opt" style="cursor:pointer"><input type="checkbox" data-chk="${i}" ${r.checked.includes(i)?"checked":""}><span>${esc(p)}</span></label>`).join("")}<div class="row"><button class="btn primary" data-act="valid">Valider ma note</button></div></div>`;
+  const f=r.checked.length/q.points.length;
+  return `${top}<div class="card" style="display:flex;flex-direction:column;gap:12px"><span class="label">Ta note</span><div class="note">${fmt(f*20)}<small> /20</small></div><p class="muted">Les éléments non cochés sont à revoir dans le cours.</p><div class="row"><button class="btn" data-act="open-q">Autre question ouverte</button><button class="btn" data-act="quit">Retour au cours</button></div></div>`;
+}
+function render(){
+  $.innerHTML=!S.cid?home():S.run&&S.run.kind==="open"?openView():S.run&&S.run.phase==="answer"?quiz():S.run&&S.run.phase==="result"?result():course();
+}
+document.addEventListener("input",e=>{if(e.target.id)S.draft[e.target.id]=e.target.value});
+document.addEventListener("change",e=>{const i=e.target.dataset&&e.target.dataset.chk;if(i!=null&&S.run){const n=Number(i),c=S.run.checked;S.run.checked=e.target.checked?[...new Set([...c,n])]:c.filter(x=>x!==n)}});
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-act]");if(!b)return;const a=b.dataset.act,d=b.dataset;
+  if(a==="open")openCourse(d.id);
+  else if(a==="home"){S.cid=null;S.run=null;render()}
+  else if(a==="tab"){S.tab=d.k;S.err=null;render()}
+  else if(a==="test")start(pick(Number(d.n)||10),false);
+  else if(a==="exam")start(active().filter(q=>q.type!=="open"),true);
+  else if(a==="open-q")startOpen();
+  else if(a==="pick"){const it=S.run.items[S.run.i],oi=Number(d.oi);it.picks=it.q.type==="multi"?(it.picks.includes(oi)?it.picks.filter(x=>x!==oi):[...it.picks,oi]):[oi];render()}
+  else if(a==="next"){S.run.i++;render()}
+  else if(a==="prev"){S.run.i--;render()}
+  else if(a==="finish")finish();
+  else if(a==="retry")retry();
+  else if(a==="quit"){S.run=null;S.atts=attsOf(S.cid);render()}
+  else if(a==="reveal"){S.run.phase="check";render()}
+  else if(a==="valid"){const r=S.run,f=r.checked.length/r.q.points.length;S.atts.unshift({at:Date.now(),mode:"open",n:1,score20:Math.round(f*20*2)/2,items:[{qid:r.q.id,f}]});saveAtts();r.phase="done";render()}
+  else if(a==="flag"){if(!S.flag.includes(d.id))S.flag.push(d.id);ls.set("rev:"+S.cid+":flag",S.flag);b.textContent="Signalée";b.disabled=true}
+  else if(a==="unflag"){S.flag=[];ls.set("rev:"+S.cid+":flag",[]);render()}
+  else if(a==="reset"){if(b.dataset.sure){S.atts=[];saveAtts();render()}else{b.dataset.sure="1";b.textContent="Cliquer encore pour confirmer"}}
+});
+fetch("courses/index.json",{cache:"no-cache"}).then(r=>r.json()).then(c=>{S.courses=c;render()}).catch(()=>{$.innerHTML="<p>Impossible de charger les cours.</p>"});
 </script></body></html>

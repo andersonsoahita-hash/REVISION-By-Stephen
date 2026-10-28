@@ -15,7 +15,8 @@
   ],
   "why": "Le shopper est celui qui choisit et achète au point de vente. L'enfant est consommateur et prescripteur, le parent est shopper.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q01"
  },
  {
   "type": "qcm",
@@ -33,7 +34,8 @@
   ],
   "why": "Il influence l'achat sans payer : c'est un prescripteur, et il est aussi consommateur.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q02"
  },
  {
   "type": "qcm",
@@ -51,7 +53,8 @@
   ],
   "why": "Le consommateur (le chien) ne choisit pas. Il faut convaincre le shopper, au moment et à l'endroit où il décide.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q03"
  },
  {
   "type": "multi",
@@ -71,7 +74,8 @@
   ],
   "why": "Les rôles sont des fonctions. Une même personne peut acheter, consommer et prescrire.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q04"
  },
  {
   "type": "qcm",
@@ -89,7 +93,8 @@
   ],
   "why": "Les cinq dimensions sont cognitive, émotionnelle, comportementale, sensorielle et sociale. L'expérience s'étend aussi avant et après l'achat.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q05"
  },
  {
   "type": "qcm",
@@ -107,7 +112,8 @@
   ],
   "why": "On peut désirer quelque chose sans en tirer de plaisir (et inversement). Le wanting déclenche le passage à l'acte.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q06"
  },
  {
   "type": "qcm",
@@ -125,7 +131,8 @@
   ],
   "why": "Le désir d'acheter (déclenché par la promo, l'habitude) est dissocié du plaisir réel.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q07"
  },
  {
   "type": "qcm",
@@ -143,7 +150,8 @@
   ],
   "why": "Odeur, musique et lumière relèvent de la dimension sensorielle.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q08"
  },
  {
   "type": "qcm",
@@ -161,7 +169,8 @@
   ],
   "why": "Le parcours Lemon & Verhoef : avant-achat, achat, après-achat. Le funnel est un autre outil.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q09"
  },
  {
   "type": "qcm",
@@ -179,7 +188,8 @@
   ],
   "why": "Touchpoints de marque, de partenaire, du client et sociaux/externes.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q10"
  },
  {
   "type": "qcm",
@@ -197,7 +207,8 @@
   ],
   "why": "L'avis d'un tiers que la marque ne contrôle pas relève du social/externe.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q11"
  },
  {
   "type": "qcm",
@@ -215,7 +226,8 @@
   ],
   "why": "Notoriété → considération → achat → usage → réachat.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q12"
  },
  {
   "type": "qcm",
@@ -233,7 +245,8 @@
   ],
   "why": "Une marque saillante est celle à laquelle on pense dans le moment d'achat : elle est ainsi plus souvent considérée.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q13"
  },
  {
   "type": "qcm",
@@ -251,7 +264,8 @@
   ],
   "why": "La saillance se construit en liant la marque à des situations (moments de consommation) et à des repères visuels reconnaissables.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q14"
  },
  {
   "type": "qcm",
@@ -269,7 +283,8 @@
   ],
   "why": "Le filtre (gatekeeper) trie et contrôle ce qui remonte au décideur.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q15"
  },
  {
   "type": "qcm",
@@ -287,7 +302,8 @@
   ],
   "why": "L'assistant contrôle l'accès à l'information : c'est le filtre. L'équipe est utilisatrice, la direction est décideuse.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q16"
  },
  {
   "type": "qcm",
@@ -305,7 +321,8 @@
   ],
   "why": "Le B2B repose sur un centre d'achat à plusieurs rôles. Les émotions y existent aussi.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q17"
  },
  {
   "type": "qcm",
@@ -323,7 +340,8 @@
   ],
   "why": "Système 1 : rapide et intuitif. Système 2 : lent, analytique, coûteux en effort.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q18"
  },
  {
   "type": "qcm",
@@ -341,7 +359,8 @@
   ],
   "why": "Même information, présentation différente : c'est l'effet de cadrage (framing).",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q19"
  },
  {
   "type": "qcm",
@@ -359,7 +378,8 @@
   ],
   "why": "Le prix de référence sert d'ancre dans le jugement.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q20"
  },
  {
   "type": "qcm",
@@ -377,7 +397,8 @@
   ],
   "why": "Perdre pèse plus que gagner : on évite de perdre ce qu'on possède déjà.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q21"
  },
  {
   "type": "qcm",
@@ -395,7 +416,8 @@
   ],
   "why": "Le statu quo : on garde l'option par défaut pour éviter l'effort de changer.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q22"
  },
  {
   "type": "multi",
@@ -414,7 +436,8 @@
   ],
   "why": "Le chiffre joue la preuve sociale (les autres le font) et la blouse/expert joue l'autorité.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q23"
  },
  {
   "type": "qcm",
@@ -432,7 +455,8 @@
   ],
   "why": "On blinde l'endroit où reviennent les avions touchés, alors qu'il faut protéger là où ceux qui ne reviennent pas ont été touchés.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q24"
  },
  {
   "type": "qcm",
@@ -450,7 +474,8 @@
   ],
   "why": "Il ignore ceux qui sont partis ou n'ont jamais acheté.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q25"
  },
  {
   "type": "qcm",
@@ -468,7 +493,8 @@
   ],
   "why": "Le biais de confirmation cherche ce qui valide la croyance existante.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q26"
  },
  {
   "type": "multi",
@@ -488,7 +514,8 @@
   ],
   "why": "Trois risques : stéréotypes, hallucinations, complaisance.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q27"
  },
  {
   "type": "qcm",
@@ -506,7 +533,8 @@
   ],
   "why": "Information inventée présentée comme vraie : hallucination.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q28"
  },
  {
   "type": "qcm",
@@ -524,7 +552,8 @@
   ],
   "why": "Exactitude, Stéréotypes, Profondeur, Actionnabilité.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q29"
  },
  {
   "type": "qcm",
@@ -542,7 +571,8 @@
   ],
   "why": "On passe du portrait à une tension actionnable pour la marque.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q30"
  },
  {
   "type": "qcm",
@@ -560,7 +590,8 @@
   ],
   "why": "30 % contrôle continu, 70 % QCM final.",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q31"
  },
  {
   "type": "open",
@@ -576,7 +607,8 @@
   "model": "Les enfants sont consommateurs et prescripteurs, mais le parent est le shopper qui décide et paie. Le frein est probablement chez lui : doutes sur le sucre, prix ou confiance. Il faut donc lui adresser des preuves (composition, labels) et travailler la visibilité en rayon plutôt que d'augmenter l'appétence côté enfant.",
   "why": "",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q32"
  },
  {
   "type": "open",
@@ -592,7 +624,8 @@
   "model": "Preuve sociale : afficher des avis vérifiés plutôt que des chiffres inventés. Ancrage : montrer un prix de référence réel avant remise. Dans les deux cas, l'éthique impose de ne pas fabriquer la preuve ni gonfler la référence.",
   "why": "",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q33"
  },
  {
   "type": "open",
@@ -608,6 +641,7 @@
   "model": "Je vérifie l'exactitude (sources, chiffres), je traque les stéréotypes, je m'assure que le persona va jusqu'à une tension (profondeur) et qu'il permet une décision marketing (actionnabilité). Sans cela, hallucinations et complaisance de l'IA passent inaperçues.",
   "why": "",
   "source": "cours",
-  "at": 1
+  "at": 1,
+  "id": "q34"
  }
 ]
