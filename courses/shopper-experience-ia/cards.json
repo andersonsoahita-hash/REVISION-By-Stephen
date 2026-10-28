@@ -1,0 +1,194 @@
+[
+ {
+  "id": "c01",
+  "chapter": "Shopper vs consommateur",
+  "front": "Shopper",
+  "back": "Celui qui choisit et achète au point de vente.\nExemple : le parent qui prend les céréales en rayon."
+ },
+ {
+  "id": "c02",
+  "chapter": "Shopper vs consommateur",
+  "front": "Consommateur",
+  "back": "Celui qui utilise ou consomme le produit.\nExemple : l'enfant qui mange les céréales."
+ },
+ {
+  "id": "c03",
+  "chapter": "Shopper vs consommateur",
+  "front": "Prescripteur",
+  "back": "Celui qui influence l'achat sans acheter lui-même.\nExemple : l'enfant qui réclame la marque, ou un expert."
+ },
+ {
+  "id": "c04",
+  "chapter": "Shopper vs consommateur",
+  "front": "Shopper, consommateur, prescripteur : une même personne peut-elle avoir les trois rôles ?",
+  "back": "Oui. Ce sont des rôles (des fonctions), pas des personnes. Une même personne peut acheter, consommer et prescrire."
+ },
+ {
+  "id": "c05",
+  "chapter": "Shopper vs consommateur",
+  "front": "Pourquoi faut-il distinguer shopper et consommateur ?",
+  "back": "Le consommateur peut adorer un produit sans que le shopper l'achète. Il faut convaincre celui qui décide au moment d'acheter."
+ },
+ {
+  "id": "c06",
+  "chapter": "Shopper experience",
+  "front": "Les 5 dimensions de l'expérience (Lemon & Verhoef, 2016)",
+  "back": "Cognitive, émotionnelle, comportementale, sensorielle, sociale."
+ },
+ {
+  "id": "c07",
+  "chapter": "Shopper experience",
+  "front": "Wanting",
+  "back": "Le désir qui pousse à agir (Berridge & Robinson). Il peut exister sans plaisir réel."
+ },
+ {
+  "id": "c08",
+  "chapter": "Shopper experience",
+  "front": "Liking",
+  "back": "Le plaisir réellement ressenti. Il peut être dissocié du wanting : on peut désirer sans aimer."
+ },
+ {
+  "id": "c09",
+  "chapter": "Shopper experience",
+  "front": "Exemple de wanting sans liking",
+  "back": "Acheter sans cesse des snacks en promotion qu'on ne trouve pas bons."
+ },
+ {
+  "id": "c10",
+  "chapter": "Shopper experience",
+  "front": "Quelle dimension travaille l'odeur et la musique d'un magasin ?",
+  "back": "La dimension sensorielle."
+ },
+ {
+  "id": "c11",
+  "chapter": "Parcours et touchpoints",
+  "front": "Les 3 grandes étapes du parcours",
+  "back": "Avant-achat, achat, après-achat."
+ },
+ {
+  "id": "c12",
+  "chapter": "Parcours et touchpoints",
+  "front": "Les 4 familles de touchpoints",
+  "back": "Marque, partenaire, client, social/externe."
+ },
+ {
+  "id": "c13",
+  "chapter": "Parcours et touchpoints",
+  "front": "Un avis laissé par un inconnu : quelle famille de touchpoint ?",
+  "back": "Social / externe : la marque ne le contrôle pas."
+ },
+ {
+  "id": "c14",
+  "chapter": "Parcours et touchpoints",
+  "front": "Le funnel dans l'ordre",
+  "back": "Notoriété → considération → achat → usage → réachat."
+ },
+ {
+  "id": "c15",
+  "chapter": "Parcours et touchpoints",
+  "front": "Saillance d'une marque",
+  "back": "Facilité avec laquelle la marque vient à l'esprit dans une situation d'achat (cas KitKat)."
+ },
+ {
+  "id": "c16",
+  "chapter": "Parcours et touchpoints",
+  "front": "Comment augmenter la saillance ?",
+  "back": "Associer la marque à des moments d'usage clairs et la rendre reconnaissable (repères visuels) en rayon."
+ },
+ {
+  "id": "c17",
+  "chapter": "B2B et centre d'achat",
+  "front": "Centre d'achat B2B (Webster & Wind)",
+  "back": "Le groupe de personnes qui participent à une décision d'achat en entreprise, chacun avec un rôle : initiateur, utilisateur, prescripteur, décideur, acheteur, filtre."
+ },
+ {
+  "id": "c18",
+  "chapter": "B2B et centre d'achat",
+  "front": "Le filtre dans un centre d'achat",
+  "back": "Celui qui contrôle l'information qui arrive jusqu'au décideur.\nExemple : l'assistant qui sélectionne les commerciaux reçus."
+ },
+ {
+  "id": "c19",
+  "chapter": "B2B et centre d'achat",
+  "front": "B2C vs B2B : différence principale pour la décision",
+  "back": "En B2B, la décision implique plusieurs acteurs aux rôles différents (centre d'achat)."
+ },
+ {
+  "id": "c20",
+  "chapter": "Biais et Systèmes 1/2",
+  "front": "Système 1 (Kahneman)",
+  "back": "Rapide, automatique, intuitif."
+ },
+ {
+  "id": "c21",
+  "chapter": "Biais et Systèmes 1/2",
+  "front": "Système 2 (Kahneman)",
+  "back": "Lent, analytique, demande de l'effort."
+ },
+ {
+  "id": "c22",
+  "chapter": "Biais et Systèmes 1/2",
+  "front": "Ancrage",
+  "back": "Le premier chiffre vu sert de référence.\nExemple : un prix barré à côté du prix réel."
+ },
+ {
+  "id": "c23",
+  "chapter": "Biais et Systèmes 1/2",
+  "front": "Aversion à la perte",
+  "back": "Perdre pèse plus que gagner.\nExemple : « vous perdrez vos données si vous résiliez »."
+ },
+ {
+  "id": "c24",
+  "chapter": "Biais et Systèmes 1/2",
+  "front": "Preuve sociale",
+  "back": "On imite les autres.\nExemple : « 9 clients sur 10 recommandent »."
+ },
+ {
+  "id": "c25",
+  "chapter": "Biais et Systèmes 1/2",
+  "front": "Autorité",
+  "back": "On suit l'avis d'un expert ou d'une figure d'autorité."
+ },
+ {
+  "id": "c26",
+  "chapter": "Biais et Systèmes 1/2",
+  "front": "Cadrage (framing)",
+  "back": "La même information, présentée autrement, change la décision.\nExemple : « 90 % satisfaits » plutôt que « 10 % insatisfaits »."
+ },
+ {
+  "id": "c27",
+  "chapter": "Biais et Systèmes 1/2",
+  "front": "Statu quo",
+  "back": "On garde l'option par défaut pour éviter l'effort de changer."
+ },
+ {
+  "id": "c28",
+  "chapter": "Biais et Systèmes 1/2",
+  "front": "Biais de confirmation",
+  "back": "Chercher ce qui valide son idée de départ et écarter le reste."
+ },
+ {
+  "id": "c29",
+  "chapter": "Biais et Systèmes 1/2",
+  "front": "Biais de survivant (Wald)",
+  "back": "Ne regarder que ce qui a survécu. Wald : blinder les avions là où ceux qui reviennent n'ont pas d'impacts, car les autres ne sont pas revenus."
+ },
+ {
+  "id": "c30",
+  "chapter": "IA et insights",
+  "front": "Les 3 risques de l'IA générative",
+  "back": "Stéréotypes, hallucinations, sycophancy (dire ce que l'utilisateur veut entendre)."
+ },
+ {
+  "id": "c31",
+  "chapter": "IA et insights",
+  "front": "Grille de critique d'une production IA",
+  "back": "Exactitude, Stéréotypes, Profondeur, Actionnabilité."
+ },
+ {
+  "id": "c32",
+  "chapter": "IA et insights",
+  "front": "Persona Vérité / Pourquoi / Tension (exemple Dove)",
+  "back": "Ce que la personne vit (vérité), la raison profonde (pourquoi), et la tension que la marque peut résoudre."
+ }
+]

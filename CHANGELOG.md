@@ -17,3 +17,8 @@
 
 ## 2026-10-28 (5)
 - App indépendante : créer un cours, importer PDF / Word / texte, section Leçons (blocs supprimables), questions à trous automatiques, création manuelle de questions.
+
+## 2026-10-28 (6)
+- Onglet Leçons : 8 leçons structurées tirées des slides (dont les 6 biais cognitifs avec exemples et quiz du cours), bouton « Tester cette leçon ».
+- Onglet Cartes mémoire : 32 cartes mélangées tous chapitres, les cartes ratées reviennent plus souvent ; ajout de cartes personnelles.
+- L'ancien onglet Cours devient « Mes documents ».

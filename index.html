@@ -89,7 +89,7 @@ const L="ABCDEFGH",mem={};
 const ls={get(k){try{const v=localStorage.getItem(k);return v==null?(mem[k]??null):JSON.parse(v)}catch(e){return mem[k]??null}},set(k,v){mem[k]=v;try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
 const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 const fmt=x=>(Math.round(x*2)/2).toString().replace(".",",");
-const S={msg:null,docs:[],files:[],repoCourses:[],courses:[],cid:null,qs:[],atts:[],flag:[],tab:"reviser",run:null,draft:{},err:null};
+const S={lessons:[],lid:null,cards:[],msg:null,docs:[],files:[],repoCourses:[],courses:[],cid:null,qs:[],atts:[],flag:[],tab:"reviser",run:null,draft:{},err:null};
 const cur=()=>S.courses.find(c=>c.id===S.cid);
 const attsOf=id=>ls.get("rev:"+id+":atts")||[];
 const saveAtts=()=>ls.set("rev:"+S.cid+":atts",S.atts.slice(0,200));
@@ -105,7 +105,7 @@ function newCourse(){
 }
 function delCourse(){
   const id=S.cid;ls.set("rev:courses",(ls.get("rev:courses")||[]).filter(c=>c.id!==id));
-  ["atts","flag","custom","docs"].forEach(k=>{try{localStorage.removeItem("rev:"+id+":"+k)}catch(e){}delete mem["rev:"+id+":"+k]});
+  ["atts","flag","custom","docs","cards","box"].forEach(k=>{try{localStorage.removeItem("rev:"+id+":"+k)}catch(e){}delete mem["rev:"+id+":"+k]});
   S.cid=null;S.run=null;loadCourses();render();
 }
 async function openCourse(id){
@@ -113,6 +113,10 @@ async function openCourse(id){
   S.atts=attsOf(id);S.flag=ls.get("rev:"+id+":flag")||[];render();
   let base=[];S.docs=ls.get("rev:"+id+":docs")||[];S.msg=null;
   if(!cur().user){try{const r=await fetch("courses/"+id+"/questions.json",{cache:"no-cache"});base=await r.json()}catch(e){S.err="Impossible de charger les questions."}}
+  let bc=[];if(!cur().user){try{const r=await fetch("courses/"+id+"/cards.json",{cache:"no-cache"});if(r.ok)bc=await r.json()}catch(e){}}
+  let bl=[];if(!cur().user){try{const r=await fetch("courses/"+id+"/lessons.json",{cache:"no-cache"});if(r.ok)bl=await r.json()}catch(e){}}
+  S.lessons=bl;S.lid=null;
+  S.cards=[...bc,...(ls.get("rev:"+id+":cards")||[])];
   S.qs=[...base,...(ls.get("rev:"+id+":custom")||[])];
   render();
 }
@@ -270,17 +274,72 @@ function coursTab(){
   <div class="card"><h2>Leçons</h2>${S.docs.length?S.docs.map(d=>`<details><summary>${esc(d.name)} · ${d.blocks.length} blocs</summary>${d.blocks.map((b,i)=>`<div style="padding:10px 0;border-top:1px dashed var(--line)"><p style="margin:0 0 6px">${esc(b)}</p><button class="btn link small" data-act="delblk" data-d="${esc(d.id)}" data-b="${i}">Supprimer ce bloc (faux ou inutile)</button></div>`).join("")}<p style="margin-top:8px"><button class="btn link small" data-act="deldoc" data-d="${esc(d.id)}">Supprimer tout le document</button></p></details>`).join(""):'<p class="muted">Aucun document pour l\'instant.</p>'}</div>
   ${cur().user?'<p class="small muted"><button class="btn link small" data-act="delcourse">Supprimer ce cours</button></p>':""}`;
 }
+const boxes=()=>ls.get("rev:"+S.cid+":box")||{};
+function cartesTab(){
+  const bx=boxes(),n=S.cards.length,ok=S.cards.filter(c=>(bx[c.id]||0)>=3).length;
+  return `<div class="card" style="display:flex;flex-direction:column;gap:12px"><h2>Cartes mémoire</h2>
+  <p class="muted">Une notion d'un côté, la réponse de l'autre. Les cartes de tous les chapitres sont mélangées : tu dois retrouver la notion sans savoir d'où elle vient. Celles que tu rates reviennent plus souvent.</p>
+  <div class="stats"><div class="stat"><span class="label">Cartes</span><b>${n}</b></div><div class="stat"><span class="label">Bien sues</span><b>${ok}<span class="muted" style="font-size:1rem">/${n}</span></b></div></div>
+  ${S.msg?`<div class="${S.msg.t==="ok"?"banner":"warnbox"}">${esc(S.msg.m)}</div>`:""}
+  <div class="row"><button class="btn primary" data-act="cards" data-n="10" ${n?"":"disabled"}>Réviser 10 cartes</button><button class="btn" data-act="cards" data-n="${n}" ${n?"":"disabled"}>Toutes les cartes</button></div></div>
+  <div class="card"><details><summary>Ajouter une carte</summary><div style="display:flex;flex-direction:column;gap:8px;padding-top:10px">
+  <input type="text" id="cch" placeholder="Chapitre" value="${esc(S.draft.cch||"")}"><input type="text" id="cf" placeholder="Recto (la notion ou la question)" value="${esc(S.draft.cf||"")}">
+  <textarea id="cb" style="min-height:90px" placeholder="Verso (définition, exemple)">${esc(S.draft.cb||"")}</textarea><div class="row"><button class="btn primary" data-act="addcard">Ajouter la carte</button></div></div></details>
+  ${(ls.get("rev:"+S.cid+":cards")||[]).length?'<p class="small muted" style="margin-top:8px"><button class="btn link small" data-act="delcards">Supprimer mes cartes ajoutées</button></p>':""}</div>`;
+}
+function startCards(n){
+  const bx=boxes();
+  const items=S.cards.map(c=>[(bx[c.id]||0)+Math.random()*1.5,c]).sort((a,b)=>a[0]-b[0]).slice(0,n).map(x=>x[1]);
+  S.run={kind:"cards",items:shuffle(items),i:0,flip:false,know:0,miss:[],phase:"answer"};render();
+}
+function cardsView(){
+  const r=S.run;
+  if(r.i>=r.items.length)return `<div class="card" style="display:flex;flex-direction:column;gap:12px"><span class="label">Série terminée</span><div class="note">${r.know}<small> / ${r.items.length} sues</small></div>
+  ${r.miss.length?`<h2>À revoir</h2>${r.miss.map(c=>`<div class="fix"><div class="pill">${esc(c.chapter||"")}</div><p><b>${esc(c.front)}</b></p><p class="small" style="white-space:pre-line">${esc(c.back)}</p></div>`).join("")}`:"<p class=\"muted\">Toutes sues.</p>"}
+  <div class="row"><button class="btn primary" data-act="cards" data-n="10">Nouvelle série</button><button class="btn" data-act="quit">Retour au cours</button></div></div>`;
+  const c=r.items[r.i];
+  return `<div class="top"><button class="btn link" data-act="quit">← Quitter</button><span class="mono small muted">${r.i+1} / ${r.items.length}</span></div><div class="bar"><i style="width:${(r.i+1)/r.items.length*100}%"></i></div>
+  <div class="card" style="display:flex;flex-direction:column;gap:16px;min-height:260px;justify-content:space-between"><div><span class="pill">${esc(c.chapter||"")}</span>
+  <p class="qtext" style="margin-top:14px;font-size:1.35rem">${esc(c.front)}</p>
+  ${r.flip?`<div class="fix ok" style="margin-top:14px"><p style="white-space:pre-line">${esc(c.back)}</p></div>`:""}</div>
+  ${r.flip?`<div class="row"><button class="btn primary" data-act="cknow">Je le savais</button><button class="btn" data-act="cmiss">À revoir</button></div>`:`<div class="row"><button class="btn primary" data-act="cflip">Retourner la carte</button></div>`}</div>`;
+}
+function rateCard(ok){
+  const r=S.run,c=r.items[r.i],bx=boxes();
+  bx[c.id]=ok?Math.min((bx[c.id]||0)+1,4):0;ls.set("rev:"+S.cid+":box",bx);
+  if(ok)r.know++;else r.miss.push(c);
+  r.i++;r.flip=false;render();
+}
+function leconsTab(){
+  if(!S.lessons.length)return `<div class="card"><h2>Leçons</h2><p class="muted">Ce cours n'a pas encore de leçon structurée. Tes documents sont dans l'onglet « Mes documents ». Pour une leçon construite (notions, exemples, pièges, acronymes), demande-la-moi avec le contenu du cours : je l'ajoute au dépôt.</p></div>`;
+  const l=S.lessons.find(x=>x.id===S.lid);
+  if(!l){
+    const by={};S.lessons.forEach(x=>(by[x.seance]??=[]).push(x));
+    return Object.keys(by).map(se=>`<div class="card"><span class="label">${esc(se)}</span><div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">${by[se].map(x=>`<button class="shelf" data-act="lesson" data-id="${esc(x.id)}"><h3>${esc(x.title)}</h3><p class="small muted">${esc(x.intro)}</p><span class="small muted">${x.items.length} notion${x.items.length>1?"s":""}</span></button>`).join("")}</div></div>`).join("");
+  }
+  const nq=active().filter(q=>q.type!=="open"&&l.chapters.includes(q.chapter)).length;
+  const i=S.lessons.indexOf(l),prev=S.lessons[i-1],next=S.lessons[i+1];
+  return `<div class="top"><button class="btn link" data-act="lessons">← Toutes les leçons</button><span class="label">${esc(l.seance)}</span></div>
+  <header><h2 style="font-size:1.7rem">${esc(l.title)}</h2><p class="muted" style="margin-top:6px;max-width:62ch">${esc(l.intro)}</p></header>
+  ${l.items.map(it=>`<div class="card" style="display:flex;flex-direction:column;gap:8px"><h3>${esc(it.t)}</h3><p style="white-space:pre-line;max-width:70ch">${esc(it.d)}</p>
+  ${it.ex?`<div class="fix ok"><span class="label">Exemple</span><p style="white-space:pre-line">${esc(it.ex)}</p></div>`:""}
+  ${it.key?`<div class="fix" style="border-left-color:var(--warn);background:var(--tint)"><span class="label">À retenir</span><p style="white-space:pre-line">${esc(it.key)}</p></div>`:""}</div>`).join("")}
+  <div class="card" style="display:flex;flex-direction:column;gap:12px"><span class="label">En une phrase</span><p class="qtext">${esc(l.take)}</p>
+  <div class="row"><button class="btn primary" data-act="lessonquiz" ${nq?"":"disabled"}>Tester cette leçon (${nq} questions)</button>${prev?`<button class="btn" data-act="lesson" data-id="${esc(prev.id)}">← ${esc(prev.title)}</button>`:""}${next?`<button class="btn" data-act="lesson" data-id="${esc(next.id)}">${esc(next.title)} →</button>`:""}</div></div>`;
+}
 function course(){
   const c=cur(),m=lastByQ(),qs=active(),ms=qs.filter(q=>mastered(q,m)).length;
   const tests=S.atts.filter(a=>a.mode==="qcm").slice(0,5),avg=tests.length?tests.reduce((s,a)=>s+a.score20,0)/tests.length:null;
-  const tabs=[["reviser","Réviser"],["cours","Cours"],["questions","Questions"],["import","Ajouter des questions"],["histo","Historique"]];
+  const tabs=[["reviser","Réviser"],["lecons","Leçons"],["cartes","Cartes mémoire"],["cours","Mes documents"],["questions","Questions"],["import","Ajouter des questions"],["histo","Historique"]];
   const nq=qs.filter(q=>q.type!=="open").length;
   let body;
   if(S.tab==="reviser"){const ch=chapters();body=`<div class="card" style="display:flex;flex-direction:column;gap:12px"><h2>Lancer une série</h2>
     <div class="row"><button class="btn primary" data-act="test" data-n="10">Test de 10 QCM</button><button class="btn" data-act="test" data-n="20">Test de 20 QCM</button><button class="btn" data-act="open-q">Question ouverte</button></div>
     <div class="banner"><span><b>Examen blanc</b><br><span class="small muted">Toutes les questions QCM, chapitres mélangés, notées sur 20.</span></span><button class="btn primary" data-act="exam">Lancer l'examen (${nq} questions)</button></div></div>
     <div class="card" style="display:flex;flex-direction:column;gap:12px"><h2>Maîtrise par chapitre</h2>${Object.keys(ch).map(n=>{const a=ch[n],k=a.filter(q=>mastered(q,m)).length;return `<div class="chap"><span class="name">${esc(n)}</span><span class="mono small" style="text-align:right">${k}/${a.length}</span><div class="bar" style="grid-column:1/-1"><i style="width:${Math.round(k/a.length*100)}%"></i></div></div>`}).join("")||'<p class="muted">Chargement…</p>'}</div>`}
+  else if(S.tab==="lecons")body=leconsTab();
   else if(S.tab==="cours")body=coursTab();
+  else if(S.tab==="cartes")body=cartesTab();
   else if(S.tab==="import"){const mine=(ls.get("rev:"+S.cid+":custom")||[]).length;body=`<div class="card" style="display:flex;flex-direction:column;gap:12px"><h2>Créer des questions dans l'app</h2>
     ${S.msg?`<div class="${S.msg.t==="ok"?"banner":"warnbox"}">${esc(S.msg.m)}</div>`:""}
     <div class="banner"><span><b>Texte à trous automatique</b><br><span class="small muted">À partir de tes documents, sans IA. Questions simples de mémorisation : utile pour retenir le vocabulaire, pas pour les mises en situation.</span></span><button class="btn" data-act="gen">Générer 10 questions</button></div>
@@ -331,7 +390,7 @@ function openView(){
   return `${top}<div class="card" style="display:flex;flex-direction:column;gap:12px"><span class="label">Ta note</span><div class="note">${fmt(f*20)}<small> /20</small></div><p class="muted">Les éléments non cochés sont à revoir dans le cours.</p><div class="row"><button class="btn" data-act="open-q">Autre question ouverte</button><button class="btn" data-act="quit">Retour au cours</button></div></div>`;
 }
 function render(){
-  $.innerHTML=!S.cid?home():S.run&&S.run.kind==="open"?openView():S.run&&S.run.phase==="answer"?quiz():S.run&&S.run.phase==="result"?result():course();
+  $.innerHTML=!S.cid?home():S.run&&S.run.kind==="cards"?cardsView():S.run&&S.run.kind==="open"?openView():S.run&&S.run.phase==="answer"?quiz():S.run&&S.run.phase==="result"?result():course();
 }
 document.addEventListener("input",e=>{if(e.target.id)S.draft[e.target.id]=e.target.value});
 document.addEventListener("change",e=>{if(e.target.id==="fileIn"){S.files=Array.from(e.target.files);render();return}
@@ -340,8 +399,18 @@ document.addEventListener("click",e=>{
   const b=e.target.closest("[data-act]");if(!b)return;const a=b.dataset.act,d=b.dataset;
   if(a==="open")openCourse(d.id);
   else if(a==="home"){S.cid=null;S.run=null;render()}
-  else if(a==="tab"){S.tab=d.k;S.err=null;S.msg=null;render()}
+  else if(a==="tab"){S.tab=d.k;S.err=null;S.msg=null;if(d.k!=="lecons")S.lid=null;render()}
   else if(a==="importq")importQ();
+  else if(a==="lesson"){S.lid=d.id;S.tab="lecons";render();window.scrollTo(0,0)}
+  else if(a==="lessons"){S.lid=null;render();window.scrollTo(0,0)}
+  else if(a==="lessonquiz"){const l=S.lessons.find(x=>x.id===S.lid);start(active().filter(q=>q.type!=="open"&&l.chapters.includes(q.chapter)),false)}
+  else if(a==="cards")startCards(Number(d.n)||10);
+  else if(a==="cflip"){S.run.flip=true;render()}
+  else if(a==="cknow")rateCard(true);
+  else if(a==="cmiss")rateCard(false);
+  else if(a==="addcard"){const f=(S.draft.cf||"").trim(),bk=(S.draft.cb||"").trim();if(!f||!bk){S.msg={t:"warn",m:"Il faut un recto et un verso."};return render()}
+    const l=ls.get("rev:"+S.cid+":cards")||[],card={id:"u"+Date.now().toString(36),chapter:(S.draft.cch||"").trim()||"Mes cartes",front:f,back:bk};l.push(card);ls.set("rev:"+S.cid+":cards",l);S.cards.push(card);S.draft.cf="";S.draft.cb="";S.msg={t:"ok",m:"Carte ajoutée."};render()}
+  else if(a==="delcards"){if(b.dataset.sure){const ids=(ls.get("rev:"+S.cid+":cards")||[]).map(x=>x.id);ls.set("rev:"+S.cid+":cards",[]);S.cards=S.cards.filter(x=>!ids.includes(x.id));render()}else{b.dataset.sure="1";b.textContent="Cliquer encore pour confirmer"}}
   else if(a==="newcourse")newCourse();
   else if(a==="delcourse"){if(b.dataset.sure)delCourse();else{b.dataset.sure="1";b.textContent="Cliquer encore pour confirmer"}}
   else if(a==="import")doImport();
