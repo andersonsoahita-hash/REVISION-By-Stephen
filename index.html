@@ -89,7 +89,7 @@ const L="ABCDEFGH",mem={};
 const ls={get(k){try{const v=localStorage.getItem(k);return v==null?(mem[k]??null):JSON.parse(v)}catch(e){return mem[k]??null}},set(k,v){mem[k]=v;try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
 const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 const fmt=x=>(Math.round(x*2)/2).toString().replace(".",",");
-const S={lessons:[],lid:null,cards:[],msg:null,docs:[],files:[],repoCourses:[],courses:[],cid:null,qs:[],atts:[],flag:[],tab:"reviser",run:null,draft:{},err:null};
+const S={packFiles:[],lessons:[],lid:null,cards:[],msg:null,docs:[],files:[],repoCourses:[],courses:[],cid:null,qs:[],atts:[],flag:[],tab:"reviser",run:null,draft:{},err:null};
 const cur=()=>S.courses.find(c=>c.id===S.cid);
 const attsOf=id=>ls.get("rev:"+id+":atts")||[];
 const saveAtts=()=>ls.set("rev:"+S.cid+":atts",S.atts.slice(0,200));
@@ -97,7 +97,88 @@ const active=()=>S.qs.filter(q=>!S.flag.includes(q.id));
 function lastByQ(){const m={};for(const a of S.atts)for(const it of a.items||[])if(!(it.qid in m))m[it.qid]=it.f;return m}
 const mastered=(q,m)=>q.id in m&&m[q.id]>=(q.type==="open"?.75:.99);
 function chapters(){const m={};active().forEach(q=>{(m[q.chapter||"Général"]??=[]).push(q)});return m}
-function loadCourses(){S.courses=[...S.repoCourses,...(ls.get("rev:courses")||[]).map(c=>({...c,user:true}))]}
+function loadCourses(){
+  const seen=ls.get("rev:seen")||{};let ch=false;S.repoCourses.forEach(c=>{if(!(c.id in seen)){seen[c.id]=c.version||1;ch=true}});if(ch)ls.set("rev:seen",seen);S.seen=seen;
+  S.courses=[...S.repoCourses,...(ls.get("rev:courses")||[]).map(c=>({...c,user:true}))]}
+const PROMPT_PACK=`Tu es un assistant pédagogique pour un étudiant en MSc Marketing, Communication et Stratégie de Marque. À partir UNIQUEMENT du cours ci-dessous, construis un « pack de cours » au format JSON, pour une application de révision.
+
+Réponds UNIQUEMENT par un objet JSON valide, sans texte autour, de cette forme :
+{
+ "format":"carnet-pack-1",
+ "id":"nom-court-sans-espace",
+ "name":"Nom du cours",
+ "version":1,
+ "lessons":[ {"id":"roles","seance":"Séance 1","title":"Titre de la leçon","chapters":["Nom de chapitre"],"intro":"1 à 2 phrases","items":[{"t":"Notion","d":"Explication fidèle au cours","ex":"Exemple du cours (facultatif)","key":"À retenir ou piège (facultatif)"}],"take":"La leçon en une phrase"} ],
+ "questions":[ {"type":"qcm","chapter":"Nom de chapitre","level":"appliquer","q":"…","options":["…","…","…","…"],"answer":[2],"why":"…"}, {"type":"multi","chapter":"…","level":"comprendre","q":"…","options":["…","…","…","…","…"],"answer":[0,3],"why":"…"}, {"type":"open","chapter":"…","level":"appliquer","q":"…","points":["…","…","…"],"model":"…","why":"…"} ],
+ "cards":[ {"chapter":"Nom de chapitre","front":"Notion ou question","back":"Réponse courte avec exemple"} ]
+}
+
+Règles :
+- Une leçon par grande section du cours (une section = une page de leçon). Chaque leçon contient toutes les notions de la section, avec les exemples du cours.
+- "chapters" d'une leçon = les noms de chapitre utilisés dans les questions et cartes de cette leçon (mêmes noms, écrits à l'identique).
+- Au moins 8 questions par leçon : environ 60 % de QCM à une bonne réponse (4 options), 20 % de QCM à plusieurs bonnes réponses (5 options), 20 % de questions ouvertes. Au moins la moitié en mise en situation. Mauvaises réponses plausibles. "answer" = numéros d'options en commençant à 0. "why" explique la bonne réponse en 2 à 3 phrases.
+- Au moins 5 cartes par leçon.
+- N'invente rien : tout vient du cours.
+
+COURS :
+[colle ici le texte du cours]`;
+function hash(s){let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return (h>>>0).toString(36)}
+function normLesson(x){
+  if(!x||!x.title||!Array.isArray(x.items)||!x.items.length)return null;
+  return {id:String(x.id||"l"+hash(String(x.title))),seance:String(x.seance||"Cours"),title:String(x.title),chapters:Array.isArray(x.chapters)?x.chapters.map(String):[],intro:String(x.intro||""),
+    items:x.items.map(i=>({t:String(i.t||""),d:String(i.d||""),ex:String(i.ex||""),key:String(i.key||"")})).filter(i=>i.t||i.d),take:String(x.take||"")};
+}
+function normCard(x){return x&&x.front&&x.back?{id:String(x.id||"k"+hash(String(x.front))),chapter:String(x.chapter||"Général"),front:String(x.front),back:String(x.back)}:null}
+function importPack(p){
+  if(!p||typeof p!=="object"||Array.isArray(p))throw new Error("Fichier de cours invalide.");
+  const name=String(p.name||"").trim();if(!name)throw new Error("Le fichier n'a pas de nom de cours (champ \"name\").");
+  const lessons=(p.lessons||[]).map(normLesson).filter(Boolean);
+  const questions=(p.questions||[]).map(x=>{const q=normQ(x);if(q){q.id=String(x.id||"p"+hash(q.q));q.source="pack"}return q}).filter(Boolean);
+  const cards=(p.cards||[]).map(normCard).filter(Boolean);
+  if(!lessons.length&&!questions.length&&!cards.length)throw new Error("Le fichier ne contient ni leçon, ni question, ni carte.");
+  let id=String(p.id||"").replace(/[^A-Za-z0-9_-]/g,"").slice(0,60)||"p"+hash(name);
+  if(S.repoCourses.some(c=>c.id===id))id+="-perso";
+  const list=ls.get("rev:courses")||[];let c=list.find(x=>x.id===id);const isNew=!c;
+  const old=ls.get("rev:"+id+":pack")||{lessons:[],questions:[],cards:[]};
+  const mergeBy=(a,b)=>{const m=new Map(a.map(x=>[x.id,x]));let add=0;b.forEach(x=>{if(!m.has(x.id))add++;m.set(x.id,x)});return [[...m.values()],add]};
+  const [L2,al]=mergeBy(old.lessons,lessons),[Q2,aq]=mergeBy(old.questions,questions),[C2,ac]=mergeBy(old.cards,cards);
+  if(!ls.set("rev:"+id+":pack",{lessons:L2,questions:Q2,cards:C2,version:p.version||1}))throw new Error("Le stockage du navigateur est plein.");
+  if(isNew)list.push({id,name,version:p.version||1});else{c.name=name;c.version=p.version||1}
+  ls.set("rev:courses",list);loadCourses();
+  return {name,isNew,al,aq,ac};
+}
+async function doPackImport(){
+  if(!S.packFiles.length){S.msg={t:"warn",m:"Choisis un fichier de cours."};return render()}
+  S.msg={t:"ok",m:"Import en cours…"};render();
+  const out=[];
+  try{
+    for(const file of S.packFiles){
+      const ext=file.name.split(".").pop().toLowerCase();
+      if(ext==="json"){
+        let obj;try{obj=JSON.parse(await file.text())}catch(e){throw new Error(file.name+" n'est pas un JSON valide.")}
+        const r=importPack(obj);
+        out.push(r.isNew?`« ${r.name} » créé : ${r.al} leçon(s), ${r.aq} question(s), ${r.ac} carte(s).`:`« ${r.name} » mis à jour : ${r.al} nouvelle(s) leçon(s), ${r.aq} nouvelle(s) question(s), ${r.ac} nouvelle(s) carte(s). Ta progression est conservée.`);
+      }else{
+        const blocks=toBlocks(await extract(file));if(!blocks.length)throw new Error(file.name+" : aucun texte trouvé");
+        const id="c"+Date.now().toString(36)+hash(file.name),list=ls.get("rev:courses")||[];
+        list.push({id,name:file.name.replace(/\.[^.]+$/,"")});ls.set("rev:courses",list);
+        ls.set("rev:"+id+":docs",[{id:"d"+Date.now().toString(36),name:file.name,blocks}]);loadCourses();
+        out.push(`« ${file.name} » ajouté comme cours avec ${blocks.length} blocs. Ouvre-le pour créer des questions.`);
+      }
+    }
+    S.packFiles=[];S.msg={t:"ok",m:out.join(" ")};
+  }catch(e){S.msg={t:"warn",m:(out.length?out.join(" ")+" ":"")+(e.message||String(e))};S.packFiles=[]}
+  render();
+}
+async function checkUpdates(){
+  S.msg={t:"ok",m:"Vérification…"};render();
+  try{
+    const r=await fetch("courses/index.json?t="+Date.now(),{cache:"no-store"});S.repoCourses=await r.json();loadCourses();
+    const news=S.repoCourses.filter(c=>(c.version||1)>(S.seen[c.id]||0));
+    S.msg={t:"ok",m:news.length?"Mise à jour disponible : "+news.map(c=>c.name).join(", ")+". Ouvre le cours pour la charger.":"Tout est à jour."};
+  }catch(e){S.msg={t:"warn",m:"Impossible de vérifier. Es-tu connecté ?"}}
+  render();
+}
 function newCourse(){
   const n=(S.draft.newName||"").trim();if(!n)return;
   const id="c"+Date.now().toString(36),list=ls.get("rev:courses")||[];list.push({id,name:n});ls.set("rev:courses",list);
@@ -105,16 +186,17 @@ function newCourse(){
 }
 function delCourse(){
   const id=S.cid;ls.set("rev:courses",(ls.get("rev:courses")||[]).filter(c=>c.id!==id));
-  ["atts","flag","custom","docs","cards","box"].forEach(k=>{try{localStorage.removeItem("rev:"+id+":"+k)}catch(e){}delete mem["rev:"+id+":"+k]});
+  ["atts","flag","custom","docs","cards","box","pack"].forEach(k=>{try{localStorage.removeItem("rev:"+id+":"+k)}catch(e){}delete mem["rev:"+id+":"+k]});
   S.cid=null;S.run=null;loadCourses();render();
 }
 async function openCourse(id){
+  {const c=S.courses.find(x=>x.id===id);if(c&&!c.user){const sn=ls.get("rev:seen")||{};sn[id]=c.version||1;ls.set("rev:seen",sn);S.seen=sn}}
   S.cid=id;S.run=null;S.tab="reviser";S.err=null;S.qs=[];
   S.atts=attsOf(id);S.flag=ls.get("rev:"+id+":flag")||[];render();
   let base=[];S.docs=ls.get("rev:"+id+":docs")||[];S.msg=null;
-  if(!cur().user){try{const r=await fetch("courses/"+id+"/questions.json",{cache:"no-cache"});base=await r.json()}catch(e){S.err="Impossible de charger les questions."}}
-  let bc=[];if(!cur().user){try{const r=await fetch("courses/"+id+"/cards.json",{cache:"no-cache"});if(r.ok)bc=await r.json()}catch(e){}}
-  let bl=[];if(!cur().user){try{const r=await fetch("courses/"+id+"/lessons.json",{cache:"no-cache"});if(r.ok)bl=await r.json()}catch(e){}}
+  if(!cur().user){try{const r=await fetch("courses/"+id+"/questions.json",{cache:"no-cache"});base=await r.json()}catch(e){S.err="Impossible de charger les questions."}}else base=(ls.get("rev:"+id+":pack")||{}).questions||[];
+  let bc=[];if(!cur().user){try{const r=await fetch("courses/"+id+"/cards.json",{cache:"no-cache"});if(r.ok)bc=await r.json()}catch(e){}}else bc=(ls.get("rev:"+id+":pack")||{}).cards||[];
+  let bl=[];if(!cur().user){try{const r=await fetch("courses/"+id+"/lessons.json",{cache:"no-cache"});if(r.ok)bl=await r.json()}catch(e){}}else bl=(ls.get("rev:"+id+":pack")||{}).lessons||[];
   S.lessons=bl;S.lid=null;
   S.cards=[...bc,...(ls.get("rev:"+id+":cards")||[])];
   S.qs=[...base,...(ls.get("rev:"+id+":custom")||[])];
@@ -191,7 +273,12 @@ function startOpen(){
 function home(){
   return `<header><p class="label">MSc1 · Marketing, Communication et Stratégie de Marque</p><h1>Carnet de révision</h1>
   <p class="muted" style="max-width:60ch;margin-top:8px">Un cahier par cours : tests notés sur 20, examen blanc, correction de tes erreurs avec un essai, puis nouvelles questions. Ta progression reste dans ce navigateur.</p></header>
-  <div class="grid">${S.courses.map(c=>{const a=attsOf(c.id).filter(x=>x.mode==="qcm")[0];return `<button class="shelf" data-act="open" data-id="${esc(c.id)}"><h3>${esc(c.name)}</h3>${a?`<div><span class="label">Dernière note</span> <span class="mono" style="font-weight:600">${fmt(a.score20)}/20</span></div>`:'<div class="small muted">Pas encore de test</div>'}</button>`}).join("")||'<p class="muted">Chargement…</p>'}</div>
+  <div class="grid">${S.courses.map(c=>{const a=attsOf(c.id).filter(x=>x.mode==="qcm")[0];return `<button class="shelf" data-act="open" data-id="${esc(c.id)}"><h3>${esc(c.name)}</h3>${!c.user&&(c.version||1)>((S.seen||{})[c.id]||0)?'<span class="pill good" style="align-self:flex-start">Mise à jour disponible</span>':""}${a?`<div><span class="label">Dernière note</span> <span class="mono" style="font-weight:600">${fmt(a.score20)}/20</span></div>`:'<div class="small muted">Pas encore de test</div>'}</button>`}).join("")||'<p class="muted">Chargement…</p>'}</div>
+  <div class="card" style="display:flex;flex-direction:column;gap:10px"><h3>Importer un cours</h3>
+  <p class="muted small">Un <b>fichier de cours (.json)</b> crée tout d'un coup : une page par leçon, les questions et les cartes. Si le cours existe déjà, il est mis à jour et ta progression est conservée. Un PDF, Word ou texte crée un cours avec ses documents.</p>
+  ${S.msg?`<div class="${S.msg.t==="ok"?"banner":"warnbox"}">${esc(S.msg.m)}</div>`:""}
+  <input type="file" id="packIn" multiple accept=".json,.pdf,.docx,.txt,.md"><div class="small muted">${S.packFiles.map(f=>esc(f.name)).join(", ")}</div>
+  <div class="row"><button class="btn primary" data-act="packimport">Importer</button><button class="btn" data-act="copypack">Copier la consigne pour générer le fichier avec une IA</button><button class="btn" data-act="checkupd">Vérifier les mises à jour</button></div></div>
   <div class="card"><h3>Nouveau cours</h3><div class="row" style="margin-top:10px"><input type="text" id="newName" placeholder="Ex. : Stratégie de marque" value="${esc(S.draft.newName||"")}" style="flex:1;min-width:200px"><button class="btn primary" data-act="newcourse">Créer le cours</button></div><p class="small muted" style="margin-top:8px">Tu ajoutes ensuite tes fichiers (PDF, Word, texte) et tes questions, directement ici.</p></div>
   <p class="small muted">Version avec génération de questions, correction des questions ouvertes par Claude et base partagée : <a href="https://claude.ai/artifact/7DkrDfKHkbQaTiiXtJ8nPW">app dans Claude</a>.</p>`;
 }
@@ -358,7 +445,7 @@ function course(){
     ${mine?'<p class="small"><button class="btn link small" data-act="copymine">Copier mes questions importées</button> · <button class="btn link small" data-act="delmine">Supprimer mes questions importées</button></p>':""}</div>`}
   else if(S.tab==="questions"){const ch=chapters();body=`<div class="card"><h2>Banque (${S.qs.length})</h2>${Object.keys(ch).map(n=>`<details><summary>${esc(n)} · ${ch[n].length}</summary>${ch[n].map(q=>`<div style="padding:10px 0;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:6px"><div>${esc(q.q)}</div>${q.type==="open"?`<div class="small muted">Attendu : ${q.points.map(esc).join(" · ")}</div>`:`<div class="small muted">Bonne réponse : ${q.answer.map(i=>esc(q.options[i])).join(" / ")}</div>`}<button class="btn link small" data-act="flag" data-id="${esc(q.id)}">Signaler une erreur (sort des tests)</button></div>`).join("")}</details>`).join("")}${S.flag.length?`<p class="small muted" style="margin-top:10px">${S.flag.length} question(s) signalée(s). <button class="btn link small" data-act="unflag">Les remettre</button></p>`:""}</div>`}
   else body=S.atts.length?`<div class="card"><h2>Historique</h2>${S.atts.map(a=>`<div class="hist"><span class="mono small muted">${new Date(a.at).toLocaleDateString("fr-FR",{day:"2-digit",month:"short"})}</span><span>${a.mode==="open"?"Question ouverte":(a.exam?"Examen blanc · ":"")+a.n+" QCM"}${a.retry?` · ${a.retry.fixed}/${a.retry.total} erreurs corrigées`:""}</span><span class="mono" style="font-weight:600">${fmt(a.score20)}/20</span></div>`).join("")}<p class="small muted" style="margin-top:10px"><button class="btn link small" data-act="reset">Effacer ma progression</button></p></div>`:'<div class="card"><p class="muted">Aucun test pour l\'instant.</p></div>';
-  return `<div class="top"><button class="btn link" data-act="home">← Tous les cours</button></div><header><p class="label">Cours</p><h1>${esc(c.name)}</h1></header>
+  return `<div class="top"><button class="btn link" data-act="home">← Tous les cours</button>${c.user?'<span class="small muted">Pour mettre à jour : importe le nouveau fichier de cours sur l\'accueil.</span>':'<button class="btn" data-act="updcourse">Mettre à jour ce cours</button>'}</div><header><p class="label">Cours</p><h1>${esc(c.name)}</h1></header>
   ${S.err?`<div class="warnbox">${esc(S.err)}</div>`:""}
   <div class="card stats"><div class="stat"><span class="label">Questions</span><b>${qs.length}</b></div><div class="stat"><span class="label">Maîtrisées</span><b>${ms}<span class="muted" style="font-size:1rem">/${qs.length}</span></b></div><div class="stat"><span class="label">Moyenne (5 derniers)</span><b>${avg==null?"–":fmt(avg)}</b></div></div>
   <div class="tabs" role="tablist">${tabs.map(([k,t])=>`<button class="tab" role="tab" aria-selected="${S.tab===k}" data-act="tab" data-k="${k}">${t}</button>`).join("")}</div>${body}`;
@@ -393,7 +480,8 @@ function render(){
   $.innerHTML=!S.cid?home():S.run&&S.run.kind==="cards"?cardsView():S.run&&S.run.kind==="open"?openView():S.run&&S.run.phase==="answer"?quiz():S.run&&S.run.phase==="result"?result():course();
 }
 document.addEventListener("input",e=>{if(e.target.id)S.draft[e.target.id]=e.target.value});
-document.addEventListener("change",e=>{if(e.target.id==="fileIn"){S.files=Array.from(e.target.files);render();return}
+document.addEventListener("change",e=>{if(e.target.id==="packIn"){S.packFiles=Array.from(e.target.files);S.msg=null;render();return}
+  if(e.target.id==="fileIn"){S.files=Array.from(e.target.files);render();return}
   const i=e.target.dataset&&e.target.dataset.chk;if(i!=null&&S.run){const n=Number(i),c=S.run.checked;S.run.checked=e.target.checked?[...new Set([...c,n])]:c.filter(x=>x!==n)}});
 document.addEventListener("click",e=>{
   const b=e.target.closest("[data-act]");if(!b)return;const a=b.dataset.act,d=b.dataset;
@@ -401,6 +489,10 @@ document.addEventListener("click",e=>{
   else if(a==="home"){S.cid=null;S.run=null;render()}
   else if(a==="tab"){S.tab=d.k;S.err=null;S.msg=null;if(d.k!=="lecons")S.lid=null;render()}
   else if(a==="importq")importQ();
+  else if(a==="packimport")doPackImport();
+  else if(a==="checkupd")checkUpdates();
+  else if(a==="copypack"){navigator.clipboard.writeText(PROMPT_PACK).then(()=>{b.textContent="Consigne copiée"}).catch(()=>{b.textContent="Copie impossible"})}
+  else if(a==="updcourse"){const t=S.tab;openCourse(S.cid).then(()=>{S.tab=t;S.msg={t:"ok",m:"Cours rechargé depuis GitHub."};render()})}
   else if(a==="lesson"){S.lid=d.id;S.tab="lecons";render();window.scrollTo(0,0)}
   else if(a==="lessons"){S.lid=null;render();window.scrollTo(0,0)}
   else if(a==="lessonquiz"){const l=S.lessons.find(x=>x.id===S.lid);start(active().filter(q=>q.type!=="open"&&l.chapters.includes(q.chapter)),false)}

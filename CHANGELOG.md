@@ -22,3 +22,8 @@
 - Onglet Leçons : 8 leçons structurées tirées des slides (dont les 6 biais cognitifs avec exemples et quiz du cours), bouton « Tester cette leçon ».
 - Onglet Cartes mémoire : 32 cartes mélangées tous chapitres, les cartes ratées reviennent plus souvent ; ajout de cartes personnelles.
 - L'ancien onglet Cours devient « Mes documents ».
+
+## 2026-10-28 (7)
+- Import d'un fichier de cours (.json) : leçons, questions et cartes créées d'un coup ; ré-import = mise à jour sans perdre la progression.
+- Consigne pour générer le fichier avec une IA, exemple dans modeles/.
+- Mises à jour : pastille « Mise à jour disponible », boutons « Vérifier les mises à jour » et « Mettre à jour ce cours ».

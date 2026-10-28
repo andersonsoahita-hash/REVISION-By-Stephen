@@ -1,0 +1,1133 @@
+{
+ "format": "carnet-pack-1",
+ "id": "shopper-experience-ia",
+ "name": "Shopper Experience & IA",
+ "version": 3,
+ "lessons": [
+  {
+   "id": "roles",
+   "seance": "Séance 1",
+   "title": "Du consommateur au shopper",
+   "chapters": [
+    "Shopper vs consommateur",
+    "Shopper experience"
+   ],
+   "intro": "Trois questions pour un même achat : qui l'utilise ? qui le choisit ? qui le paie ? Souvent, ce n'est pas la même personne.",
+   "items": [
+    {
+     "t": "Consommateur / utilisateur",
+     "d": "Celui qui utilise ou consomme le produit. Il vit l'expérience produit.",
+     "ex": "L'enfant qui mange les céréales.",
+     "key": ""
+    },
+    {
+     "t": "Shopper",
+     "d": "Celui qui réalise l'acte d'achat : il choisit le circuit, le rayon et la référence, selon une mission d'achat.",
+     "ex": "Le parent qui choisit les céréales en rayon.",
+     "key": "Un même individu n'a pas la même attitude selon la catégorie et la mission d'achat (plein hebdo, dépannage, achat plaisir, achat professionnel)."
+    },
+    {
+     "t": "Prescripteur",
+     "d": "Celui qui influence le choix sans forcément acheter ni consommer : enfant, chef, influenceur, IA.",
+     "ex": "L'enfant qui réclame la marque.",
+     "key": "Ce sont des rôles : une même personne peut les cumuler."
+    },
+    {
+     "t": "La shopper experience (Lemon & Verhoef, 2016)",
+     "d": "La customer experience est un construit multidimensionnel centré sur les réponses du client à l'offre d'une entreprise, tout au long du parcours. La shopper experience est le « zoom » sur l'acte d'achat : préparer, choisir, acheter, en magasin comme en ligne.\n5 dimensions : cognitive (ce que je comprends, compare, retiens) · émotionnelle (plaisir, stress, confiance, frustration) · comportementale (chercher, cliquer, acheter) · sensorielle (voir, sentir, goûter, toucher) · sociale (ce que disent les autres, ce que j'affiche).",
+     "ex": "Odeur et musique d'un magasin = dimension sensorielle.",
+     "key": "Moyen mnémo : C-É-C-S-S."
+    },
+    {
+     "t": "Vouloir ≠ aimer (Berridge & Robinson, 2016)",
+     "d": "Le wanting est l'attraction vers une récompense ; le liking est le plaisir ressenti quand on l'obtient. La dopamine stimule la recherche, pas le plaisir. On peut désirer intensément ce qu'on n'appréciera pas tant que ça. Le marketing fabrique surtout le désir (l'anticipation).",
+     "ex": "Acheter sans cesse des snacks en promo qu'on ne trouve pas bons.",
+     "key": "Le wanting déclenche l'achat ; le liking vient à l'usage."
+    },
+    {
+     "t": "Le désir vit dans l'attente (Loewenstein, 1987)",
+     "d": "La recherche, la wishlist, le compte à rebours procurent souvent plus de plaisir que la possession. Les marques prolongent l'anticipation : éditions limitées, précommandes, listes d'attente, « bientôt disponible ». Une fois l'objet acquis, une partie de la magie disparaît, ce qui relance le cycle du désir.",
+     "ex": "Lancement en quantité limitée avec liste d'attente.",
+     "key": ""
+    },
+    {
+     "t": "La pyramide de Maslow",
+     "d": "Du bas vers le haut : physiologiques (manger, boire, se reposer) → sécurité (garantie, avis rassurants) → appartenance (café pour recevoir des proches) → estime (montre premium, édition limitée) → accomplissement de soi (appareil photo pour une passion).\nDu besoin à l'achat : besoin activé → signal marketing → arbitrage du shopper (prix, goût attendu, confiance, disponibilité) → achat et expérience.",
+     "ex": "Un même produit peut répondre à plusieurs besoins.",
+     "key": "Limites : les besoins ne suivent pas toujours un ordre strict, le contexte peut primer, et Maslow n'explique pas seul le choix final en rayon. Le besoin explique le « pourquoi » de l'achat."
+    }
+   ],
+   "take": "Consommateur, shopper et prescripteur sont des rôles distincts, parfois portés par la même personne. L'expérience est multidimensionnelle et cumulative."
+  },
+  {
+   "id": "parcours",
+   "seance": "Séance 1",
+   "title": "Parcours, touchpoints et funnel",
+   "chapters": [
+    "Parcours et touchpoints"
+   ],
+   "intro": "Le parcours n'est jamais linéaire. Il se lit en trois étapes, avec quatre familles de points de contact, et se diagnostique avec le funnel.",
+   "items": [
+    {
+     "t": "Les 3 étapes du parcours (Lemon & Verhoef, 2016)",
+     "d": "Pré-achat : reconnaissance du besoin, considération, recherche d'information (interne et externe).\nAchat : choix, commande, paiement. C'est l'étape la plus compressée dans le temps.\nPost-achat : usage, consommation, demandes de service, réclamations, retours, rachats. Le client évalue son expérience, devient fidèle (ou non) et recommande (ou non).",
+     "ex": "Expérience passée (t-1) → actuelle (t) → future (t+1).",
+     "key": "Chaque parcours est nourri par les précédents : une mauvaise expérience pèse sur toutes les suivantes."
+    },
+    {
+     "t": "Les 4 familles de touchpoints",
+     "d": "Un touchpoint est un point de contact entre la marque et le consommateur (physique, humain ou digital).\nDe la marque : conçus et contrôlés par la marque (pub, packaging, site, appli, force de vente). Ex. : app Nespresso, Apple Pay.\nDu partenaire : co-gérés (distributeurs, grossistes, marketplaces, agences). Ex. : Amazon, Netflix.\nDu client / shopper : actions du client, non contrôlées (usage, détournement, co-création). Ex. : IKEA hackers.\nSocial / externe : influence de tiers indépendants (avis, pairs, influenceurs, IA). Ex. : Tripadvisor, TikTok, ChatGPT.",
+     "ex": "Un avis Tripadvisor = social / externe.",
+     "key": "La marque n'en contrôle qu'une partie, et l'IA devient un nouveau prescripteur."
+    },
+    {
+     "t": "Le funnel et ses barrières",
+     "d": "Notoriété : « Je ne connais pas vraiment ce type de produit ».\nConsidération : « Je suis content de ce que j'achète déjà ».\nAchat : « Ça me tente, mais ça ne vaut pas le prix ».\nUsage : « Je ne sais pas quand l'utiliser ».\nRéachat : « Ça ne vaut pas l'effort ».",
+     "ex": "Le funnel sert à savoir à quelle étape on perd le shopper, et quelle barrière lever.",
+     "key": "Les parcours ne sont pas toujours séquentiels : on peut entrer tard, sauter des étapes, revenir en arrière."
+    },
+    {
+     "t": "Un shopper en pilote automatique",
+     "d": "95 % des décisions des consommateurs sont prises par le cerveau inconscient. 3 secondes pour décider d'un achat alimentaire en rayon. 91 % du potentiel de ventes futur vient des non-acheteurs et des petits acheteurs de la marque (chiffres cités dans le cours).",
+     "ex": "Cas KitKat : marque « connue de tous », mais notoriété top-of-mind bien inférieure à celle du concurrent principal dans plusieurs marchés.",
+     "key": "Conséquence : priorité à la saillance et à la visibilité."
+    }
+   ],
+   "take": "Trois étapes, quatre familles de touchpoints, un funnel pour diagnostiquer. La saillance (venir à l'esprit au moment d'acheter) est un enjeu central."
+  },
+  {
+   "id": "b2b",
+   "seance": "Séance 1",
+   "title": "B2B vs B2C et centre d'achat",
+   "chapters": [
+    "B2B et centre d'achat"
+   ],
+   "intro": "Quand on vend à des professionnels, la décision n'est plus celle d'un individu : elle est collective.",
+   "items": [
+    {
+     "t": "Ce qui change en B2B",
+     "d": "Qui décide : un individu ou un foyer en B2C, un centre d'achat en B2B (chef, gérant, acheteur, économe).\nMotivations : plaisir, identité, praticité, prix en B2C ; performance, coût portion, rendement, gain de temps, constance en B2B.\nProcessus : rapide, impulsif ou routinier en B2C ; plus long au référencement puis réachats routiniers en B2B.\nRelation : souvent indirecte en B2C ; suivie en B2B (commerciaux, chefs conseil, démonstrations).\nCircuits : GMS, e-commerce, proximité en B2C ; grossistes, cash & carry, distributeurs, e-commerce pro en B2B.\nFormats : petits formats en B2C ; gros conditionnements, prix au kg ou au litre en B2B.",
+     "ex": "",
+     "key": ""
+    },
+    {
+     "t": "Le centre d'achat (Webster & Wind, 1972)",
+     "d": "Initiateur : signale un besoin (le second de cuisine qui manque de temps pour les fonds maison).\nUtilisateur : la brigade qui prépare les sauces au quotidien.\nPrescripteur : le chef, un commercial, un chef conseil, un pair, Instagram.\nDécideur : le chef-patron ou le gérant qui valide la référence.\nAcheteur : celui qui commande (chef, économe, centrale d'achat).\nFiltre : ce qui contrôle l'information (grossiste, référencement, assistant).",
+     "ex": "Exemple du cours : un restaurant.",
+     "key": "Mnémo : IUPDAF."
+    }
+   ],
+   "take": "En B2B, on vend à un centre d'achat, via des intermédiaires, avec des critères de performance."
+  },
+  {
+   "id": "systemes",
+   "seance": "Séance 2",
+   "title": "Comment décide le shopper ? Système 1 et Système 2",
+   "chapters": [
+    "Biais et Systèmes 1/2"
+   ],
+   "intro": "« Nous ne sommes pas le consommateur » (Mark Ritson) : tout ce que nous pensons est probablement biaisé, parce que nous vendons le produit au lieu de le découvrir.",
+   "items": [
+    {
+     "t": "Système 1 : décision rapide",
+     "d": "Intuitif, automatique, sans effort. Repose sur les habitudes et les heuristiques (raccourcis mentaux). Exemple : « cette marque m'a toujours donné satisfaction, donc je la reprends ». En B2B : le réassort chez le grossiste habituel.",
+     "ex": "",
+     "key": "Implication marketing : être visible et reconnaissable (packaging, emplacement, marque)."
+    },
+    {
+     "t": "Système 2 : décision lente",
+     "d": "Délibéré, analytique, coûteux en effort. Activé pour les décisions nouvelles, risquées ou chères. Exemple : comparer deux smartphones avant d'acheter. En B2B : le référencement d'une nouvelle machine à café professionnelle.",
+     "ex": "",
+     "key": "Implication marketing : fournir des preuves (informations, avis, démonstration)."
+    },
+    {
+     "t": "Source",
+     "d": "Kahneman, Thinking, Fast and Slow (2011).",
+     "ex": "",
+     "key": "Le shopper décide surtout en Système 1 : visibilité, reconnaissance et habitudes pèsent plus que l'argumentaire."
+    }
+   ],
+   "take": "Système 1 = rapide, intuitif, habitudes. Système 2 = lent, analytique, pour les décisions nouvelles, risquées ou chères."
+  },
+  {
+   "id": "biais",
+   "seance": "Séance 2",
+   "title": "Les 6 biais cognitifs du shopper",
+   "chapters": [
+    "Biais et Systèmes 1/2"
+   ],
+   "intro": "Six raccourcis mentaux que le shopper utilise en rayon et en ligne. Pour chacun : le principe, les exemples du cours et un point pour ne pas le confondre.",
+   "items": [
+    {
+     "t": "1. Ancrage",
+     "d": "Le premier prix vu sert de référence.",
+     "ex": "Prix barré, « avant 9,90 € ». Quiz du cours : la formule « Premium » à 49 € affichée avant la formule « Standard » à 19 €.",
+     "key": "Ne pas confondre avec le cadrage : l'ancrage joue sur un chiffre de référence, le cadrage sur la façon de présenter."
+    },
+    {
+     "t": "2. Aversion à la perte",
+     "d": "Perdre fait plus mal que gagner ne fait plaisir.",
+     "ex": "« Dernière chance ». Quiz du cours : « Plus que 2 articles en stock, l'offre se termine à minuit ! ».",
+     "key": "Elle pousse à agir pour éviter de perdre une occasion."
+    },
+    {
+     "t": "3. Preuve sociale",
+     "d": "On imite les autres.",
+     "ex": "Avis, « best-seller ». Pro : « utilisé par X chefs », recommandations entre pairs. Quiz : « 9 chefs sur 10 ont adopté notre jus de veau ».",
+     "key": "Ce sont d'autres personnes comme moi qui valident, pas un expert."
+    },
+    {
+     "t": "4. Autorité",
+     "d": "« Les experts savent ».",
+     "ex": "Recommandé par un professionnel de santé. Pro : un MOF (Meilleur Ouvrier de France), un concours culinaire. Quiz : une marque de sauces met en avant un MOF.",
+     "key": "Ici c'est un expert qui valide, pas la foule."
+    },
+    {
+     "t": "5. Cadrage (framing)",
+     "d": "La présentation change la perception.",
+     "ex": "« 95 % sans matière grasse ». Quiz : « Ce yaourt est composé à 90 % de matières premières d'origine naturelle ».",
+     "key": "Même information, présentée autrement."
+    },
+    {
+     "t": "6. Statu quo / habitude",
+     "d": "On garde ce qu'on connaît.",
+     "ex": "Même marque de lessive. Pro : le fournisseur historique. Quiz : conserver son forfait téléphonique même s'il a beaucoup augmenté.",
+     "key": "Biais du non-changement : l'option par défaut gagne."
+    }
+   ],
+   "take": "Ancrage (référence), aversion à la perte (« dernière chance »), preuve sociale (les autres), autorité (les experts), cadrage (la présentation), statu quo (l'habitude). Acronyme : A-A-P-A-C-S."
+  },
+  {
+   "id": "biais-autres",
+   "seance": "Séance 2",
+   "title": "Les biais du marketeur et de l'IA",
+   "chapters": [
+    "Biais et Systèmes 1/2",
+    "IA et insights"
+   ],
+   "intro": "Le marketeur et l'IA ont aussi des biais. Règle d'or : l'IA formule des hypothèses, le terrain apporte les preuves.",
+   "items": [
+    {
+     "t": "Côté marketeur",
+     "d": "Biais de confirmation : chercher ce qui valide son idée.\nProjection : « moi, à sa place… ».\nBiais du survivant : n'écouter que les clients actuels.",
+     "ex": "",
+     "key": "Le biais du survivant se retrouve dans l'image de Wald : on ne voit que les avions qui reviennent."
+    },
+    {
+     "t": "Côté IA générative",
+     "d": "Reproduit les stéréotypes de ses données d'entraînement.\nPeut inventer des faits ou des chiffres (hallucinations).\nTend à aller dans le sens de la question posée (sycophancy).",
+     "ex": "",
+     "key": "Cela vaut aussi pour ce cours et pour les travaux de pairagogie : le raisonnement doit toujours primer."
+    }
+   ],
+   "take": "Marketeur : confirmation, projection, survivant. IA : stéréotypes, hallucinations, complaisance."
+  },
+  {
+   "id": "persona",
+   "seance": "Séance 2",
+   "title": "Le persona : Vérité, Pourquoi, Tension",
+   "chapters": [
+    "IA et insights"
+   ],
+   "intro": "Un persona est une représentation semi-fictionnelle du client idéal, fondée sur des études et des données réelles. Il donne vie au consommateur.",
+   "items": [
+    {
+     "t": "Pourquoi faire un portrait du shopper ?",
+     "d": "Pour créer de la valeur grâce à la connexion émotionnelle (+45 % de brand equity liée à la pertinence, Kantar), inspirer des créations média plus efficaces (+1/3 d'impact business pour les campagnes émotionnelles, Binet & Field), favoriser une croissance supérieure (+134 % de surperformance boursière pour les marques porteuses de sens, Havas).",
+     "ex": "",
+     "key": "Chiffres cités dans le cours."
+    },
+    {
+     "t": "La structure d'un bon persona",
+     "d": "Blocs : background, démographie, identifiants (personnalité, usages), objectifs, attentes, verbatims (2-3 citations à la première personne).\nPuis le modèle : VÉRITÉ (« Je… ») : ce que la personne fait, pense, ressent. POURQUOI (« Parce que… ») : la motivation profonde. TENSION (« Mais… ») : ce qui l'empêche d'atteindre son but.",
+     "ex": "Dove : « Je veux être fière de mon apparence… parce que lorsque je me fie à ma propre définition de la beauté, je me sens plus forte… mais des années d'idéaux et de clichés peuvent me faire douter de moi. »",
+     "key": ""
+    },
+    {
+     "t": "Persona utile ou cliché ? 3 critères",
+     "d": "Humain : décrit la personne entière, dans sa vie et sa culture.\nPorteur d'insight : révèle une tension réelle, au-delà de la catégorie.\nRéel et vivant : écrit à la première personne, avec des verbatims.",
+     "ex": "Contre-exemple : « Marc, 45 ans, chef, aime la cuisine et utilise Instagram. »",
+     "key": "Aucune tension, aucun insight : ce persona n'aide à prendre aucune décision."
+    }
+   ],
+   "take": "Un bon persona est humain, fondé sur des données et porteur d'une tension (Vérité / Pourquoi / Tension)."
+  },
+  {
+   "id": "ia",
+   "seance": "Séance 2",
+   "title": "L'IA au service des insights",
+   "chapters": [
+    "IA et insights"
+   ],
+   "intro": "L'IA accélère l'exploration des insights, mais elle a ses propres limites : garder son esprit critique.",
+   "items": [
+    {
+     "t": "6 usages de l'IA pour explorer les insights",
+     "d": "1. Analyser les avis clients : synthétiser des centaines d'avis (irritants, bénéfices, vocabulaire).\n2. Social listening : repérer tendances, sujets et émotions sur les réseaux.\n3. Traiter des verbatims (mots exacts des consommateurs) : coder et regrouper des entretiens qualitatifs.\n4. Personas « vivants » : faire parler un persona construit sur des données réelles.\n5. Générer des hypothèses : tensions, freins, motivations à valider sur le terrain.\n6. Préparer le terrain : guides d'entretien et questionnaires.",
+     "ex": "",
+     "key": ""
+    },
+    {
+     "t": "Personas synthétiques : promesses et limites",
+     "d": "L'IA fait bien : accélérer l'exploration (minutes vs semaines), élargir le champ des hypothèses, structurer de gros volumes, rendre les personas plus vivants, gagner du temps et de l'argent.\nElle fait mal : donner des preuves (elle peut inventer), saisir les nuances terrain, éviter les stéréotypes, représenter les minorités et les signaux faibles, protéger toujours les données.",
+     "ex": "",
+     "key": "Toujours : sourcer, trianguler, confronter au terrain (entretiens, observation, données de vente)."
+    },
+    {
+     "t": "Grille de critique d'un output IA",
+     "d": "Exactitude : faits et chiffres vérifiables, avec quelle source ?\nStéréotypes : le persona est-il caricatural (genre, âge, origine, métier) ?\nProfondeur : vraie tension ou seulement des généralités ?\nActionnabilité : peut-on en tirer une décision marketing concrète ?\nÀ vérifier : quelles 3 hypothèses tester sur le terrain, et comment ?",
+     "ex": "",
+     "key": "Acronyme : ESPA (Exactitude, Stéréotypes, Profondeur, Actionnabilité)."
+    },
+    {
+     "t": "Règle d'or",
+     "d": "L'IA formule des hypothèses ; le terrain et les données apportent les preuves. Ne pas se baser uniquement sur l'IA.",
+     "ex": "",
+     "key": ""
+    }
+   ],
+   "take": "L'IA accélère l'exploration, mais elle peut inventer : sourcer, trianguler, confronter au terrain."
+  }
+ ],
+ "questions": [
+  {
+   "type": "qcm",
+   "chapter": "Shopper vs consommateur",
+   "level": "comprendre",
+   "q": "Un parent achète des céréales au supermarché, mais ce sont ses enfants qui les mangent et qui ont réclamé cette marque. Qui est le shopper ?",
+   "options": [
+    "L'enfant",
+    "Le parent",
+    "L'enfant et le parent, indistinctement",
+    "Le fabricant de céréales"
+   ],
+   "answer": [
+    1
+   ],
+   "why": "Le shopper est celui qui choisit et achète au point de vente. L'enfant est consommateur et prescripteur, le parent est shopper.",
+   "source": "cours",
+   "at": 1,
+   "id": "q01"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Shopper vs consommateur",
+   "level": "comprendre",
+   "q": "Dans la situation précédente, quel est le rôle de l'enfant qui a demandé la marque ?",
+   "options": [
+    "Shopper",
+    "Consommateur uniquement",
+    "Prescripteur (et consommateur)",
+    "Décideur de l'entreprise"
+   ],
+   "answer": [
+    2
+   ],
+   "why": "Il influence l'achat sans payer : c'est un prescripteur, et il est aussi consommateur.",
+   "source": "cours",
+   "at": 1,
+   "id": "q02"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Shopper vs consommateur",
+   "level": "appliquer",
+   "q": "Une marque de croquettes pour chiens voit ses ventes baisser alors que les chiens les apprécient. Quelle piste est la plus cohérente avec la distinction shopper / consommateur ?",
+   "options": [
+    "Rendre les croquettes plus savoureuses pour le chien",
+    "Travailler la saillance et le message en rayon, pour la personne qui choisit et achète",
+    "Baisser le prix de 30 % partout",
+    "Ne rien changer : le consommateur est satisfait"
+   ],
+   "answer": [
+    1
+   ],
+   "why": "Le consommateur (le chien) ne choisit pas. Il faut convaincre le shopper, au moment et à l'endroit où il décide.",
+   "source": "cours",
+   "at": 1,
+   "id": "q03"
+  },
+  {
+   "type": "multi",
+   "chapter": "Shopper vs consommateur",
+   "level": "comprendre",
+   "q": "Parmi ces rôles, lesquels peuvent être tenus par une même personne ?",
+   "options": [
+    "Shopper",
+    "Consommateur",
+    "Prescripteur",
+    "Aucun : un rôle = une personne"
+   ],
+   "answer": [
+    0,
+    1,
+    2
+   ],
+   "why": "Les rôles sont des fonctions. Une même personne peut acheter, consommer et prescrire.",
+   "source": "cours",
+   "at": 1,
+   "id": "q04"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Shopper experience",
+   "level": "comprendre",
+   "q": "Selon Lemon & Verhoef (2016), l'expérience client est :",
+   "options": [
+    "Uniquement émotionnelle",
+    "Multidimensionnelle (cognitive, émotionnelle, comportementale, sensorielle, sociale)",
+    "Uniquement liée au prix",
+    "Limitée au moment de l'achat"
+   ],
+   "answer": [
+    1
+   ],
+   "why": "Les cinq dimensions sont cognitive, émotionnelle, comportementale, sensorielle et sociale. L'expérience s'étend aussi avant et après l'achat.",
+   "source": "cours",
+   "at": 1,
+   "id": "q05"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Shopper experience",
+   "level": "comprendre",
+   "q": "Quelle différence entre wanting et liking (Berridge & Robinson) ?",
+   "options": [
+    "Aucune, ce sont deux synonymes",
+    "Wanting = désir qui pousse à agir ; liking = plaisir ressenti. Ils peuvent se dissocier",
+    "Wanting = plaisir ressenti ; liking = désir d'acheter",
+    "Wanting concerne le B2B, liking le B2C"
+   ],
+   "answer": [
+    1
+   ],
+   "why": "On peut désirer quelque chose sans en tirer de plaisir (et inversement). Le wanting déclenche le passage à l'acte.",
+   "source": "cours",
+   "at": 1,
+   "id": "q06"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Shopper experience",
+   "level": "appliquer",
+   "q": "Un client achète sans cesse des promotions sur des snacks qu'il ne trouve pas bons. Quel concept l'explique le mieux ?",
+   "options": [
+    "Un fort liking sans wanting",
+    "Un fort wanting sans liking",
+    "Un biais de survivant",
+    "Une prescription B2B"
+   ],
+   "answer": [
+    1
+   ],
+   "why": "Le désir d'acheter (déclenché par la promo, l'habitude) est dissocié du plaisir réel.",
+   "source": "cours",
+   "at": 1,
+   "id": "q07"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Shopper experience",
+   "level": "comprendre",
+   "q": "Une enseigne décide d’améliorer l'odeur et la musique d'un magasin. Quelle dimension de l'expérience travaille-t-il en premier ?",
+   "options": [
+    "Sensorielle",
+    "Sociale",
+    "Cognitive",
+    "Comportementale"
+   ],
+   "answer": [
+    0
+   ],
+   "why": "Odeur, musique et lumière relèvent de la dimension sensorielle.",
+   "source": "cours",
+   "at": 1,
+   "id": "q08"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Parcours et touchpoints",
+   "level": "comprendre",
+   "q": "Le parcours du shopper se découpe en trois grandes étapes :",
+   "options": [
+    "Notoriété, considération, achat",
+    "Avant-achat, achat, après-achat",
+    "Besoin, prix, livraison",
+    "Attirer, convaincre, fidéliser, parrainer"
+   ],
+   "answer": [
+    1
+   ],
+   "why": "Le parcours Lemon & Verhoef : avant-achat, achat, après-achat. Le funnel est un autre outil.",
+   "source": "cours",
+   "at": 1,
+   "id": "q09"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Parcours et touchpoints",
+   "level": "comprendre",
+   "q": "Quelles sont les quatre familles de touchpoints ?",
+   "options": [
+    "Marque, partenaire, client, social/externe",
+    "Produit, prix, place, promotion",
+    "Print, digital, TV, radio",
+    "Acquisition, activation, rétention, revenu"
+   ],
+   "answer": [
+    0
+   ],
+   "why": "Touchpoints de marque, de partenaire, du client et sociaux/externes.",
+   "source": "cours",
+   "at": 1,
+   "id": "q10"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Parcours et touchpoints",
+   "level": "appliquer",
+   "q": "Un avis laissé par un inconnu sur un site de comparaison influence un achat. Il s'agit d'un touchpoint :",
+   "options": [
+    "De marque",
+    "De partenaire",
+    "Du client",
+    "Social / externe"
+   ],
+   "answer": [
+    3
+   ],
+   "why": "L'avis d'un tiers que la marque ne contrôle pas relève du social/externe.",
+   "source": "cours",
+   "at": 1,
+   "id": "q11"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Parcours et touchpoints",
+   "level": "comprendre",
+   "q": "Quel est l'ordre du funnel présenté dans le cours ?",
+   "options": [
+    "Notoriété, considération, achat, usage, réachat",
+    "Achat, notoriété, usage, considération, réachat",
+    "Considération, notoriété, usage, achat, réachat",
+    "Notoriété, achat, considération, réachat, usage"
+   ],
+   "answer": [
+    0
+   ],
+   "why": "Notoriété → considération → achat → usage → réachat.",
+   "source": "cours",
+   "at": 1,
+   "id": "q12"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Parcours et touchpoints",
+   "level": "comprendre",
+   "q": "La saillance d'une marque (illustrée par le cas KitKat) signifie :",
+   "options": [
+    "Qu'elle est la moins chère",
+    "Qu'elle vient facilement à l'esprit dans une situation d'achat",
+    "Qu'elle a le meilleur goût",
+    "Qu'elle est distribuée partout"
+   ],
+   "answer": [
+    1
+   ],
+   "why": "Une marque saillante est celle à laquelle on pense dans le moment d'achat : elle est ainsi plus souvent considérée.",
+   "source": "cours",
+   "at": 1,
+   "id": "q13"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Parcours et touchpoints",
+   "level": "appliquer",
+   "q": "Une marque veut augmenter sa saillance. Quelle action est la plus cohérente ?",
+   "options": [
+    "Associer la marque à des moments d'usage clairs et rendre ses repères visibles en rayon",
+    "Doubler le prix pour paraître premium",
+    "Supprimer sa publicité",
+    "Lister uniquement les ingrédients"
+   ],
+   "answer": [
+    0
+   ],
+   "why": "La saillance se construit en liant la marque à des situations (moments de consommation) et à des repères visuels reconnaissables.",
+   "source": "cours",
+   "at": 1,
+   "id": "q14"
+  },
+  {
+   "type": "qcm",
+   "chapter": "B2B et centre d'achat",
+   "level": "comprendre",
+   "q": "Dans un centre d'achat B2B (Webster & Wind), quel rôle contrôle l'information qui arrive jusqu'au décideur ?",
+   "options": [
+    "Initiateur",
+    "Filtre",
+    "Utilisateur",
+    "Acheteur"
+   ],
+   "answer": [
+    1
+   ],
+   "why": "Le filtre (gatekeeper) trie et contrôle ce qui remonte au décideur.",
+   "source": "cours",
+   "at": 1,
+   "id": "q15"
+  },
+  {
+   "type": "qcm",
+   "chapter": "B2B et centre d'achat",
+   "level": "appliquer",
+   "q": "Vous vendez un logiciel à une entreprise. L'équipe qui l'utilisera chaque jour a donné son avis, la direction financière valide le budget, un assistant décide quels commerciaux sont reçus. Qui est le filtre ?",
+   "options": [
+    "L'équipe utilisatrice",
+    "La direction financière",
+    "L'assistant qui sélectionne les commerciaux",
+    "Le prescripteur externe"
+   ],
+   "answer": [
+    2
+   ],
+   "why": "L'assistant contrôle l'accès à l'information : c'est le filtre. L'équipe est utilisatrice, la direction est décideuse.",
+   "source": "cours",
+   "at": 1,
+   "id": "q16"
+  },
+  {
+   "type": "qcm",
+   "chapter": "B2B et centre d'achat",
+   "level": "comprendre",
+   "q": "Quelle différence principale entre B2C et B2B pour la décision d'achat ?",
+   "options": [
+    "En B2B, la décision implique plusieurs acteurs aux rôles différents",
+    "En B2B, il n'y a jamais d'émotion",
+    "En B2C, la décision est toujours collective",
+    "Il n'y a aucune différence"
+   ],
+   "answer": [
+    0
+   ],
+   "why": "Le B2B repose sur un centre d'achat à plusieurs rôles. Les émotions y existent aussi.",
+   "source": "cours",
+   "at": 1,
+   "id": "q17"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Biais et Systèmes 1/2",
+   "level": "comprendre",
+   "q": "Selon Kahneman, le Système 1 est :",
+   "options": [
+    "Lent, analytique, demande de l'effort",
+    "Rapide, automatique, intuitif",
+    "Réservé aux experts",
+    "Toujours rationnel"
+   ],
+   "answer": [
+    1
+   ],
+   "why": "Système 1 : rapide et intuitif. Système 2 : lent, analytique, coûteux en effort.",
+   "source": "cours",
+   "at": 1,
+   "id": "q18"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Biais et Systèmes 1/2",
+   "level": "appliquer",
+   "q": "Un site affiche « 90 % de clients satisfaits » plutôt que « 10 % d'insatisfaits ». Quel biais est mobilisé ?",
+   "options": [
+    "Ancrage",
+    "Cadrage",
+    "Statu quo",
+    "Autorité"
+   ],
+   "answer": [
+    1
+   ],
+   "why": "Même information, présentation différente : c'est l'effet de cadrage (framing).",
+   "source": "cours",
+   "at": 1,
+   "id": "q19"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Biais et Systèmes 1/2",
+   "level": "appliquer",
+   "q": "Un prix barré à 100 € à côté du prix de 70 € rend l'offre plus attractive. Quel biais ?",
+   "options": [
+    "Ancrage",
+    "Preuve sociale",
+    "Aversion à la perte",
+    "Statu quo"
+   ],
+   "answer": [
+    0
+   ],
+   "why": "Le prix de référence sert d'ancre dans le jugement.",
+   "source": "cours",
+   "at": 1,
+   "id": "q20"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Biais et Systèmes 1/2",
+   "level": "appliquer",
+   "q": "« Essai gratuit : vous perdrez l'accès à vos données si vous résiliez. » Quel biais est exploité ?",
+   "options": [
+    "Aversion à la perte",
+    "Autorité",
+    "Ancrage",
+    "Cadrage positif"
+   ],
+   "answer": [
+    0
+   ],
+   "why": "Perdre pèse plus que gagner : on évite de perdre ce qu'on possède déjà.",
+   "source": "cours",
+   "at": 1,
+   "id": "q21"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Biais et Systèmes 1/2",
+   "level": "appliquer",
+   "q": "Un client reste chez son opérateur par défaut alors que des offres meilleures existent. Quel biais ?",
+   "options": [
+    "Statu quo",
+    "Preuve sociale",
+    "Autorité",
+    "Ancrage"
+   ],
+   "answer": [
+    0
+   ],
+   "why": "Le statu quo : on garde l'option par défaut pour éviter l'effort de changer.",
+   "source": "cours",
+   "at": 1,
+   "id": "q22"
+  },
+  {
+   "type": "multi",
+   "chapter": "Biais et Systèmes 1/2",
+   "level": "appliquer",
+   "q": "« 9 dentistes sur 10 le recommandent » : quels biais sont sollicités ?",
+   "options": [
+    "Preuve sociale",
+    "Autorité",
+    "Aversion à la perte",
+    "Statu quo"
+   ],
+   "answer": [
+    0,
+    1
+   ],
+   "why": "Le chiffre joue la preuve sociale (les autres le font) et la blouse/expert joue l'autorité.",
+   "source": "cours",
+   "at": 1,
+   "id": "q23"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Biais et Systèmes 1/2",
+   "level": "comprendre",
+   "q": "Le biais du survivant (Wald, avions de la guerre) consiste à :",
+   "options": [
+    "Ne regarder que ce qui a survécu, en oubliant ce qui a disparu",
+    "Rechercher les infos qui confirment son idée",
+    "Projeter ses goûts sur les clients",
+    "Faire confiance à l'IA"
+   ],
+   "answer": [
+    0
+   ],
+   "why": "On blinde l'endroit où reviennent les avions touchés, alors qu'il faut protéger là où ceux qui ne reviennent pas ont été touchés.",
+   "source": "cours",
+   "at": 1,
+   "id": "q24"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Biais et Systèmes 1/2",
+   "level": "appliquer",
+   "q": "Un marketeur n'interroge que les clients fidèles et en conclut que tout le monde aime son produit. Quel biais ?",
+   "options": [
+    "Biais du survivant",
+    "Biais de projection",
+    "Hallucination",
+    "Sycophancy"
+   ],
+   "answer": [
+    0
+   ],
+   "why": "Il ignore ceux qui sont partis ou n'ont jamais acheté.",
+   "source": "cours",
+   "at": 1,
+   "id": "q25"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Biais et Systèmes 1/2",
+   "level": "appliquer",
+   "q": "Un chef de produit lance une étude uniquement pour valider son idée et écarte les résultats contraires. Quel biais ?",
+   "options": [
+    "Confirmation",
+    "Survivant",
+    "Projection",
+    "Cadrage"
+   ],
+   "answer": [
+    0
+   ],
+   "why": "Le biais de confirmation cherche ce qui valide la croyance existante.",
+   "source": "cours",
+   "at": 1,
+   "id": "q26"
+  },
+  {
+   "type": "multi",
+   "chapter": "IA et insights",
+   "level": "comprendre",
+   "q": "Quels sont des biais ou risques propres à l'IA générative évoqués dans le cours ?",
+   "options": [
+    "Stéréotypes",
+    "Hallucinations",
+    "Sycophancy (dire ce que l'utilisateur veut entendre)",
+    "Fatigue visuelle"
+   ],
+   "answer": [
+    0,
+    1,
+    2
+   ],
+   "why": "Trois risques : stéréotypes, hallucinations, complaisance.",
+   "source": "cours",
+   "at": 1,
+   "id": "q27"
+  },
+  {
+   "type": "qcm",
+   "chapter": "IA et insights",
+   "level": "appliquer",
+   "q": "Vous demandez à une IA un persona et elle invente une étude chiffrée inexistante. Il s'agit :",
+   "options": [
+    "D'un stéréotype",
+    "D'une hallucination",
+    "De sycophancy",
+    "D'un biais de cadrage"
+   ],
+   "answer": [
+    1
+   ],
+   "why": "Information inventée présentée comme vraie : hallucination.",
+   "source": "cours",
+   "at": 1,
+   "id": "q28"
+  },
+  {
+   "type": "qcm",
+   "chapter": "IA et insights",
+   "level": "comprendre",
+   "q": "Quels critères composent la grille de critique d'une production IA ?",
+   "options": [
+    "Exactitude, stéréotypes, profondeur, actionnabilité",
+    "Rapidité, coût, style, longueur",
+    "Créativité, humour, ton, mise en page",
+    "Source, date, auteur, éditeur"
+   ],
+   "answer": [
+    0
+   ],
+   "why": "Exactitude, Stéréotypes, Profondeur, Actionnabilité.",
+   "source": "cours",
+   "at": 1,
+   "id": "q29"
+  },
+  {
+   "type": "qcm",
+   "chapter": "IA et insights",
+   "level": "comprendre",
+   "q": "Un bon persona structuré en Vérité / Pourquoi / Tension (exemple Dove) sert à :",
+   "options": [
+    "Décrire l'âge et le revenu uniquement",
+    "Relier ce que la personne vit à la raison profonde et à la tension à résoudre",
+    "Remplacer l'étude consommateur",
+    "Choisir un nom de marque"
+   ],
+   "answer": [
+    1
+   ],
+   "why": "On passe du portrait à une tension actionnable pour la marque.",
+   "source": "cours",
+   "at": 1,
+   "id": "q30"
+  },
+  {
+   "type": "qcm",
+   "chapter": "Examen et méthode",
+   "level": "comprendre",
+   "q": "Comment sera évalué ce cours ?",
+   "options": [
+    "100 % QCM final",
+    "30 % contrôle continu (pairagogie, travail avec IA) et 70 % QCM final",
+    "50 % oral, 50 % dossier",
+    "100 % contrôle continu"
+   ],
+   "answer": [
+    1
+   ],
+   "why": "30 % contrôle continu, 70 % QCM final.",
+   "source": "cours",
+   "at": 1,
+   "id": "q31"
+  },
+  {
+   "type": "open",
+   "chapter": "Shopper vs consommateur",
+   "level": "appliquer",
+   "q": "Une marque de yaourts pour enfants constate que les enfants l'adorent mais que les parents achètent peu. Expliquez la situation avec shopper, consommateur et prescripteur, puis proposez deux actions.",
+   "points": [
+    "Enfant = consommateur et prescripteur, parent = shopper",
+    "Le blocage se situe côté shopper (santé, prix, confiance)",
+    "Action sur le message / preuve pour le parent",
+    "Action en rayon (saillance, repères) ou sur le prix"
+   ],
+   "model": "Les enfants sont consommateurs et prescripteurs, mais le parent est le shopper qui décide et paie. Le frein est probablement chez lui : doutes sur le sucre, prix ou confiance. Il faut donc lui adresser des preuves (composition, labels) et travailler la visibilité en rayon plutôt que d'augmenter l'appétence côté enfant.",
+   "why": "",
+   "source": "cours",
+   "at": 1,
+   "id": "q32"
+  },
+  {
+   "type": "open",
+   "chapter": "Biais et Systèmes 1/2",
+   "level": "appliquer",
+   "q": "Choisissez deux biais cognitifs et montrez comment une marque peut les utiliser de façon éthique sur un site e-commerce.",
+   "points": [
+    "Nommer correctement deux biais",
+    "Définir chaque biais",
+    "Donner un exemple concret par biais",
+    "Mentionner une limite éthique"
+   ],
+   "model": "Preuve sociale : afficher des avis vérifiés plutôt que des chiffres inventés. Ancrage : montrer un prix de référence réel avant remise. Dans les deux cas, l'éthique impose de ne pas fabriquer la preuve ni gonfler la référence.",
+   "why": "",
+   "source": "cours",
+   "at": 1,
+   "id": "q33"
+  },
+  {
+   "type": "open",
+   "chapter": "IA et insights",
+   "level": "appliquer",
+   "q": "Vous avez utilisé une IA pour produire un persona. Expliquez comment vous le critiquez avant de l'utiliser (grille de critique) et pourquoi.",
+   "points": [
+    "Exactitude : vérifier les chiffres et sources",
+    "Stéréotypes : repérer les clichés",
+    "Profondeur : aller au-delà du descriptif",
+    "Actionnabilité : en tirer une décision"
+   ],
+   "model": "Je vérifie l'exactitude (sources, chiffres), je traque les stéréotypes, je m'assure que le persona va jusqu'à une tension (profondeur) et qu'il permet une décision marketing (actionnabilité). Sans cela, hallucinations et complaisance de l'IA passent inaperçues.",
+   "why": "",
+   "source": "cours",
+   "at": 1,
+   "id": "q34"
+  }
+ ],
+ "cards": [
+  {
+   "id": "c01",
+   "chapter": "Shopper vs consommateur",
+   "front": "Shopper",
+   "back": "Celui qui choisit et achète au point de vente.\nExemple : le parent qui prend les céréales en rayon."
+  },
+  {
+   "id": "c02",
+   "chapter": "Shopper vs consommateur",
+   "front": "Consommateur",
+   "back": "Celui qui utilise ou consomme le produit.\nExemple : l'enfant qui mange les céréales."
+  },
+  {
+   "id": "c03",
+   "chapter": "Shopper vs consommateur",
+   "front": "Prescripteur",
+   "back": "Celui qui influence l'achat sans acheter lui-même.\nExemple : l'enfant qui réclame la marque, ou un expert."
+  },
+  {
+   "id": "c04",
+   "chapter": "Shopper vs consommateur",
+   "front": "Shopper, consommateur, prescripteur : une même personne peut-elle avoir les trois rôles ?",
+   "back": "Oui. Ce sont des rôles (des fonctions), pas des personnes. Une même personne peut acheter, consommer et prescrire."
+  },
+  {
+   "id": "c05",
+   "chapter": "Shopper vs consommateur",
+   "front": "Pourquoi faut-il distinguer shopper et consommateur ?",
+   "back": "Le consommateur peut adorer un produit sans que le shopper l'achète. Il faut convaincre celui qui décide au moment d'acheter."
+  },
+  {
+   "id": "c06",
+   "chapter": "Shopper experience",
+   "front": "Les 5 dimensions de l'expérience (Lemon & Verhoef, 2016)",
+   "back": "Cognitive, émotionnelle, comportementale, sensorielle, sociale."
+  },
+  {
+   "id": "c07",
+   "chapter": "Shopper experience",
+   "front": "Wanting",
+   "back": "Le désir qui pousse à agir (Berridge & Robinson). Il peut exister sans plaisir réel."
+  },
+  {
+   "id": "c08",
+   "chapter": "Shopper experience",
+   "front": "Liking",
+   "back": "Le plaisir réellement ressenti. Il peut être dissocié du wanting : on peut désirer sans aimer."
+  },
+  {
+   "id": "c09",
+   "chapter": "Shopper experience",
+   "front": "Exemple de wanting sans liking",
+   "back": "Acheter sans cesse des snacks en promotion qu'on ne trouve pas bons."
+  },
+  {
+   "id": "c10",
+   "chapter": "Shopper experience",
+   "front": "Quelle dimension travaille l'odeur et la musique d'un magasin ?",
+   "back": "La dimension sensorielle."
+  },
+  {
+   "id": "c11",
+   "chapter": "Parcours et touchpoints",
+   "front": "Les 3 grandes étapes du parcours",
+   "back": "Avant-achat, achat, après-achat."
+  },
+  {
+   "id": "c12",
+   "chapter": "Parcours et touchpoints",
+   "front": "Les 4 familles de touchpoints",
+   "back": "Marque, partenaire, client, social/externe."
+  },
+  {
+   "id": "c13",
+   "chapter": "Parcours et touchpoints",
+   "front": "Un avis laissé par un inconnu : quelle famille de touchpoint ?",
+   "back": "Social / externe : la marque ne le contrôle pas."
+  },
+  {
+   "id": "c14",
+   "chapter": "Parcours et touchpoints",
+   "front": "Le funnel dans l'ordre",
+   "back": "Notoriété → considération → achat → usage → réachat."
+  },
+  {
+   "id": "c15",
+   "chapter": "Parcours et touchpoints",
+   "front": "Saillance d'une marque",
+   "back": "Facilité avec laquelle la marque vient à l'esprit dans une situation d'achat (cas KitKat)."
+  },
+  {
+   "id": "c16",
+   "chapter": "Parcours et touchpoints",
+   "front": "Comment augmenter la saillance ?",
+   "back": "Associer la marque à des moments d'usage clairs et la rendre reconnaissable (repères visuels) en rayon."
+  },
+  {
+   "id": "c17",
+   "chapter": "B2B et centre d'achat",
+   "front": "Centre d'achat B2B (Webster & Wind)",
+   "back": "Le groupe de personnes qui participent à une décision d'achat en entreprise, chacun avec un rôle : initiateur, utilisateur, prescripteur, décideur, acheteur, filtre."
+  },
+  {
+   "id": "c18",
+   "chapter": "B2B et centre d'achat",
+   "front": "Le filtre dans un centre d'achat",
+   "back": "Celui qui contrôle l'information qui arrive jusqu'au décideur.\nExemple : l'assistant qui sélectionne les commerciaux reçus."
+  },
+  {
+   "id": "c19",
+   "chapter": "B2B et centre d'achat",
+   "front": "B2C vs B2B : différence principale pour la décision",
+   "back": "En B2B, la décision implique plusieurs acteurs aux rôles différents (centre d'achat)."
+  },
+  {
+   "id": "c20",
+   "chapter": "Biais et Systèmes 1/2",
+   "front": "Système 1 (Kahneman)",
+   "back": "Rapide, automatique, intuitif."
+  },
+  {
+   "id": "c21",
+   "chapter": "Biais et Systèmes 1/2",
+   "front": "Système 2 (Kahneman)",
+   "back": "Lent, analytique, demande de l'effort."
+  },
+  {
+   "id": "c22",
+   "chapter": "Biais et Systèmes 1/2",
+   "front": "Ancrage",
+   "back": "Le premier chiffre vu sert de référence.\nExemple : un prix barré à côté du prix réel."
+  },
+  {
+   "id": "c23",
+   "chapter": "Biais et Systèmes 1/2",
+   "front": "Aversion à la perte",
+   "back": "Perdre pèse plus que gagner.\nExemple : « vous perdrez vos données si vous résiliez »."
+  },
+  {
+   "id": "c24",
+   "chapter": "Biais et Systèmes 1/2",
+   "front": "Preuve sociale",
+   "back": "On imite les autres.\nExemple : « 9 clients sur 10 recommandent »."
+  },
+  {
+   "id": "c25",
+   "chapter": "Biais et Systèmes 1/2",
+   "front": "Autorité",
+   "back": "On suit l'avis d'un expert ou d'une figure d'autorité."
+  },
+  {
+   "id": "c26",
+   "chapter": "Biais et Systèmes 1/2",
+   "front": "Cadrage (framing)",
+   "back": "La même information, présentée autrement, change la décision.\nExemple : « 90 % satisfaits » plutôt que « 10 % insatisfaits »."
+  },
+  {
+   "id": "c27",
+   "chapter": "Biais et Systèmes 1/2",
+   "front": "Statu quo",
+   "back": "On garde l'option par défaut pour éviter l'effort de changer."
+  },
+  {
+   "id": "c28",
+   "chapter": "Biais et Systèmes 1/2",
+   "front": "Biais de confirmation",
+   "back": "Chercher ce qui valide son idée de départ et écarter le reste."
+  },
+  {
+   "id": "c29",
+   "chapter": "Biais et Systèmes 1/2",
+   "front": "Biais de survivant (Wald)",
+   "back": "Ne regarder que ce qui a survécu. Wald : blinder les avions là où ceux qui reviennent n'ont pas d'impacts, car les autres ne sont pas revenus."
+  },
+  {
+   "id": "c30",
+   "chapter": "IA et insights",
+   "front": "Les 3 risques de l'IA générative",
+   "back": "Stéréotypes, hallucinations, sycophancy (dire ce que l'utilisateur veut entendre)."
+  },
+  {
+   "id": "c31",
+   "chapter": "IA et insights",
+   "front": "Grille de critique d'une production IA",
+   "back": "Exactitude, Stéréotypes, Profondeur, Actionnabilité."
+  },
+  {
+   "id": "c32",
+   "chapter": "IA et insights",
+   "front": "Persona Vérité / Pourquoi / Tension (exemple Dove)",
+   "back": "Ce que la personne vit (vérité), la raison profonde (pourquoi), et la tension que la marque peut résoudre."
+  }
+ ]
+}
