@@ -11,3 +11,6 @@
 ## 2026-10-28 (3)
 - index.html devient l'app complète pour GitHub Pages : cours, QCM, examen blanc, note /20, correction avec un essai, questions ouvertes en auto-évaluation, progression dans le navigateur.
 - Ajout de courses/index.json et d'identifiants sur les questions.
+
+## 2026-10-28 (4)
+- Onglet Importer : consigne à copier pour n importe quelle IA, collage du JSON, validation, questions enregistrées dans le navigateur, copie/suppression des questions importées.

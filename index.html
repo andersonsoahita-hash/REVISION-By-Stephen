@@ -87,7 +87,7 @@ const L="ABCDEFGH",mem={};
 const ls={get(k){try{const v=localStorage.getItem(k);return v==null?(mem[k]??null):JSON.parse(v)}catch(e){return mem[k]??null}},set(k,v){mem[k]=v;try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 const fmt=x=>(Math.round(x*2)/2).toString().replace(".",",");
-const S={courses:[],cid:null,qs:[],atts:[],flag:[],tab:"reviser",run:null,draft:{},err:null};
+const S={msg:null,courses:[],cid:null,qs:[],atts:[],flag:[],tab:"reviser",run:null,draft:{},err:null};
 const cur=()=>S.courses.find(c=>c.id===S.cid);
 const attsOf=id=>ls.get("rev:"+id+":atts")||[];
 const saveAtts=()=>ls.set("rev:"+S.cid+":atts",S.atts.slice(0,200));
@@ -98,8 +98,43 @@ function chapters(){const m={};active().forEach(q=>{(m[q.chapter||"Général"]??
 async function openCourse(id){
   S.cid=id;S.run=null;S.tab="reviser";S.err=null;S.qs=[];
   S.atts=attsOf(id);S.flag=ls.get("rev:"+id+":flag")||[];render();
-  try{const r=await fetch("courses/"+id+"/questions.json",{cache:"no-cache"});S.qs=await r.json()}catch(e){S.err="Impossible de charger les questions."}
+  let base=[];try{const r=await fetch("courses/"+id+"/questions.json",{cache:"no-cache"});base=await r.json()}catch(e){S.err="Impossible de charger les questions."}
+  S.qs=[...base,...(ls.get("rev:"+id+":custom")||[])];
   render();
+}
+const PROMPT=`Tu es examinateur en MSc Marketing, Communication et Stratégie de Marque. À partir UNIQUEMENT du cours ci-dessous, écris 15 questions d'examen en français.
+Règles : environ 60 % de QCM à une seule bonne réponse ("qcm", 4 options), 20 % de QCM à plusieurs bonnes réponses ("multi", 5 options, 2 à 3 bonnes), 20 % de questions ouvertes ("open"). Au moins la moitié en mise en situation ("level":"appliquer"). Mauvaises réponses plausibles. "why" explique la bonne réponse en 2 à 3 phrases. "chapter" est le nom court de la partie du cours.
+Réponds UNIQUEMENT par un tableau JSON, sans texte autour. Formes :
+{"type":"qcm","chapter":"…","level":"appliquer","q":"…","options":["…","…","…","…"],"answer":[2],"why":"…"}
+{"type":"multi","chapter":"…","level":"comprendre","q":"…","options":["…","…","…","…","…"],"answer":[0,3],"why":"…"}
+{"type":"open","chapter":"…","level":"appliquer","q":"…","points":["…","…","…"],"model":"…","why":"…"}
+(answer = numéros d'options, en commençant à 0)
+
+COURS :
+[colle ici le texte du cours]`;
+function normQ(x){
+  if(!x||typeof x.q!=="string"||!x.q.trim())return null;
+  const type=["qcm","multi","open"].includes(x.type)?x.type:"qcm";
+  const o={type,chapter:String(x.chapter||"Général").slice(0,80),level:x.level==="appliquer"?"appliquer":"comprendre",q:x.q.trim(),why:String(x.why||"").trim()};
+  if(type==="open"){if(!Array.isArray(x.points)||x.points.length<2)return null;o.points=x.points.map(String);o.model=String(x.model||"");return o}
+  if(!Array.isArray(x.options)||x.options.length<3||x.options.length>6)return null;
+  o.options=x.options.map(String);
+  const a=(Array.isArray(x.answer)?x.answer:[x.answer]).map(Number).filter(i=>Number.isInteger(i)&&i>=0&&i<o.options.length);
+  if(!a.length||(type==="qcm"&&a.length!==1)||(type==="multi"&&a.length<2))return null;
+  o.answer=[...new Set(a)];return o;
+}
+function importQ(){
+  let t=(S.draft.impJson||"").trim();
+  const f=t.match(/```(?:json)?\s*([\s\S]*?)```/);if(f)t=f[1];
+  const i=t.indexOf("["),j=t.lastIndexOf("]");if(i>=0&&j>i)t=t.slice(i,j+1);
+  let arr;try{arr=JSON.parse(t)}catch(e){S.msg={t:"warn",m:"Ce texte n'est pas du JSON valide. Redemande à l'IA « uniquement le tableau JSON »."};return render()}
+  const have=new Set(S.qs.map(q=>q.q.trim().toLowerCase()));
+  const ok=(Array.isArray(arr)?arr:[]).map(normQ).filter(q=>q&&!have.has(q.q.toLowerCase()));
+  if(!ok.length){S.msg={t:"warn",m:"Aucune question valide ou nouvelle dans ce texte."};return render()}
+  const custom=ls.get("rev:"+S.cid+":custom")||[];
+  ok.forEach((q,k)=>{q.id="u"+Date.now().toString(36)+k;q.source="import"});
+  ls.set("rev:"+S.cid+":custom",[...custom,...ok]);S.qs=[...S.qs,...ok];S.draft.impJson="";
+  S.msg={t:"ok",m:ok.length+" question"+(ok.length>1?"s":"")+" ajoutée"+(ok.length>1?"s":"")+"."};render();
 }
 const mk=q=>({q,order:shuffle(q.options.map((_,i)=>i)),picks:[]});
 function pick(n){
@@ -144,13 +179,22 @@ function home(){
 function course(){
   const c=cur(),m=lastByQ(),qs=active(),ms=qs.filter(q=>mastered(q,m)).length;
   const tests=S.atts.filter(a=>a.mode==="qcm").slice(0,5),avg=tests.length?tests.reduce((s,a)=>s+a.score20,0)/tests.length:null;
-  const tabs=[["reviser","Réviser"],["questions","Questions"],["histo","Historique"]];
+  const tabs=[["reviser","Réviser"],["questions","Questions"],["import","Importer"],["histo","Historique"]];
   const nq=qs.filter(q=>q.type!=="open").length;
   let body;
   if(S.tab==="reviser"){const ch=chapters();body=`<div class="card" style="display:flex;flex-direction:column;gap:12px"><h2>Lancer une série</h2>
     <div class="row"><button class="btn primary" data-act="test" data-n="10">Test de 10 QCM</button><button class="btn" data-act="test" data-n="20">Test de 20 QCM</button><button class="btn" data-act="open-q">Question ouverte</button></div>
     <div class="banner"><span><b>Examen blanc</b><br><span class="small muted">Toutes les questions QCM, chapitres mélangés, notées sur 20.</span></span><button class="btn primary" data-act="exam">Lancer l'examen (${nq} questions)</button></div></div>
     <div class="card" style="display:flex;flex-direction:column;gap:12px"><h2>Maîtrise par chapitre</h2>${Object.keys(ch).map(n=>{const a=ch[n],k=a.filter(q=>mastered(q,m)).length;return `<div class="chap"><span class="name">${esc(n)}</span><span class="mono small" style="text-align:right">${k}/${a.length}</span><div class="bar" style="grid-column:1/-1"><i style="width:${Math.round(k/a.length*100)}%"></i></div></div>`}).join("")||'<p class="muted">Chargement…</p>'}</div>`}
+  else if(S.tab==="import"){const mine=(ls.get("rev:"+S.cid+":custom")||[]).length;body=`<div class="card" style="display:flex;flex-direction:column;gap:12px"><h2>Ajouter des questions avec n'importe quelle IA</h2>
+    <p class="muted">1. Copie la consigne. 2. Colle-la dans ChatGPT, Gemini, Claude ou autre, avec le texte de ton cours. 3. Colle ici le tableau JSON obtenu.</p>
+    <textarea id="promptBox" readonly style="min-height:120px">${esc(PROMPT)}</textarea>
+    <div class="row"><button class="btn" data-act="copyprompt">Copier la consigne</button></div>
+    ${S.msg?`<div class="${S.msg.t==="ok"?"banner":"warnbox"}">${esc(S.msg.m)}</div>`:""}
+    <label class="label" for="impJson">Réponse de l'IA (JSON)</label><textarea id="impJson" placeholder="[ { &quot;type&quot;: &quot;qcm&quot;, … } ]">${esc(S.draft.impJson||"")}</textarea>
+    <div class="row"><button class="btn primary" data-act="importq">Ajouter les questions</button></div>
+    <p class="small muted">Elles sont enregistrées dans ce navigateur (${mine} importée${mine>1?"s":""}). Vérifie-les : une IA peut se tromper, et le bouton « Signaler » les retire des tests. Pour les garder à vie dans le dépôt, envoie-les-moi.</p>
+    ${mine?'<p class="small"><button class="btn link small" data-act="copymine">Copier mes questions importées</button> · <button class="btn link small" data-act="delmine">Supprimer mes questions importées</button></p>':""}</div>`}
   else if(S.tab==="questions"){const ch=chapters();body=`<div class="card"><h2>Banque (${S.qs.length})</h2>${Object.keys(ch).map(n=>`<details><summary>${esc(n)} · ${ch[n].length}</summary>${ch[n].map(q=>`<div style="padding:10px 0;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:6px"><div>${esc(q.q)}</div>${q.type==="open"?`<div class="small muted">Attendu : ${q.points.map(esc).join(" · ")}</div>`:`<div class="small muted">Bonne réponse : ${q.answer.map(i=>esc(q.options[i])).join(" / ")}</div>`}<button class="btn link small" data-act="flag" data-id="${esc(q.id)}">Signaler une erreur (sort des tests)</button></div>`).join("")}</details>`).join("")}${S.flag.length?`<p class="small muted" style="margin-top:10px">${S.flag.length} question(s) signalée(s). <button class="btn link small" data-act="unflag">Les remettre</button></p>`:""}</div>`}
   else body=S.atts.length?`<div class="card"><h2>Historique</h2>${S.atts.map(a=>`<div class="hist"><span class="mono small muted">${new Date(a.at).toLocaleDateString("fr-FR",{day:"2-digit",month:"short"})}</span><span>${a.mode==="open"?"Question ouverte":(a.exam?"Examen blanc · ":"")+a.n+" QCM"}${a.retry?` · ${a.retry.fixed}/${a.retry.total} erreurs corrigées`:""}</span><span class="mono" style="font-weight:600">${fmt(a.score20)}/20</span></div>`).join("")}<p class="small muted" style="margin-top:10px"><button class="btn link small" data-act="reset">Effacer ma progression</button></p></div>`:'<div class="card"><p class="muted">Aucun test pour l\'instant.</p></div>';
   return `<div class="top"><button class="btn link" data-act="home">← Tous les cours</button></div><header><p class="label">Cours</p><h1>${esc(c.name)}</h1></header>
@@ -193,7 +237,11 @@ document.addEventListener("click",e=>{
   const b=e.target.closest("[data-act]");if(!b)return;const a=b.dataset.act,d=b.dataset;
   if(a==="open")openCourse(d.id);
   else if(a==="home"){S.cid=null;S.run=null;render()}
-  else if(a==="tab"){S.tab=d.k;S.err=null;render()}
+  else if(a==="tab"){S.tab=d.k;S.err=null;S.msg=null;render()}
+  else if(a==="importq")importQ();
+  else if(a==="copyprompt"){navigator.clipboard.writeText(PROMPT).then(()=>{b.textContent="Copié"}).catch(()=>{const t=document.getElementById("promptBox");t.select();b.textContent="Sélectionné : copie avec Ctrl/Cmd + C"})}
+  else if(a==="copymine"){const t=JSON.stringify(ls.get("rev:"+S.cid+":custom")||[],null,1);navigator.clipboard.writeText(t).then(()=>{b.textContent="Copié"}).catch(()=>{b.textContent="Copie impossible"})}
+  else if(a==="delmine"){if(b.dataset.sure){ls.set("rev:"+S.cid+":custom",[]);S.qs=S.qs.filter(q=>q.source!=="import");S.msg=null;render()}else{b.dataset.sure="1";b.textContent="Cliquer encore pour confirmer"}}
   else if(a==="test")start(pick(Number(d.n)||10),false);
   else if(a==="exam")start(active().filter(q=>q.type!=="open"),true);
   else if(a==="open-q")startOpen();
