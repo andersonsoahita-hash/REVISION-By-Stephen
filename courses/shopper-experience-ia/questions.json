@@ -643,5 +643,787 @@
   "source": "cours",
   "at": 1,
   "id": "q34"
+ },
+ {
+  "type": "qcm",
+  "chapter": "Trois âges de l'IA",
+  "level": "appliquer",
+  "q": "Une enseigne utilise l'historique de ses ventes pour prévoir la demande et ajuster ses volumes. Quel type d'IA est utilisé ?",
+  "options": [
+   "IA prédictive",
+   "IA générative",
+   "IA agentique",
+   "Aucune IA, c'est un simple calcul"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Analyser une base de données pour prévoir ce qui va arriver relève de l'IA prédictive.",
+  "source": "cours",
+  "at": 3,
+  "id": "q35"
+ },
+ {
+  "type": "qcm",
+  "chapter": "Trois âges de l'IA",
+  "level": "appliquer",
+  "q": "Un assistant reçoit « Organise-moi 3 jours à Barcelone pour moins de 600 € », choisit l'hôtel et les activités, puis réserve après validation. De quel type d'IA s'agit-il ?",
+  "options": [
+   "IA prédictive",
+   "IA générative seulement",
+   "IA agentique",
+   "IA de segmentation"
+  ],
+  "answer": [
+   2
+  ],
+  "why": "Il agit de façon autonome pour le client dans un cadre défini : c'est l'IA agentique.",
+  "source": "cours",
+  "at": 3,
+  "id": "q36"
+ },
+ {
+  "type": "multi",
+  "chapter": "Trois âges de l'IA",
+  "level": "comprendre",
+  "q": "Parmi ces exemples, lesquels relèvent de l'IA générative ?",
+  "options": [
+   "ChatGPT qui rédige une description produit",
+   "Un outil qui crée une image à partir d'une phrase",
+   "Le message « les clients ayant acheté ceci ont aussi acheté… »",
+   "Un prix dynamique calculé selon la demande",
+   "Un assistant qui répond en langage naturel"
+  ],
+  "answer": [
+   0,
+   1,
+   4
+  ],
+  "why": "L'IA générative crée du contenu et converse en langage naturel. Les recommandations et prix dynamiques relèvent de l'IA prédictive.",
+  "source": "cours",
+  "at": 3,
+  "id": "q37"
+ },
+ {
+  "type": "qcm",
+  "chapter": "Trois âges de l'IA",
+  "level": "comprendre",
+  "q": "Quelle est la différence principale entre l'IA générative et l'IA agentique ?",
+  "options": [
+   "La générative crée et converse, l'agentique exécute des tâches de façon autonome pour le client",
+   "La générative prévoit les volumes, l'agentique crée des images",
+   "Elles sont identiques, seul le nom change",
+   "La générative agit seule, l'agentique a besoin d'un humain à chaque étape"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Générative = créer et converser. Agentique = agir pour le client dans un cadre défini.",
+  "source": "cours",
+  "at": 3,
+  "id": "q38"
+ },
+ {
+  "type": "qcm",
+  "chapter": "IA sur le parcours",
+  "level": "comprendre",
+  "q": "Quel levier de l'IA correspond à l'étape de pré-achat ?",
+  "options": [
+   "Publicité personnalisée et recherche conversationnelle",
+   "Réassort automatique",
+   "Service client 24h/24",
+   "Essayage virtuel au moment du choix"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Pré-achat : publicité personnalisée, recherche conversationnelle, contenus inspirants. Le service client et le réassort sont post-achat.",
+  "source": "cours",
+  "at": 3,
+  "id": "q39"
+ },
+ {
+  "type": "qcm",
+  "chapter": "IA sur le parcours",
+  "level": "appliquer",
+  "q": "Un service client répond par IA 24h/24 aux questions simples, puis redirige vers un conseiller si besoin. Quelle étape du parcours et quel bénéfice pour la marque ?",
+  "options": [
+   "Pré-achat, meilleur taux de clic",
+   "Achat, panier moyen plus élevé",
+   "Post-achat, réduction des coûts de service",
+   "Post-achat, notoriété accrue"
+  ],
+  "answer": [
+   2
+  ],
+  "why": "C'est du post-achat. Pour la marque : coûts de service réduits (et réachat, recommandation). Pour le shopper : se sentir accompagné.",
+  "source": "cours",
+  "at": 3,
+  "id": "q40"
+ },
+ {
+  "type": "multi",
+  "chapter": "IA sur le parcours",
+  "level": "comprendre",
+  "q": "Quels sont les bénéfices pour la marque à l'étape d'achat ?",
+  "options": [
+   "Conversion",
+   "Panier moyen",
+   "Moins de retours",
+   "Coûts de service",
+   "Taux de clic"
+  ],
+  "answer": [
+   0,
+   1,
+   2
+  ],
+  "why": "Achat : conversion, panier moyen, moins de retours. Le taux de clic est un bénéfice de pré-achat, les coûts de service de post-achat.",
+  "source": "cours",
+  "at": 3,
+  "id": "q41"
+ },
+ {
+  "type": "qcm",
+  "chapter": "IA sur le parcours",
+  "level": "appliquer",
+  "q": "Un site de lunettes propose un essayage virtuel. Quel est le bénéfice principal pour le shopper ?",
+  "options": [
+   "Choisir en confiance, avec moins d'effort",
+   "Recevoir des publicités personnalisées",
+   "Obtenir un réassort automatique",
+   "Parler à un conseiller 24h/24"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "L'essayage virtuel intervient à l'achat : choisir en confiance, et pour la marque moins de retours.",
+  "source": "cours",
+  "at": 3,
+  "id": "q42"
+ },
+ {
+  "type": "qcm",
+  "chapter": "Exemples et limites de l'IA",
+  "level": "comprendre",
+  "q": "Spotify équilibre exploitation et exploration. Que signifie explorer ?",
+  "options": [
+   "Proposer parfois des titres différents de ses habitudes, avec un risque modéré",
+   "Proposer uniquement les titres les plus écoutés",
+   "Supprimer les artistes de niche",
+   "Demander à l'utilisateur de créer lui-même ses playlists"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Exploiter = rester proche de ce qu'on écoute. Explorer = sortir un peu des habitudes, ce qui met aussi en avant des artistes de niche.",
+  "source": "cours",
+  "at": 3,
+  "id": "q43"
+ },
+ {
+  "type": "qcm",
+  "chapter": "Exemples et limites de l'IA",
+  "level": "comprendre",
+  "q": "Laquelle de ces limites n'est PAS citée à propos de Netflix et de l'IA ?",
+  "options": [
+   "Droits d'auteur et propriété intellectuelle",
+   "Qualité des contenus générés",
+   "Risque d'homogénéisation",
+   "Prix de l'abonnement"
+  ],
+  "answer": [
+   3
+  ],
+  "why": "Les limites citées : droits d'auteur et propriété intellectuelle, qualité des contenus, évolution des métiers, homogénéisation.",
+  "source": "cours",
+  "at": 3,
+  "id": "q44"
+ },
+ {
+  "type": "qcm",
+  "chapter": "Exemples et limites de l'IA",
+  "level": "appliquer",
+  "q": "Bee Frontier et Bee Eclipse (intégrés à Amazon) écoutent les conversations et recommandent des produits évoqués. Quelle est la limite principale ?",
+  "options": [
+   "Données personnelles, vie privée et surveillance",
+   "Droits d'auteur",
+   "Risque d'homogénéisation",
+   "Coût de la livraison"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Écouter les conversations pose des questions de données personnelles, de vie privée et de surveillance.",
+  "source": "cours",
+  "at": 3,
+  "id": "q45"
+ },
+ {
+  "type": "qcm",
+  "chapter": "Exemples et limites de l'IA",
+  "level": "appliquer",
+  "q": "Dans le test live de la prof, on prépare un panier Carrefour dans ChatGPT. Quelle friction est levée et que reste-t-il à faire ?",
+  "options": [
+   "Composer le panier à la main ; il reste à finaliser et payer sur le site Carrefour",
+   "Le paiement ; il reste à composer le panier",
+   "Le choix du magasin ; il reste à écrire la liste de courses",
+   "Aucune friction n'est levée"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "L'IA compose le panier ; le shopper choisit magasin et livraison, puis finalise sur Carrefour. Limites : données bancaires et réglementation.",
+  "source": "cours",
+  "at": 3,
+  "id": "q46"
+ },
+ {
+  "type": "open",
+  "chapter": "Exemples et limites de l'IA",
+  "level": "appliquer",
+  "q": "Choisissez une marque qui utilise l'IA dans son parcours. Précisez l'étape, le type d'IA, le bénéfice pour le shopper, le bénéfice pour la marque et une limite.",
+  "points": [
+   "Étape du parcours (pré-achat, achat, post-achat)",
+   "Type d'IA (prédictive, générative, agentique)",
+   "Bénéfice shopper précis",
+   "Bénéfice marque précis",
+   "Une limite (données, vie privée, biais, réglementation)"
+  ],
+  "model": "Sephora dans ChatGPT : à l'achat, avec de l'IA générative, le shopper obtient des conseils beauté personnalisés en langage naturel et peut acheter sans quitter l'application. La marque gagne en conversion et en panier moyen. Limite : l'utilisation de données personnelles et la dépendance à la plateforme ChatGPT (test aux États-Unis).",
+  "why": "",
+  "source": "cours",
+  "at": 3,
+  "id": "q47"
+ },
+ {
+  "type": "qcm",
+  "chapter": "AI Act",
+  "level": "comprendre",
+  "q": "Depuis le 2 août 2026, quelle obligation de transparence de l'AI Act s'applique ?",
+  "options": [
+   "Une personne qui interagit avec un chatbot doit pouvoir savoir qu'elle parle à une machine",
+   "Toute publicité doit être faite par des humains",
+   "Les marques doivent interdire l'IA",
+   "Les chatbots doivent être supprimés"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Transparence : savoir qu'on parle à une machine, et certains contenus artificiels doivent être identifiables ou signalés.",
+  "source": "cours",
+  "at": 3,
+  "id": "q48"
+ },
+ {
+  "type": "qcm",
+  "chapter": "AI Act",
+  "level": "appliquer",
+  "q": "Une administration attribue à chaque citoyen un score selon son comportement, avec des conséquences sur sa vie. Quel niveau de risque de l'AI Act ?",
+  "options": [
+   "Inacceptable, donc interdit",
+   "Haut risque",
+   "Risque de transparence",
+   "Risque minimal"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "La notation sociale fait partie des usages inacceptables et interdits.",
+  "source": "cours",
+  "at": 3,
+  "id": "q49"
+ },
+ {
+  "type": "multi",
+  "chapter": "AI Act",
+  "level": "comprendre",
+  "q": "Quels usages relèvent du niveau « haut risque » (très encadré) ?",
+  "options": [
+   "Recrutement",
+   "Éducation",
+   "Notation sociale",
+   "Filtre anti-spam",
+   "Deepfakes"
+  ],
+  "answer": [
+   0,
+   1
+  ],
+  "why": "Haut risque : recrutement et éducation. La notation sociale est inacceptable, les deepfakes relèvent de la transparence, le filtre anti-spam du risque minimal.",
+  "source": "cours",
+  "at": 3,
+  "id": "q50"
+ },
+ {
+  "type": "qcm",
+  "chapter": "Black Friday et confiance",
+  "level": "comprendre",
+  "q": "Selon l'étude YouGov du cours, quelle part des acheteurs potentiels du Black Friday 2026 envisage d'utiliser l'IA (contre 33 % en 2025) ?",
+  "options": [
+   "49 %",
+   "30 %",
+   "42 %",
+   "9 %"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "49 % en 2026, contre 33 % en 2025. 42 % sont à l'aise pour trouver le meilleur prix, 9 % pour ajouter au panier.",
+  "source": "cours",
+  "at": 3,
+  "id": "q51"
+ },
+ {
+  "type": "qcm",
+  "chapter": "Black Friday et confiance",
+  "level": "appliquer",
+  "q": "42 % sont à l'aise pour que l'IA trouve le meilleur prix, mais seulement 9 % pour qu'elle ajoute au panier. Quelle conclusion ?",
+  "options": [
+   "Les shoppers acceptent que l'IA cherche et compare, beaucoup moins qu'elle achète à leur place",
+   "Les shoppers refusent toute IA",
+   "L'IA agentique est déjà massivement acceptée",
+   "Le prix est le seul critère d'acceptation"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "C'est un point clé du cours : l'autonomie d'achat est une étape de confiance supplémentaire.",
+  "source": "cours",
+  "at": 3,
+  "id": "q52"
+ },
+ {
+  "type": "multi",
+  "chapter": "Black Friday et confiance",
+  "level": "comprendre",
+  "q": "Quels sont les freins à la confiance cités dans le cours ?",
+  "options": [
+   "Informations inexactes",
+   "Recommandations biaisées ou sponsorisées",
+   "Manque de transparence",
+   "Interface trop colorée",
+   "Prix trop bas"
+  ],
+  "answer": [
+   0,
+   1,
+   2
+  ],
+  "why": "Freins : informations inexactes, recommandations biaisées ou sponsorisées, manque de transparence.",
+  "source": "cours",
+  "at": 3,
+  "id": "q53"
+ },
+ {
+  "type": "qcm",
+  "chapter": "Acceptation de l'IA",
+  "level": "comprendre",
+  "q": "Dans les quatre expériences de l'IA, quel est le coût perçu de la collecte de données ?",
+  "options": [
+   "Se sentir exploité",
+   "Se sentir incompris, stéréotypé",
+   "Se sentir remplacé, dépendant",
+   "Se sentir aliéné"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Collecte de données : bénéfice se sentir servi, coût se sentir exploité.",
+  "source": "cours",
+  "at": 3,
+  "id": "q54"
+ },
+ {
+  "type": "qcm",
+  "chapter": "Acceptation de l'IA",
+  "level": "appliquer",
+  "q": "Un shopper reçoit des recommandations qui l'enferment dans une catégorie et se sent stéréotypé. Quelle expérience de l'IA ?",
+  "options": [
+   "Classification",
+   "Délégation",
+   "Interaction sociale",
+   "Collecte de données"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Classification : bénéfice se sentir compris, coût se sentir incompris ou stéréotypé.",
+  "source": "cours",
+  "at": 3,
+  "id": "q55"
+ },
+ {
+  "type": "qcm",
+  "chapter": "Acceptation de l'IA",
+  "level": "appliquer",
+  "q": "Un shopper confie ses courses à un agent IA et craint de devenir dépendant. Quelle expérience de l'IA ?",
+  "options": [
+   "Délégation",
+   "Classification",
+   "Collecte de données",
+   "Interaction sociale"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Délégation : agir à ma place. Bénéfice se sentir libéré, coût se sentir remplacé ou dépendant.",
+  "source": "cours",
+  "at": 3,
+  "id": "q56"
+ },
+ {
+  "type": "qcm",
+  "chapter": "Acceptation de l'IA",
+  "level": "comprendre",
+  "q": "Dans le modèle AIDUA, quelle évaluation regroupe la performance attendue et l'effort attendu ?",
+  "options": [
+   "L'évaluation secondaire",
+   "L'évaluation primaire",
+   "Les émotions",
+   "La décision"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Primaire : influence sociale, motivation hédonique, anthropomorphisme. Secondaire : performance et effort attendus. Puis émotions et décision.",
+  "source": "cours",
+  "at": 3,
+  "id": "q57"
+ },
+ {
+  "type": "multi",
+  "chapter": "Acceptation de l'IA",
+  "level": "comprendre",
+  "q": "Quels critères relèvent de l'évaluation primaire du modèle AIDUA ?",
+  "options": [
+   "Influence sociale",
+   "Motivation hédonique",
+   "Anthropomorphisme",
+   "Performance attendue",
+   "Effort attendu"
+  ],
+  "answer": [
+   0,
+   1,
+   2
+  ],
+  "why": "Les deux derniers critères relèvent de l'évaluation secondaire.",
+  "source": "cours",
+  "at": 3,
+  "id": "q58"
+ },
+ {
+  "type": "qcm",
+  "chapter": "Acceptation de l'IA",
+  "level": "appliquer",
+  "q": "Lu do Magalu a d'abord aidé à acheter en ligne avant de devenir influenceuse virtuelle. Quel enseignement le cours en tire-t-il ?",
+  "options": [
+   "L'utilité précède l'influence",
+   "L'influence précède l'utilité",
+   "Un assistant virtuel doit être anonyme",
+   "Un influenceur virtuel doit remplacer le service client"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "L'assistante a gagné la confiance en étant utile, puis a pris une dimension d'influence.",
+  "source": "cours",
+  "at": 3,
+  "id": "q59"
+ },
+ {
+  "type": "qcm",
+  "chapter": "Acceptation de l'IA",
+  "level": "comprendre",
+  "q": "Que signifie concevoir une expérience augmentée selon le cours ?",
+  "options": [
+   "Maximiser le bénéfice perçu et minimiser le coût perçu, à chaque point de contact",
+   "Ajouter de l'IA à tous les points de contact",
+   "Remplacer tous les conseillers humains",
+   "Collecter un maximum de données"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Une expérience augmentée n'est pas plus de technologie partout, mais moins de frictions et plus de pertinence.",
+  "source": "cours",
+  "at": 3,
+  "id": "q60"
+ },
+ {
+  "type": "qcm",
+  "chapter": "Contenus générés par l'IA",
+  "level": "appliquer",
+  "q": "Dans le luxe, un design réalisé par l'IA a quel effet selon le paradoxe de valeur (Xu & Mehta, 2022) ?",
+  "options": [
+   "Il augmente la valeur fonctionnelle mais réduit la valeur émotionnelle",
+   "Il réduit la valeur fonctionnelle et augmente la valeur émotionnelle",
+   "Il augmente les deux valeurs",
+   "Il n'a aucun effet"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Exemples du cours : voitures de luxe (fonctionnelle) et sac à main Vuitton (émotionnelle).",
+  "source": "cours",
+  "at": 3,
+  "id": "q61"
+ },
+ {
+  "type": "qcm",
+  "chapter": "Contenus générés par l'IA",
+  "level": "appliquer",
+  "q": "Une maison de maroquinerie artisanale hésite à créer sa publicité avec l'IA. Quel conseil du cours ?",
+  "options": [
+   "Plus la marque repose sur le savoir-faire humain, plus l'humain doit rester visible",
+   "Utiliser l'IA partout pour réduire les coûts",
+   "Cacher l'usage de l'IA",
+   "Remplacer les artisans par des visuels IA"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "L'usage de l'IA est un choix de positionnement cohérent avec les valeurs de la marque.",
+  "source": "cours",
+  "at": 3,
+  "id": "q62"
+ },
+ {
+  "type": "qcm",
+  "chapter": "SEO et GEO",
+  "level": "comprendre",
+  "q": "Quelle est la différence entre SEO et GEO ?",
+  "options": [
+   "SEO : être bien classé dans une liste de liens. GEO : être cité et recommandé dans la réponse d'une IA",
+   "SEO : être cité par une IA. GEO : être bien classé sur Google",
+   "Ce sont deux noms du même concept",
+   "SEO concerne le B2C, GEO le B2B"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "SEO = Search Engine Optimization. GEO = Generative Engine Optimization (LLM).",
+  "source": "cours",
+  "at": 3,
+  "id": "q63"
+ },
+ {
+  "type": "multi",
+  "chapter": "SEO et GEO",
+  "level": "appliquer",
+  "q": "Pour être cité par une IA, quelles actions sont recommandées ?",
+  "options": [
+   "Contenus clairs, factuels et à jour",
+   "Répéter le mot clé le plus possible",
+   "Sources fiables et preuves",
+   "Langage naturel et formats variés (listes, avis, résumés)",
+   "Cacher les informations produit"
+  ],
+  "answer": [
+   0,
+   2,
+   3
+  ],
+  "why": "Le cours recommande des contenus clairs et factuels, des sources fiables, du langage naturel, des formats variés et des optimisations techniques.",
+  "source": "cours",
+  "at": 3,
+  "id": "q64"
+ },
+ {
+  "type": "qcm",
+  "chapter": "SEO et GEO",
+  "level": "comprendre",
+  "q": "Quel chiffre McKinsey (State of Marketing Europe 2026) est cité dans le cours ?",
+  "options": [
+   "Plus de 50 % des utilisateurs de recherche IA s'en servent pour guider leurs découvertes et décisions d'achat",
+   "72 % mesurent le ROI de l'IA",
+   "49 % envisagent d'utiliser l'IA au Black Friday",
+   "9 % laissent l'IA ajouter au panier"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Les autres chiffres viennent d'autres sources : Wharton × GBK et YouGov.",
+  "source": "cours",
+  "at": 3,
+  "id": "q65"
+ },
+ {
+  "type": "qcm",
+  "chapter": "Optimiser un parcours digital",
+  "level": "comprendre",
+  "q": "Quel est l'ordre des 4 étapes pour chasser les frictions d'un parcours digital ?",
+  "options": [
+   "Observer, prioriser, augmenter, tester",
+   "Augmenter, observer, tester, prioriser",
+   "Tester, augmenter, observer, prioriser",
+   "Prioriser, tester, observer, augmenter"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "On observe les données, on priorise selon l'impact, on augmente avec l'IA, puis on teste en A/B.",
+  "source": "cours",
+  "at": 3,
+  "id": "q66"
+ },
+ {
+  "type": "qcm",
+  "chapter": "Optimiser un parcours digital",
+  "level": "appliquer",
+  "q": "Une équipe ajoute un chatbot sur tout son site sans analyser les données. Quelles étapes a-t-elle oubliées ?",
+  "options": [
+   "Observer et prioriser",
+   "Seulement tester",
+   "Seulement mesurer le ROI",
+   "Aucune"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Il faut d'abord repérer où sont les frictions (analytics, sessions, avis, SAV) puis prioriser selon l'impact.",
+  "source": "cours",
+  "at": 3,
+  "id": "q67"
+ },
+ {
+  "type": "qcm",
+  "chapter": "Optimiser un parcours digital",
+  "level": "appliquer",
+  "q": "On envoie deux objets d'e-mail à deux moitiés d'un échantillon, puis le meilleur à toute la base. De quelle étape s'agit-il ?",
+  "options": [
+   "Tester (A/B test)",
+   "Observer",
+   "Prioriser",
+   "Augmenter"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "L'A/B test fait partie de l'étape Tester, avant un déploiement progressif.",
+  "source": "cours",
+  "at": 3,
+  "id": "q68"
+ },
+ {
+  "type": "qcm",
+  "chapter": "KPIs",
+  "level": "appliquer",
+  "q": "Un Reel touche 30 000 personnes et totalise 1 500 interactions. Quel est le taux d'engagement ?",
+  "options": [
+   "5 %",
+   "0,5 %",
+   "20 %",
+   "50 %"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Interactions ÷ portée = 1 500 ÷ 30 000 × 100 = 5 %.",
+  "source": "cours",
+  "at": 3,
+  "id": "q69"
+ },
+ {
+  "type": "qcm",
+  "chapter": "KPIs",
+  "level": "comprendre",
+  "q": "Comment calcule-t-on le taux de conversion ?",
+  "options": [
+   "Commandes ÷ visites",
+   "Interactions ÷ portée",
+   "Visites ÷ commandes",
+   "Ventes ÷ part de marché"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Taux de conversion = commandes ÷ visites. Taux d'engagement = interactions ÷ portée.",
+  "source": "cours",
+  "at": 3,
+  "id": "q70"
+ },
+ {
+  "type": "multi",
+  "chapter": "KPIs",
+  "level": "comprendre",
+  "q": "Quels sont des exemples de mesures « pour s'améliorer » cités dans le cours ?",
+  "options": [
+   "Pénétration de la marque",
+   "Part de marché",
+   "Force relative de la brand equity",
+   "Nombre de salariés",
+   "Couleur du logo"
+  ],
+  "answer": [
+   0,
+   1,
+   2
+  ],
+  "why": "Le cours cite aussi les tests produits réussis et la visibilité en rayon (place, PLV).",
+  "source": "cours",
+  "at": 3,
+  "id": "q71"
+ },
+ {
+  "type": "multi",
+  "chapter": "IA responsable et durable",
+  "level": "comprendre",
+  "q": "Quels sont les quatre principes d'une IA utile et responsable ?",
+  "options": [
+   "Transparence",
+   "Contrôle des données",
+   "Supervision humaine",
+   "Sobriété",
+   "Automatisation totale des décisions critiques"
+  ],
+  "answer": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "why": "Transparence, contrôle des données, supervision humaine et sobriété. Les décisions critiques doivent être validées par un humain.",
+  "source": "cours",
+  "at": 3,
+  "id": "q72"
+ },
+ {
+  "type": "qcm",
+  "chapter": "IA responsable et durable",
+  "level": "appliquer",
+  "q": "Une enseigne utilise l'IA pour prévoir la demande et réduire le gaspillage alimentaire. De quel volet de l'IA durable s'agit-il ?",
+  "options": [
+   "Utiliser l'IA pour un objectif environnemental",
+   "Limiter l'empreinte de l'IA elle-même",
+   "Mesurer le ROI de l'IA",
+   "Respecter l'AI Act"
+  ],
+  "answer": [
+   0
+  ],
+  "why": "Deux volets : utiliser l'IA pour la durabilité, et rendre l'usage de l'IA sobre.",
+  "source": "cours",
+  "at": 3,
+  "id": "q73"
+ },
+ {
+  "type": "open",
+  "chapter": "IA responsable et durable",
+  "level": "appliquer",
+  "q": "Atelier : imaginez une expérience shopper augmentée par l'IA sur un touchpoint de votre choix. Précisez le bénéfice pour le shopper, le bénéfice pour la marque, la friction réduite et un garde-fou.",
+  "points": [
+   "Touchpoint et idée clairs",
+   "Bénéfice shopper",
+   "Bénéfice marque",
+   "Friction évitée ou réduite",
+   "Garde-fou (transparence, données, supervision humaine, sobriété)"
+  ],
+  "model": "Caddie intelligent en magasin : écran et balance affichent le coût du panier, les quantités et le poids de déchets, et l'IA indique le nombre de repas possibles. Bénéfice shopper : maîtriser son budget et gagner du temps. Bénéfice marque : moins d'abandons, fidélisation, meilleure gestion des stocks. Friction réduite : l'incertitude sur le total à la caisse. Garde-fous : informer le client de l'usage de l'IA, lui laisser le contrôle de ses données et valider une estimation fiable.",
+  "why": "",
+  "source": "cours",
+  "at": 3,
+  "id": "q74"
  }
 ]

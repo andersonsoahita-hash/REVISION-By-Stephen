@@ -282,5 +282,419 @@
    }
   ],
   "take": "L'IA accélère l'exploration, mais elle peut inventer : sourcer, trianguler, confronter au terrain."
+ },
+ {
+  "id": "s3-ages",
+  "seance": "Séance 3",
+  "title": "Les trois âges de l'IA",
+  "chapters": [
+   "Trois âges de l'IA"
+  ],
+  "intro": "Objectif de la séance 3 : distinguer IA prédictive, générative et agentique, puis voir où elles augmentent le parcours du shopper.",
+  "items": [
+   {
+    "t": "IA prédictive : analyser et prévoir",
+    "d": "Elle travaille à partir d'une base de données pour prévoir ce qui va arriver : segmentation, prévision de la demande et des volumes, recommandations, prix dynamiques.",
+    "ex": "« Les clients ayant acheté ceci ont aussi acheté… »",
+    "key": "C'est le premier type d'IA qu'on a utilisé."
+   },
+   {
+    "t": "IA générative : créer et converser",
+    "d": "Elle crée elle-même du contenu (texte, images, vidéos) et répond en langage naturel.",
+    "ex": "ChatGPT, Copilot, Claude, Gemini.",
+    "key": "C'est l'IA la plus utilisée aujourd'hui."
+   },
+   {
+    "t": "IA agentique : agir pour le client",
+    "d": "Elle exécute des tâches de façon autonome dans un cadre défini : chercher, organiser, réserver, et demain valider ou acheter.",
+    "ex": "« Organise-moi 3 jours à Barcelone pour moins de 600 € » : hôtel, activités, réservations.",
+    "key": "Selon la prof, acheter seule n'est pas encore tout à fait possible en France."
+   }
+  ],
+  "take": "Prédictive = analyser et prévoir. Générative = créer et converser. Agentique = agir à la place du client."
+ },
+ {
+  "id": "s3-parcours",
+  "seance": "Séance 3",
+  "title": "L'IA sur tout le parcours",
+  "chapters": [
+   "IA sur le parcours"
+  ],
+  "intro": "L'IA augmente chaque étape du parcours (pré-achat, achat, post-achat). Pour chaque étape : le levier, le bénéfice pour le shopper, le bénéfice pour la marque.",
+  "items": [
+   {
+    "t": "Pré-achat",
+    "d": "Leviers : publicité personnalisée, recherche conversationnelle (chatbot ou directement dans ChatGPT), contenus inspirants.\nBénéfice shopper : trouver plus vite ce qui lui correspond.\nBénéfice marque : pertinence, taux de clic.",
+    "ex": "",
+    "key": ""
+   },
+   {
+    "t": "Achat",
+    "d": "Leviers : recommandations, assistant d'achat, essayage virtuel (lunettes par exemple), prix et offres ciblés selon le profil.\nBénéfice shopper : choisir en confiance, avec moins d'effort.\nBénéfice marque : conversion, panier moyen, moins de retours.",
+    "ex": "L'essayage virtuel permet de tester avant d'acheter, donc moins de retours.",
+    "key": ""
+   },
+   {
+    "t": "Post-achat",
+    "d": "Leviers : service client 24h/24 et 7j/7, conseils d'usage, réassort automatique, fidélisation personnalisée (newsletters).\nBénéfice shopper : être accompagné, ne pas être « oublié ».\nBénéfice marque : coûts de service réduits, réachat, recommandation.",
+    "ex": "Service client Apple : l'IA répond aux questions simples, puis redirige vers un vrai conseiller.",
+    "key": "Source du tableau : d'après BCG (2024)."
+   }
+  ],
+  "take": "Pré-achat : pertinence. Achat : conversion et panier. Post-achat : accompagnement, coûts de service, réachat."
+ },
+ {
+  "id": "s3-exemples",
+  "seance": "Séance 3",
+  "title": "Exemples et limites : Spotify, Netflix, Sephora, Amazon, Carrefour",
+  "chapters": [
+   "Exemples et limites de l'IA"
+  ],
+  "intro": "Chaque exemple du cours vient avec une limite de l'IA. Retiens le couple exemple / limite.",
+  "items": [
+   {
+    "t": "Spotify",
+    "d": "Recommandations ultra personnalisées. Équilibre entre exploitation (titres proches de ce qu'on écoute) et exploration (titres différents, risque modéré), ce qui met aussi en avant des artistes de niche. Piste pour demain : créer une playlist en langage naturel (« j'ai un anniversaire ce week-end… »).",
+    "ex": "",
+    "key": "Piste d'avenir évoquée par la prof, pas un service existant."
+   },
+   {
+    "t": "Netflix",
+    "d": "Personnalisation des recommandations, de la page d'accueil, des contenus selon les marchés, traduction, doublage. Piste : « je veux un thriller pour ce week-end » et création assistée.",
+    "ex": "",
+    "key": "Limites : droits d'auteur et propriété intellectuelle, qualité des contenus générés, évolution des métiers, risque d'homogénéisation."
+   },
+   {
+    "t": "Sephora × ChatGPT",
+    "d": "L'appli Sephora intégrée à ChatGPT : conseils beauté personnalisés et achats possibles directement depuis ChatGPT (test aux États-Unis).",
+    "ex": "",
+    "key": "Pas encore disponible en France d'après la prof."
+   },
+   {
+    "t": "Amazon × Bee",
+    "d": "Bee Frontier et Bee Eclipse écoutent et analysent les conversations pour jouer le rôle de « mémoire personnelle » (résumés, rappels). Désormais intégré à Amazon : recommande des produits évoqués dans les conversations.",
+    "ex": "",
+    "key": "Limites : données personnelles, vie privée, surveillance."
+   },
+   {
+    "t": "Test live ChatGPT × Carrefour",
+    "d": "On peut préparer son panier Carrefour directement dans ChatGPT : choisir le magasin et le mode de livraison, puis finaliser la commande sur le site Carrefour. Une vraie friction est levée : plus besoin de composer le panier à la main.",
+    "ex": "La prof a demandé « deux repas pour 15 amis » : l'IA a proposé deux plats et rempli le panier.",
+    "key": "Limites : données bancaires, réglementation française et européenne. Le paiement se fait encore sur Carrefour."
+   },
+   {
+    "t": "Comment l'IA a choisi les produits (test de la prof)",
+    "d": "D'après la réponse de ChatGPT à la prof : prix au kilo, marque de distributeur Carrefour, qualité adaptée à la recette, promotions et formats familiaux, disponibilité dans le magasin choisi.",
+    "ex": "",
+    "key": "À garder en tête : l'IA peut orienter vers la marque du distributeur."
+   }
+  ],
+  "take": "Spotify et Netflix : recommandation. Sephora, Amazon, Carrefour : achat intégré à l'IA. À chaque fois, une limite : droits, données, vie privée, réglementation."
+ },
+ {
+  "id": "s3-aiact",
+  "seance": "Séance 3",
+  "title": "Réglementation : l'AI Act",
+  "chapters": [
+   "AI Act"
+  ],
+  "intro": "Le cours parle d'une réglementation française encore floue. L'AI Act est le règlement européen qui s'applique aussi en France.",
+  "items": [
+   {
+    "t": "Obligations de transparence",
+    "d": "Depuis le 2 août 2026, certaines obligations de transparence s'appliquent : une personne qui interagit avec un chatbot doit pouvoir savoir qu'elle parle à une machine, et certains contenus artificiels doivent être identifiables ou signalés.",
+    "ex": "Exemple CHEF : une publicité avec la mention « AI generated ».",
+    "key": "La prof précise que cela peut encore évoluer."
+   },
+   {
+    "t": "Quatre niveaux de risque",
+    "d": "Inacceptable (interdit) : notation sociale, manipulation, biométrie à distance en temps réel dans l'espace public.\nHaut risque (très encadré) : recrutement, éducation, avec décision finale humaine.\nRisque de transparence : deepfakes, chatbots.\nRisque faible ou minimal : la grande majorité des IA.",
+    "ex": "Notation sociale : un score attribué aux citoyens selon leur comportement.",
+    "key": ""
+   }
+  ],
+  "take": "Quatre niveaux : inacceptable, haut risque, transparence, minimal. Depuis le 2 août 2026, la transparence est obligatoire."
+ },
+ {
+  "id": "s3-blackfriday",
+  "seance": "Séance 3",
+  "title": "Black Friday 2026 : l'IA entre dans le panier",
+  "chapters": [
+   "Black Friday et confiance"
+  ],
+  "intro": "Étude YouGov (France) citée dans le cours sur les acheteurs potentiels du Black Friday 2026.",
+  "items": [
+   {
+    "t": "Les chiffres",
+    "d": "30 % des Français sont susceptibles d'acheter pendant le Black Friday 2026.\nParmi les acheteurs potentiels : 33 % envisageaient d'utiliser l'IA en 2025, 49 % en 2026.\n42 % sont à l'aise pour que l'IA trouve le meilleur prix, mais seulement 9 % pour qu'elle ajoute au panier.\nGen Z et Millennials : 48 %, contre 18 % pour Gen X et Baby-boomers+.",
+    "ex": "",
+    "key": "Source : YouGov, « The bots and the basket »."
+   },
+   {
+    "t": "Les freins à la confiance",
+    "d": "Informations inexactes, recommandations biaisées ou sponsorisées, manque de transparence.",
+    "ex": "",
+    "key": ""
+   }
+  ],
+  "take": "Les shoppers acceptent que l'IA cherche et compare, beaucoup moins qu'elle achète à leur place."
+ },
+ {
+  "id": "s3-tensions",
+  "seance": "Séance 3",
+  "title": "Quatre expériences de l'IA, quatre tensions",
+  "chapters": [
+   "Acceptation de l'IA"
+  ],
+  "intro": "Pour chaque capacité de l'IA, le shopper perçoit un bénéfice et un coût. Source : Puntoni et al., Journal of Marketing.",
+  "items": [
+   {
+    "t": "Collecte de données",
+    "d": "Capacité : écouter (tracking, données partagées).\nBénéfice perçu : se sentir servi.\nCoût perçu : se sentir exploité.",
+    "ex": "",
+    "key": ""
+   },
+   {
+    "t": "Classification",
+    "d": "Capacité : prédire, catégoriser.\nBénéfice perçu : se sentir compris.\nCoût perçu : se sentir incompris, stéréotypé.",
+    "ex": "",
+    "key": ""
+   },
+   {
+    "t": "Délégation",
+    "d": "Capacité : produire, agir à ma place.\nBénéfice perçu : se sentir libéré (moins de charge mentale).\nCoût perçu : se sentir remplacé, dépendant.",
+    "ex": "",
+    "key": ""
+   },
+   {
+    "t": "Interaction sociale",
+    "d": "Capacité : converser (chatbot, assistant).\nBénéfice perçu : se sentir connecté.\nCoût perçu : se sentir aliéné.",
+    "ex": "",
+    "key": ""
+   }
+  ],
+  "take": "Concevoir une expérience augmentée = maximiser le bénéfice perçu et minimiser le coût perçu, à chaque point de contact."
+ },
+ {
+  "id": "s3-aidua",
+  "seance": "Séance 3",
+  "title": "Pourquoi le shopper accepte ou rejette l'IA (AIDUA)",
+  "chapters": [
+   "Acceptation de l'IA"
+  ],
+  "intro": "Modèle AIDUA (Gursoy et al., 2019) : trois étapes avant d'accepter ou de rejeter l'IA.",
+  "items": [
+   {
+    "t": "1. Évaluation primaire",
+    "d": "Influence sociale (« les autres l'utilisent »), motivation hédonique (« c'est agréable »), anthropomorphisme (« ça semble humain »).",
+    "ex": "",
+    "key": ""
+   },
+   {
+    "t": "2. Évaluation secondaire",
+    "d": "Performance attendue (« ça va m'aider ? ») et effort attendu (« c'est simple ? »).",
+    "ex": "",
+    "key": ""
+   },
+   {
+    "t": "3. Émotions puis décision",
+    "d": "Émotions positives (curiosité, enthousiasme) ou négatives (anxiété, méfiance), qui mènent à l'acceptation ou au rejet.",
+    "ex": "",
+    "key": ""
+   },
+   {
+    "t": "Exemple : Lu do Magalu",
+    "d": "L'assistante virtuelle du distributeur brésilien Magazine Luiza a d'abord aidé les clients à acheter en ligne, avant de devenir une influenceuse virtuelle suivie par des millions de personnes (environ 9,4 millions d'abonnés sur Instagram d'après le support).",
+    "ex": "",
+    "key": "L'utilité précède l'influence."
+   }
+  ],
+  "take": "AIDUA : évaluation primaire, évaluation secondaire, émotions, puis acceptation ou rejet."
+ },
+ {
+  "id": "s3-contenus",
+  "seance": "Séance 3",
+  "title": "Contenus générés par l'IA : opportunités et vigilance",
+  "chapters": [
+   "Contenus générés par l'IA"
+  ],
+  "intro": "L'IA produit visuels et vidéos, mais chaque marque doit décider jusqu'où aller selon ses valeurs.",
+  "items": [
+   {
+    "t": "Le paradoxe de valeur (Xu & Mehta, 2022)",
+    "d": "Dans le luxe, un design réalisé par l'IA augmente la valeur fonctionnelle (exemple : voitures de luxe) mais réduit la valeur émotionnelle (exemple : sac à main Vuitton).",
+    "ex": "",
+    "key": "Plus une marque repose sur le savoir-faire humain, plus l'humain doit rester visible."
+   },
+   {
+    "t": "L'IA, un positionnement de marque",
+    "d": "Selon la prof, utiliser l'IA ou non devient un choix de positionnement : est-ce cohérent avec les valeurs de la marque ? Un artisanat de luxe et une marque de performance n'ont pas les mêmes attentes.",
+    "ex": "Chez la marque de la prof, les visuels IA restent minoritaires et portent la mention « AI generated ».",
+    "key": ""
+   }
+  ],
+  "take": "Valeur fonctionnelle en hausse, valeur émotionnelle en baisse : l'humain doit rester visible quand la marque repose sur le savoir-faire."
+ },
+ {
+  "id": "s3-geo",
+  "seance": "Séance 3",
+  "title": "Du SEO au GEO : être recommandé par l'IA",
+  "chapters": [
+   "SEO et GEO"
+  ],
+  "intro": "Plus de 50 % des utilisateurs de recherche IA s'en servent pour guider leurs découvertes et décisions d'achat (McKinsey, State of Marketing Europe 2026).",
+  "items": [
+   {
+    "t": "SEO",
+    "d": "Search Engine Optimization : être bien classé dans une liste de liens, grâce aux mots clés.",
+    "ex": "",
+    "key": ""
+   },
+   {
+    "t": "GEO",
+    "d": "Generative Engine Optimization : être cité, résumé et recommandé dans la réponse d'une IA (LLM, modèles de langage).",
+    "ex": "Si un chef demande « quel fond de veau pour ma brasserie ? », la marque est-elle citée ?",
+    "key": ""
+   },
+   {
+    "t": "Comment être cité",
+    "d": "Contenus clairs, factuels et à jour ; langage naturel ; sources fiables et preuves ; optimisations techniques du site (vitesse, mobile) ; formats variés (listes, avis, résumés, exemples concrets).",
+    "ex": "",
+    "key": "En B2B, le test produit et le bouche-à-oreille comptent aussi : l'IA n'est pas le seul critère."
+   }
+  ],
+  "take": "Le SEO devient le GEO : la marque doit être citée et bien décrite dans les réponses des IA."
+ },
+ {
+  "id": "s3-frictions",
+  "seance": "Séance 3",
+  "title": "Optimiser un parcours digital : chasser les frictions",
+  "chapters": [
+   "Optimiser un parcours digital"
+  ],
+  "intro": "Le but n'est pas de mettre de l'IA partout, mais là où elle réduit une vraie friction. Méthode en 4 étapes.",
+  "items": [
+   {
+    "t": "1. Observer",
+    "d": "Données analytics, enregistrements de sessions, taux de rebond, avis, SAV, terrain.",
+    "ex": "",
+    "key": ""
+   },
+   {
+    "t": "2. Prioriser",
+    "d": "Fréquence de la friction et impact sur la conversion ou la satisfaction.",
+    "ex": "",
+    "key": ""
+   },
+   {
+    "t": "3. Augmenter",
+    "d": "Recherche intelligente, recommandation, chatbot, pré-remplissage, réalité augmentée.",
+    "ex": "Chatbot Nespresso.",
+    "key": ""
+   },
+   {
+    "t": "4. Tester",
+    "d": "A/B test contre un groupe témoin, puis déploiement progressif.",
+    "ex": "Exemple de la prof : deux objets d'e-mail testés sur un échantillon une heure avant l'envoi, le meilleur envoyé au reste de la base.",
+    "key": ""
+   }
+  ],
+  "take": "Observer, prioriser, augmenter, tester. Une expérience augmentée a moins de frictions et plus de pertinence."
+ },
+ {
+  "id": "s3-kpis",
+  "seance": "Séance 3",
+  "title": "Mesurer la performance : les KPIs",
+  "chapters": [
+   "KPIs"
+  ],
+  "intro": "Deux KPIs à savoir calculer, et des repères pour mesurer pour s'améliorer.",
+  "items": [
+   {
+    "t": "Taux de conversion",
+    "d": "Commandes ÷ visites.",
+    "ex": "",
+    "key": ""
+   },
+   {
+    "t": "Taux d'engagement",
+    "d": "Interactions ÷ portée.",
+    "ex": "Reel Instagram : 20 000 personnes touchées ; 800 likes + 100 commentaires + 200 partages + 100 sauvegardes = 1 200 interactions ; 1 200 ÷ 20 000 × 100 = 6 %.",
+    "key": ""
+   },
+   {
+    "t": "Mesurer pour s'améliorer",
+    "d": "Pénétration de la marque, part de marché, force relative de la brand equity ; tests produits réussis auprès d'un échantillon de shoppers ; visibilité (qualité du rayon, place, PLV). Connaître ses KPIs business : volumes de ventes, valeur, top références.",
+    "ex": "",
+    "key": "Les repères varient selon les marques et les secteurs : comparer à ses propres historiques."
+   }
+  ],
+  "take": "Conversion = commandes ÷ visites. Engagement = interactions ÷ portée. Toujours mesurer par étape du funnel."
+ },
+ {
+  "id": "s3-responsable",
+  "seance": "Séance 3",
+  "title": "Une IA utile, responsable et durable",
+  "chapters": [
+   "IA responsable et durable"
+  ],
+  "intro": "Objectif : ne pas « mettre de l'IA », mais créer une expérience plus utile, plus juste et digne de confiance.",
+  "items": [
+   {
+    "t": "Quatre principes",
+    "d": "Transparence : dire quand l'IA intervient. Contrôle des données : laisser la main au client. Supervision humaine : valider les décisions critiques. Sobriété : mesurer l'impact de l'IA elle-même.",
+    "ex": "",
+    "key": ""
+   },
+   {
+    "t": "Chiffres cités",
+    "d": "72 % des organisations mesurent formellement le ROI de l'IA ; 3 dirigeants sur 4 déclarent un retour positif (Wharton × GBK, AI Adoption Report 2025).",
+    "ex": "",
+    "key": ""
+   },
+   {
+    "t": "Défis et implications",
+    "d": "Équilibre entre personnalisation et vie privée ; biais et désinformation ; dépendance excessive. Pour les entreprises : gestion éthique des données, transparence, outils d'IA avec supervision humaine.",
+    "ex": "",
+    "key": ""
+   },
+   {
+    "t": "IA durable",
+    "d": "Deux volets : utiliser l'IA pour des objectifs environnementaux, économiques et sociaux, et limiter l'empreinte de l'IA elle-même.",
+    "ex": "Prévoir la demande d'un supermarché pour réduire le gaspillage ; optimiser les tournées de livraison ; utiliser l'IA avec sobriété (éviter de générer 50 visuels pour rien).",
+    "key": ""
+   }
+  ],
+  "take": "Transparence, contrôle des données, supervision humaine, sobriété. IA durable : utiliser l'IA pour la durabilité et limiter son empreinte."
+ },
+ {
+  "id": "s3-atelier",
+  "seance": "Séance 3",
+  "title": "Atelier 3, points clés et séance 4",
+  "chapters": [
+   "IA responsable et durable"
+  ],
+  "intro": "L'atelier 3 demandait d'inventer une expérience shopper avec l'IA, même si elle n'existe pas encore.",
+  "items": [
+   {
+    "t": "Atelier 3 : augmenter un parcours",
+    "d": "Choisir un touchpoint. Développer l'idée : quel bénéfice pour le shopper ? pour la marque ? quelle friction évitée ou réduite ?",
+    "ex": "Restitution de 2 minutes par groupe.",
+    "key": ""
+   },
+   {
+    "t": "Les 5 points clés",
+    "d": "1. L'IA augmente chaque étape du parcours : prédire, générer, et bientôt agir.\n2. Les shoppers acceptent que l'IA cherche et compare, beaucoup moins qu'elle achète.\n3. Une bonne expérience augmentée lève une vraie friction et maximise le bénéfice perçu.\n4. Le SEO devient GEO.\n5. Toujours mesurer : KPIs par étape du funnel, groupe témoin et uplift, sans oublier la responsabilité sociétale, environnementale et économique.",
+    "ex": "",
+    "key": ""
+   },
+   {
+    "t": "Pour la séance 4",
+    "d": "E-learnings Nestlé Professional CHEF® et restauration hors domicile. Relire les ateliers 1 à 3 (parcours shopper, persona, touchpoint IA) : ils serviront à la réflexion de pairagogie sur CHEF®.",
+    "ex": "Autres exemples de shopper expérience futuriste.",
+    "key": ""
+   }
+  ],
+  "take": "Cinq idées : augmenter le parcours, accepter la recherche plus que l'achat, lever une friction, GEO, mesurer."
  }
 ]

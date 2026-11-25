@@ -190,5 +190,191 @@
   "chapter": "IA et insights",
   "front": "Persona Vérité / Pourquoi / Tension (exemple Dove)",
   "back": "Ce que la personne vit (vérité), la raison profonde (pourquoi), et la tension que la marque peut résoudre."
+ },
+ {
+  "chapter": "Trois âges de l'IA",
+  "front": "IA prédictive",
+  "back": "Analyser et prévoir à partir de données : segmentation, prévision de la demande, recommandations, prix dynamiques.\nExemple : « les clients ayant acheté ceci ont aussi acheté… »",
+  "id": "c33"
+ },
+ {
+  "chapter": "Trois âges de l'IA",
+  "front": "IA générative",
+  "back": "Créer et converser : textes, images, vidéos, en langage naturel.\nExemples : ChatGPT, Copilot, Claude, Gemini.",
+  "id": "c34"
+ },
+ {
+  "chapter": "Trois âges de l'IA",
+  "front": "IA agentique",
+  "back": "Agir pour le client : exécute des tâches de façon autonome dans un cadre défini.\nExemple : « Organise 3 jours à Barcelone pour moins de 600 € ».",
+  "id": "c35"
+ },
+ {
+  "chapter": "IA sur le parcours",
+  "front": "IA : pré-achat",
+  "back": "Pub personnalisée, recherche conversationnelle, contenus inspirants.\nShopper : trouver plus vite. Marque : pertinence, taux de clic.",
+  "id": "c36"
+ },
+ {
+  "chapter": "IA sur le parcours",
+  "front": "IA : achat",
+  "back": "Recommandations, assistant d'achat, essayage virtuel, prix et offres ciblés.\nShopper : choisir en confiance. Marque : conversion, panier moyen, moins de retours.",
+  "id": "c37"
+ },
+ {
+  "chapter": "IA sur le parcours",
+  "front": "IA : post-achat",
+  "back": "Service client 24/7, conseils d'usage, réassort automatique, fidélisation personnalisée.\nShopper : être accompagné. Marque : coûts de service, réachat, recommandation.",
+  "id": "c38"
+ },
+ {
+  "chapter": "Exemples et limites de l'IA",
+  "front": "Spotify : exploitation / exploration",
+  "back": "Exploiter : titres proches de ses goûts. Explorer : titres différents, risque modéré, ce qui met aussi en avant des artistes de niche.",
+  "id": "c39"
+ },
+ {
+  "chapter": "Exemples et limites de l'IA",
+  "front": "Netflix : limites de l'IA",
+  "back": "Droits d'auteur et propriété intellectuelle, qualité des contenus générés, évolution des métiers, risque d'homogénéisation.",
+  "id": "c40"
+ },
+ {
+  "chapter": "Exemples et limites de l'IA",
+  "front": "Sephora × ChatGPT",
+  "back": "Conseils beauté personnalisés et achat directement depuis ChatGPT (test aux États-Unis).",
+  "id": "c41"
+ },
+ {
+  "chapter": "Exemples et limites de l'IA",
+  "front": "Amazon × Bee",
+  "back": "Bee Frontier et Bee Eclipse écoutent les conversations (« mémoire personnelle ») et Amazon recommande des produits évoqués.\nLimites : données personnelles, vie privée, surveillance.",
+  "id": "c42"
+ },
+ {
+  "chapter": "Exemples et limites de l'IA",
+  "front": "ChatGPT × Carrefour",
+  "back": "Le panier se prépare dans ChatGPT (magasin, livraison), puis on finalise sur Carrefour.\nLimites : données bancaires, réglementation.",
+  "id": "c43"
+ },
+ {
+  "chapter": "AI Act",
+  "front": "AI Act : transparence",
+  "back": "Depuis le 2 août 2026 : savoir qu'on parle à un chatbot ; certains contenus artificiels identifiables ou signalés (exemple CHEF : « AI generated »).",
+  "id": "c44"
+ },
+ {
+  "chapter": "AI Act",
+  "front": "AI Act : 4 niveaux de risque",
+  "back": "Inacceptable (notation sociale, manipulation, biométrie à distance), haut risque (recrutement, éducation), transparence (deepfakes, chatbots), minimal (grande majorité).",
+  "id": "c45"
+ },
+ {
+  "chapter": "Black Friday et confiance",
+  "front": "Black Friday 2026 (YouGov)",
+  "back": "IA envisagée : 33 % (2025) → 49 % (2026). À l'aise pour le meilleur prix : 42 %. Pour ajouter au panier : 9 %. Gen Z et Millennials 48 % contre 18 % pour Gen X et boomers+.",
+  "id": "c46"
+ },
+ {
+  "chapter": "Black Friday et confiance",
+  "front": "Freins à la confiance dans l'IA",
+  "back": "Informations inexactes, recommandations biaisées ou sponsorisées, manque de transparence.",
+  "id": "c47"
+ },
+ {
+  "chapter": "Acceptation de l'IA",
+  "front": "Collecte de données (Puntoni)",
+  "back": "Écouter. Bénéfice : se sentir servi. Coût : se sentir exploité.",
+  "id": "c48"
+ },
+ {
+  "chapter": "Acceptation de l'IA",
+  "front": "Classification (Puntoni)",
+  "back": "Prédire, catégoriser. Bénéfice : se sentir compris. Coût : se sentir incompris, stéréotypé.",
+  "id": "c49"
+ },
+ {
+  "chapter": "Acceptation de l'IA",
+  "front": "Délégation (Puntoni)",
+  "back": "Agir à ma place. Bénéfice : se sentir libéré. Coût : se sentir remplacé, dépendant.",
+  "id": "c50"
+ },
+ {
+  "chapter": "Acceptation de l'IA",
+  "front": "Interaction sociale (Puntoni)",
+  "back": "Converser. Bénéfice : se sentir connecté. Coût : se sentir aliéné.",
+  "id": "c51"
+ },
+ {
+  "chapter": "Acceptation de l'IA",
+  "front": "Modèle AIDUA (Gursoy et al., 2019)",
+  "back": "1. Évaluation primaire : influence sociale, motivation hédonique, anthropomorphisme.\n2. Évaluation secondaire : performance et effort attendus.\n3. Émotions, puis acceptation ou rejet.",
+  "id": "c52"
+ },
+ {
+  "chapter": "Acceptation de l'IA",
+  "front": "Lu do Magalu",
+  "back": "Assistante virtuelle de Magazine Luiza (Brésil), d'abord utile pour acheter en ligne, puis devenue influenceuse virtuelle.\nL'utilité précède l'influence.",
+  "id": "c53"
+ },
+ {
+  "chapter": "Contenus générés par l'IA",
+  "front": "Paradoxe de valeur (Xu & Mehta, 2022)",
+  "back": "Dans le luxe, le design IA augmente la valeur fonctionnelle mais réduit la valeur émotionnelle.\nPlus la marque repose sur le savoir-faire humain, plus l'humain doit rester visible.",
+  "id": "c54"
+ },
+ {
+  "chapter": "SEO et GEO",
+  "front": "SEO",
+  "back": "Search Engine Optimization : être bien classé dans une liste de liens (mots clés).",
+  "id": "c55"
+ },
+ {
+  "chapter": "SEO et GEO",
+  "front": "GEO",
+  "back": "Generative Engine Optimization : être cité, résumé et recommandé dans la réponse d'une IA (LLM).",
+  "id": "c56"
+ },
+ {
+  "chapter": "SEO et GEO",
+  "front": "Être cité par une IA",
+  "back": "Contenus clairs, factuels et à jour ; langage naturel ; sources fiables et preuves ; optimisations techniques ; formats variés (listes, avis, résumés, exemples).",
+  "id": "c57"
+ },
+ {
+  "chapter": "Optimiser un parcours digital",
+  "front": "Chasser les frictions : 4 étapes",
+  "back": "Observer (analytics, sessions, avis, SAV) → Prioriser (fréquence et impact) → Augmenter (recherche intelligente, chatbot, pré-remplissage, réalité augmentée) → Tester (A/B test, groupe témoin, déploiement progressif).",
+  "id": "c58"
+ },
+ {
+  "chapter": "KPIs",
+  "front": "Taux de conversion",
+  "back": "Commandes ÷ visites.",
+  "id": "c59"
+ },
+ {
+  "chapter": "KPIs",
+  "front": "Taux d'engagement",
+  "back": "Interactions ÷ portée.\nExemple : 1 200 ÷ 20 000 × 100 = 6 %.",
+  "id": "c60"
+ },
+ {
+  "chapter": "IA responsable et durable",
+  "front": "IA responsable : 4 principes",
+  "back": "Transparence, contrôle des données, supervision humaine, sobriété.",
+  "id": "c61"
+ },
+ {
+  "chapter": "IA responsable et durable",
+  "front": "IA durable : 2 volets",
+  "back": "Utiliser l'IA pour des objectifs environnementaux, économiques et sociaux, et limiter l'empreinte de l'IA elle-même.",
+  "id": "c62"
+ },
+ {
+  "chapter": "IA responsable et durable",
+  "front": "Séance 4 : à préparer",
+  "back": "E-learnings Nestlé Professional CHEF® et restauration hors domicile ; relire les ateliers 1 à 3 pour la pairagogie.",
+  "id": "c63"
  }
 ]

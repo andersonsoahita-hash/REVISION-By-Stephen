@@ -27,3 +27,7 @@
 - Import d'un fichier de cours (.json) : leçons, questions et cartes créées d'un coup ; ré-import = mise à jour sans perdre la progression.
 - Consigne pour générer le fichier avec une IA, exemple dans modeles/.
 - Mises à jour : pastille « Mise à jour disponible », boutons « Vérifier les mises à jour » et « Mettre à jour ce cours ».
+
+## 2026-11-25 (8)
+- Séance 3 ajoutée au cours Shopper Experience & IA : 13 leçons (3 âges de l'IA, parcours, exemples et limites, AI Act, Black Friday, 4 tensions, AIDUA, contenus, SEO/GEO, frictions, KPIs, IA responsable, atelier), 40 questions et 31 cartes mémoire.
+- Version du cours passée à 4 : le bouton « Mettre à jour » apparaît pour ceux qui ont déjà le cours.
